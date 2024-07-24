@@ -4,7 +4,10 @@ import bitc.fullstack405.team2.PopCafe.CafeDTO;
 import bitc.fullstack405.team2.PopCafe.CafeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -17,20 +20,19 @@ public class ThemeController {
   private CafeService cafeService;
 
   @RequestMapping("/main")
-  public ModelAndView main() throws Exception{
-    ModelAndView mv = new ModelAndView("test/main");
-
-    return mv;
+  public String themeMain() throws Exception{
+//    ModelAndView mv = new ModelAndView("main/main");
+    return "main/main";
   }
 
 
 
   // 테마 정보 리스트 불러와보기
-  @RequestMapping("/test/themepopup1")
-  public ModelAndView selectTheme() throws Exception {
-    ModelAndView mv = new ModelAndView("test/themepopup");
+  @RequestMapping("/themepopup1")
+  public ModelAndView selectTheme(@RequestParam("themeIdx") int themeIdx) throws Exception {
+    ModelAndView mv = new ModelAndView("themePopup/themepopup");
 
-    ThemeDTO theme = themeService.selectTheme();
+    ThemeDTO theme = themeService.selectTheme(themeIdx);
     // 테마 상세 정보 추가
     mv.addObject("theme", theme);
 
@@ -40,6 +42,15 @@ public class ThemeController {
 
     return mv;
   }
+
+  @GetMapping("/themes")
+  public ThemeDTO selectModalTheme(@RequestParam("themeIdx") int themeIdx) throws Exception {
+    System.out.println(themeIdx);
+    ThemeDTO theme = themeService.selectTheme(themeIdx);
+
+    return theme;
+  }
+
 
 
 

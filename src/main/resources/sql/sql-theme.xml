@@ -10,6 +10,6 @@
         from
             theme
         where
-            theme_id = #{themeId}
+            theme_id = #{themeIdx}
     </select>
 </mapper>

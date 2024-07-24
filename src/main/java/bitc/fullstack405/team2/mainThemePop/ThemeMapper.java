@@ -7,7 +7,7 @@ import java.util.List;
 @Mapper
 public interface ThemeMapper {
   List <ThemeDTO> selectThemeList() throws Exception;
-  ThemeDTO selectTheme() throws Exception;
+  ThemeDTO selectTheme(int themeIdx) throws Exception;
 
   ThemeDTO selectCafe() throws Exception;
 }

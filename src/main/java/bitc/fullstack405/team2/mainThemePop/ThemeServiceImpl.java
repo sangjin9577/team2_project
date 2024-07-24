@@ -11,8 +11,8 @@ public class ThemeServiceImpl implements
   private ThemeMapper themeMapper;
 
   @Override
-  public ThemeDTO selectTheme() throws Exception {
-    return themeMapper.selectTheme();
+  public ThemeDTO selectTheme(int themeIdx) throws Exception {
+    return themeMapper.selectTheme(themeIdx);
   }
 
   @Override
