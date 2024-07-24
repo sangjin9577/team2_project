@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비트포비아 던전 예약하기</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+
+        #all {
+            border: 1px solid black;
+        }
+        #container{
+            margin-top: 100px;
+            border: 1px solid black;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/bootstrap.bundle.js"></script>
+</head>
+<body>
+    <div class="container-fluid fixed-top">
+        <!-- 네비게이션 드랍리스트 커서올릴시 내려오게 하기 -->
+        <!-- 네비게이션 -->
+        <!-- 브랜드 로고 -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-end mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="https://xdungeon.net/layout/res/home.php?go=main" target="_blank"
+                    style="margin-left: 10%;">
+                    <img src="https://xdungeon.net/layout/images/common/logo.png">
+                </a>
+            </div>
+            <!-- 네비게이션 메뉴 -->
+            <!-- 메뉴 1 -->
+            <div style="margin-right: 10%;">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            RESERVATION
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">에약 안내</a></li>
+                            <li><a class="dropdown-item" href="#">예약 하기</a></li>
+                            <li><a class="dropdown-item" href="#">예약 확인</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 메뉴 2 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            NOTICE
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../notice_NOTICE.html">NOTICE</a></li>
+                            <li><a class="dropdown-item" href="../notice_FAQ.html">FAQ</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- 메뉴 3 -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            COMM
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../commList.html">COMM</a></li>
+                            <li><a class="dropdown-item" href="../reviewList.html">REVIEW</a></li>
+                        </ul>
+                    </li>
+                    <!-- 메뉴 4 -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">LOCATION</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 로그인 -->
+            <div class="d-flex justify-content-end">
+                <button type="button btn btn-primary">
+                    <a href="../login/login.html">로그인</a>
+                </button>
+            </div>
+        </nav>
+    </div>
+    <div id="container">
+        <div class="container text-center">
+        <div class="row row-cols-3">
+          <div class="col-3">예약하기</div>
+          <div class="col-3" style="background-color: chocolate;">예약정보입력</div>
+          <div class="col-3">결제하기</div>
+          <div class="col-3">예약완료</div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6 md-2">
+                <h2 class="text-center mb-4"></h2>
+                <div class="container">
+                    <div class="container mb-4">
+                        <div class="row">
+                            <img src="#" style="height: 400px; width: 400px;">
+                            <p><strong>사라진보물 : 대저택의 비밀</strong></p><br>
+                            <p><small>지점명 : 홍대던전</small></p>
+                            <p><small>예약날짜 : 654654</small></p>
+                            <p><small>시간 : 654654</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 md-2">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <h2 class="text-center mb-4">예약하기</h2>
+                        <form>
+                            <div class="form-group">
+                                <select class="form-select form-select-sm" >
+                                    <option value="1">2명</option>
+                                    <option value="2">3명</option>
+                                    <option value="3">4명</option>
+                                    <option value="4">5명</option>
+                                    <option value="5">6명</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">*예약자</label>
+                                <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">*전화번호</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="전화번호를 입력하세요" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">쿠폰</label>
+                                <input type="text" class="form-control" id="date" required placeholder="쿠폰번호를 입력하세요">
+                                <button type="button" class="btn btn-primary">쿠폰적용</button>
+                            </div>
+                            <div class="form-group">
+                                <label for="pay">*요금</label>
+                                <input type="hidden" id="pay">
+                                <!-- <input type="text" class="form-control" id="time" required> --><br>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-block"><a href="complete.html" style="color: white;">예약하기</a></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
