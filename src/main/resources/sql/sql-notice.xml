@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitc.fullstack405.team2.notice.NoticeMapper">
+
+    <!-- 공지사항 목록 -->
+    <select id="selectNoticeList" resultType="bitc.fullstack405.team2.notice.NoticeDTO">
+        SELECT
+            notice_id, category, title, createdAt, start_date, end_date, hit_cnt, image_url
+        FROM
+            notice_test
+        WHERE
+            deleted_yn ='N'
+        ORDER BY
+            notice_id DESC
+    </select>
+
+    <!-- 공지사항 게시물 상세 -->
+    <select id="selectNoticeDetail" parameterType="int" resultType="bitc.fullstack405.team2.notice.NoticeDTO">
+        SELECT
+            category, title, image_url, createdAt, hit_cnt
+        FROM
+            notice_test
+        WHERE
+            notice_id = #{noticeId}
+        AND
+            deleted_yn = 'N'
+    </select>
+
+    <!-- 조회수 증가 -->
+    <update id="updateHitCount" parameterType = "int">
+        UPDATE
+            notice_test
+        SET
+            hit_cnt = hit_cnt + 1
+        WHERE
+            notice_id = #{noticeId}
+    </update>
+</mapper>
