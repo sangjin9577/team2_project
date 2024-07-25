@@ -15,8 +15,8 @@ public class NoticeServiceImpl implements NoticeService {
     @Autowired
     private NoticeMapper noticeMapper;
 
-    @Autowired
-    private FileUtils fileUtils;
+//    @Autowired
+//    private FileUtils fileUtils;
 
     // notice 목록
     @Override
@@ -37,8 +37,8 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     // notice 글 등록 - 관리자
-    @Override
-    public void insertNotice(NoticeDTO notice, MultipartFile multipart) throws Exception {
-        noticeMapper.insertNotice(notice);
-    }
+//    @Override
+//    public void insertNotice(NoticeDTO notice, MultipartFile multipart) throws Exception {
+//        noticeMapper.insertNotice(notice);
+//    }
 }

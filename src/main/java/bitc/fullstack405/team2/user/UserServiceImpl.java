@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int idCheck(int userId) throws Exception {
+    public int idCheck(String userId) throws Exception {
         return userMapper.idCheck(userId);
     }
 }

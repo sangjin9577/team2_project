@@ -13,5 +13,5 @@ public interface NoticeMapper {
 
     void updateHitCount(int noticeId) throws Exception;
 
-    void insertNotice(NoticeDTO notice) throws Exception;
+//    void insertNotice(NoticeDTO notice) throws Exception;
 }

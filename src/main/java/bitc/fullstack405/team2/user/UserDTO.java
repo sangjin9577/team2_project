@@ -14,4 +14,5 @@ public class UserDTO {
     private String mobileNumber;
     private String nickname;
     private int point;
+    private int adminCk;
 }

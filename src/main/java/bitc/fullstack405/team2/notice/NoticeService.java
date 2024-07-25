@@ -13,5 +13,5 @@ public interface NoticeService {
     void updateHitCount(int noticeId) throws Exception;
 
 //    void insertNotice(NoticeDTO notice, MultipartHttpServletRequest multipart) throws Exception;
-    void insertNotice(NoticeDTO notice, MultipartFile multipart) throws Exception;
+//    void insertNotice(NoticeDTO notice, MultipartFile multipart) throws Exception;
 }

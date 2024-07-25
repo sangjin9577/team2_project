@@ -15,6 +15,13 @@ public class NoticeController {
     @Autowired
     private NoticeService noticeService;
 
+//    // 기본 주소 설정
+//    @RequestMapping({"", "/"})
+//    public String index() {
+//        return "index";
+//    }
+
+
     // 기본 주소 설정
     @RequestMapping({"", "/"})
     public String index() {
@@ -58,13 +65,13 @@ public class NoticeController {
     }
 
     // notice 게시글 작성(내부 처리)
-    @PostMapping("/notice/write")
-    public String  noticeWrite(NoticeDTO notice, MultipartHttpServletRequest multipart) throws Exception {
-
-        MultipartFile file = multipart.getFile("file"); // 멀티파트 파일 추출
-
-        noticeService.insertNotice(notice, file);
-
-        return "redirect:/notice";
-    }
+//    @PostMapping("/notice/write")
+//    public String  noticeWrite(NoticeDTO notice, MultipartHttpServletRequest multipart) throws Exception {
+//
+//        MultipartFile file = multipart.getFile("file"); // 멀티파트 파일 추출
+//
+//        noticeService.insertNotice(notice, file);
+//
+//        return "redirect:/notice";
+//    }
 }
