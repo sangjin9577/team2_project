@@ -6,10 +6,10 @@
 <mapper namespace="bitc.fullstack405.team2.mainThemePop.ThemeMapper">
     <select id="selectTheme" resultType="bitc.fullstack405.team2.mainThemePop.ThemeDTO" parameterType="int">
         select
-            title, theme_rank, genre, synopsis, people_limit, playtime, payment
+            theme_id, title, theme_rank, genre, synopsis, people_limit, playtime, payment, img_url
         from
             theme
         where
-            theme_id = #{themeIdx}
+            theme_id = #{themeId}
     </select>
 </mapper>

@@ -4,11 +4,10 @@ import bitc.fullstack405.team2.PopCafe.CafeDTO;
 import bitc.fullstack405.team2.PopCafe.CafeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class ThemeController {
@@ -29,10 +28,10 @@ public class ThemeController {
 
   // 테마 정보 리스트 불러와보기
   @RequestMapping("/themepopup1")
-  public ModelAndView selectTheme(@RequestParam("themeIdx") int themeIdx) throws Exception {
-    ModelAndView mv = new ModelAndView("themePopup/themepopup");
+  public ModelAndView selectTheme(@RequestParam("themeIdx") int idx) throws Exception {
+    ModelAndView mv = new ModelAndView("main/main");
 
-    ThemeDTO theme = themeService.selectTheme(themeIdx);
+    ThemeDTO theme = themeService.selectTheme(idx);
     // 테마 상세 정보 추가
     mv.addObject("theme", theme);
 
@@ -43,25 +42,45 @@ public class ThemeController {
     return mv;
   }
 
-  @GetMapping("/themes")
-  public ThemeDTO selectModalTheme(@RequestParam("themeIdx") int themeIdx) throws Exception {
-    System.out.println(themeIdx);
-    ThemeDTO theme = themeService.selectTheme(themeIdx);
+  // 테마 정보 데이터 가져오기
+//  @ResponseBody
+//  @RequestMapping(value="/themepopup1/{themeIdx}", method = RequestMethod.POST)
+//  public Object selectThemeDetail(@PathVariable("themeIdx") int idx) throws Exception {
+//    System.out.println("selectThemeDetail");
+//    ThemeDTO themeDetail = themeService.selectTheme(idx);
+//    // 테마 상세 정보 추가
+//
+////    CafeDTO cafe = cafeService.selectCafe();
+////    // 지점명 추가
+//
+//    return themeDetail;
+//  }
 
-    return theme;
+//  @GetMapping("/themepopup2")
+//  public ThemeDTO selectModalTheme(@RequestParam("themeIdx") int themeIdx) throws Exception {
+//    System.out.println(themeIdx);
+//    ThemeDTO theme = themeService.selectTheme(themeIdx);
+//
+//    return theme;
+//  }
+
+
+    @RequestMapping("/themepopup2")
+  public ModelAndView selectThemeList() throws Exception {
+    ModelAndView mv = new ModelAndView("main/main");
+    List<ThemeCafeDTO> themeList = themeService.selectThemeCafeList();
+    mv.addObject("themeList", themeList);
+
+    return mv;
   }
 
 
+  // 예약하기 단순 이동
+  @RequestMapping("/reservation")
+  public String goReservation() throws Exception{
 
-
-//    @RequestMapping("/themepopup2")
-//  public ModelAndView selectThemeList() throws Exception {
-//    ModelAndView mv = new ModelAndView("test/themepopup");
-//    List<ThemeDTO> themeList = themeService.selectThemeList();
-//    mv.addObject("themeList", themeList);
-//
-//    return mv;
-//  }
+    return "main/reservation";
+  }
 
 //  @RequestMapping("/test")
 //  public ModelAndView selectThemeList() throws Exception {
@@ -80,6 +99,12 @@ public class ThemeController {
   // 테마 번호, 리뷰 메뉴 카테고리 정보 받아서 구분
   // 팝업창에서 예약버튼 누르면 지점/시간별 페이지로 이동하는 리퀘스트맵핑 컨트롤러 필요함
 
+  @ResponseBody
+  @RequestMapping(value = "/ajax/mainItems", method = RequestMethod.POST)
+  public Object ajaxMainItems(@RequestParam("cafeIdx") int idx) throws Exception {
+    List<ThemeCafeDTO> mainItems = themeService.mainItemsList(idx);
+    return mainItems;
+  }
 
 
 }
