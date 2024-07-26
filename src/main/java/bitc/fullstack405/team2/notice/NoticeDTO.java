@@ -12,5 +12,7 @@ public class NoticeDTO {
     private String startDate;
     private String endDate;
     private String imageUrl;
+    private int cafeId;
     private int hitCnt;
+    private String name;
 }

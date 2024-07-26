@@ -5,6 +5,7 @@
 
 <mapper namespace="bitc.fullstack405.team2.user.UserMapper">
 
+    <!-- 회원가입 시 아이디 중복 체크 -->
     <select id="idCheck" parameterType="String" resultType="int">
         SELECT
             count(*) as cnt
@@ -14,6 +15,7 @@
             user_id = #{userId}
     </select>
 
+    <!-- 회원가입 -->
     <insert id="insertUser" parameterType="bitc.fullstack405.team2.user.UserDTO">
         INSERT INTO user
             (user_id, user_pw, user_name, email, gender, age, mobile_number, nickname)
@@ -21,6 +23,7 @@
             (#{userId}, #{userPw}, #{userName}, #{email}, #{gender}, #{age}, #{mobileNumber}, #{nickname})
     </insert>
 
+    <!-- 사용자 로그인 여부 확인 -->
     <select id="isUserInfo" parameterType="map" resultType="int">
         SELECT
             count(*) as cnt
@@ -32,6 +35,7 @@
             user_pw = #{userPw}
     </select>
 
+    <!-- 사용자 정보 가져오기 -->
     <select id="getUserInfo" parameterType="String" resultType="bitc.fullstack405.team2.user.UserDTO">
         SELECT
             user_id, user_pw, user_name, email, gender, age, mobile_number, nickname, point, admin_ck

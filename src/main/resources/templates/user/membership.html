@@ -62,27 +62,33 @@
                 event.preventDefault(); // 기본 동작 막기
 
                 const id = $('#user-id').val(); // 입력된 아이디 값 가져오기
-                $.ajax({
-                    url: "/user/idCheck", // 아이디 중복 체크를 위한 서버 요청 URL
-                    type: "post",
-                    data: { userId: id },
-                    dataType: "json",
-                    success: function(data) {
-                        if (data.value == 0) {
-                            alert("사용 가능한 아이디입니다.");
-                            $("#user-pw").focus();
-                            idCheckResult = true; // 아이디 중복이 아닌 경우 결과를 true로 설정
-                        } else {
-                            alert("이미 존재하는 아이디입니다.");
-                            $("#user-id").focus();
-                            idCheckResult = false; // 아이디 중복 시 결과를 false로 설정
+
+                if(id === "") {
+                    alert("아이디를 입력하세요.");
+                }
+                else {
+                    $.ajax({
+                        url: "/user/idCheck", // 아이디 중복 체크를 위한 서버 요청 URL
+                        type: "post",
+                        data: { userId: id },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data.value == 0) {
+                                alert("사용 가능한 아이디입니다.");
+                                $("#user-pw").focus();
+                                idCheckResult = true; // 아이디 중복이 아닌 경우 결과를 true로 설정
+                            } else {
+                                alert("이미 존재하는 아이디입니다.");
+                                $("#user-id").focus();
+                                idCheckResult = false; // 아이디 중복 시 결과를 false로 설정
+                            }
+                        },
+                        error: function() {
+                            alert("아이디를 다시 입력해 주세요");
+                            idCheckResult = false; // 오류 발생 시 결과를 false로 설정
                         }
-                    },
-                    error: function() {
-                        alert("아이디를 다시 입력해 주세요");
-                        idCheckResult = false; // 오류 발생 시 결과를 false로 설정
-                    }
-                });
+                    });
+                }
             });
 
             // 회원가입 버튼 클릭 시 처리

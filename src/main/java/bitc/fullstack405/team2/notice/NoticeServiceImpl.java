@@ -36,6 +36,16 @@ public class NoticeServiceImpl implements NoticeService {
         noticeMapper.updateHitCount(noticeId);
     }
 
+//    @Override
+    public int getCafeIdByName(String name) throws Exception {
+        return noticeMapper.getCafeIdByName(name);
+    }
+
+    @Override
+    public void insertNotice(NoticeDTO notice, MultipartHttpServletRequest multipart) throws Exception {
+        noticeMapper.insertNotice(notice);
+    }
+
     // notice 글 등록 - 관리자
 //    @Override
 //    public void insertNotice(NoticeDTO notice, MultipartFile multipart) throws Exception {

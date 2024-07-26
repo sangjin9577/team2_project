@@ -23,8 +23,6 @@ public class ThemeController {
     return mv;
   }
 
-
-
   // 테마 정보 리스트 불러와보기
   @RequestMapping("/test/themepopup1")
   public ModelAndView selectTheme() throws Exception {

@@ -1,5 +1,6 @@
 package bitc.fullstack405.team2.notice;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +15,6 @@ public class NoticeController {
 
     @Autowired
     private NoticeService noticeService;
-
-//    // 기본 주소 설정
-//    @RequestMapping({"", "/"})
-//    public String index() {
-//        return "index";
-//    }
-
 
     // 기본 주소 설정
     @RequestMapping({"", "/"})
@@ -65,13 +59,29 @@ public class NoticeController {
     }
 
     // notice 게시글 작성(내부 처리)
-//    @PostMapping("/notice/write")
-//    public String  noticeWrite(NoticeDTO notice, MultipartHttpServletRequest multipart) throws Exception {
-//
-//        MultipartFile file = multipart.getFile("file"); // 멀티파트 파일 추출
-//
-//        noticeService.insertNotice(notice, file);
-//
-//        return "redirect:/notice";
-//    }
+    @PostMapping("/notice/write")
+    public String  noticeWrite(NoticeDTO notice, @RequestParam("uploadFiles") MultipartFile file) throws Exception {
+        if (file.isEmpty()) {
+            return "notice/noticeWrite";
+        }
+
+        // 1. cafe_name으로 cafe_id 조회
+        int cafeId = noticeService.getCafeIdByName(notice.getName());
+
+        // 2. cafe_id를 notice 객체에 설정
+        notice.setCafeId(cafeId);
+
+
+        // 3. notice_test 테이블에 데이터 삽입
+//        try {
+//            noticeService.insertNotice(notice);
+//            return "Notice created successfully";
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "Error creating notice";
+//        }
+
+        noticeService.insertNotice(notice, multipart);
+        return "redirect:/notice";
+    }
 }
