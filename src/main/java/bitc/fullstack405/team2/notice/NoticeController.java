@@ -3,6 +3,7 @@ package bitc.fullstack405.team2.notice;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -65,8 +66,8 @@ public class NoticeController {
 
     // notice 게시글 작성(내부 처리)
 //    @PostMapping("/notice/write")
-//    public String  noticeWrite(NoticeDTO notice, @RequestParam("uploadFiles") MultipartFile file) throws Exception {
-//        if (file.isEmpty()) {
+//    public String  noticeWrite(NoticeDTO notice, @RequestParam("uploadFile") MultipartFile file) throws Exception {
+//        if (ObjectUtils.isEmpty(file)) {
 //            return "notice/noticeWrite";
 //        }
 //
@@ -75,8 +76,18 @@ public class NoticeController {
 //
 //        // 2. cafe_id를 notice 객체에 설정
 //        notice.setCafeId(cafeId);
+//
+//        String saveDir = "C:/fullstack405/noticeImg";
+//        String oriFileName = "";
+//        try {
+//            oriFileName = FileUtil.uploadFile(req, saveDir);
+//        }
+//        catch (Exception e) {
+//            JSFunction.alertLocation("파일 업로드 오류가 발생했습니다.", "/mvcboard/write.do", resp);
+//            return;
+//        }
 
-        // 3. notice_test 테이블에 데이터 삽입
+        // 3. notice_test 테이블에 데이터 삽입(삭제 예정)
 //        try {
 //            noticeService.insertNotice(notice);
 //            return "Notice created successfully";
@@ -84,8 +95,8 @@ public class NoticeController {
 //            e.printStackTrace();
 //            return "Error creating notice";
 //        }
-//
+
 //        noticeService.insertNotice(notice, multipart);
 //        return "redirect:/notice";
-    }
-//}
+//    }
+}
