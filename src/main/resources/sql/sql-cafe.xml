@@ -6,10 +6,10 @@
 <mapper namespace="bitc.fullstack405.team2.PopCafe.CafeMapper">
     <select id="selectCafe" resultType="bitc.fullstack405.team2.PopCafe.CafeDTO" parameterType="int">
         select
-            name
+            name, phone, address, sales_times, reservation_open_times
         from
             cafe
         where
-            cafe_id =1
+            cafe_id = #{cafeId}
     </select>
 </mapper>
