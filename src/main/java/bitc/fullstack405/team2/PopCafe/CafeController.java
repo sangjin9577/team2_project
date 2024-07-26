@@ -8,18 +8,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class CafeController {
 
     @Autowired
     private CafeService cafeService;
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView selectLocationDetail(@RequestParam("cafeId") int cafeId) throws Exception {
-        ModelAndView mv = new ModelAndView("location/locationdetail");
+    @RequestMapping("/locationMain")
+    public ModelAndView selectLocationList() throws Exception {
+        ModelAndView mv = new ModelAndView("location/locationmain");
 
-        CafeDTO cafe = cafeService.selectCafe(cafeId);
-        mv.addObject("cafe", cafe);
+        List<CafeDTO> cafeList = cafeService.selectCafeList();
+        mv.addObject("cafeList", cafeList);
 
         return mv;
     }
+
+
+
+
 }

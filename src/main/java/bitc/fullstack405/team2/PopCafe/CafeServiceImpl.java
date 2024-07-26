@@ -13,7 +13,7 @@ public class CafeServiceImpl implements CafeService {
 
   @Override
   public List<CafeDTO> selectCafeList() throws Exception {
-    return List.of();
+    return cafeMapper.selectCafeList();
   }
 
   @Override
