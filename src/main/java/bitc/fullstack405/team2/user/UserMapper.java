@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper {
 
     // 회원가입 시 아이디 중복 체크
-    int idCheck(int userId) throws Exception;
+    int idCheck(String userId) throws Exception;
 
     // 회원가입
     void insertUser(UserDTO user) throws Exception;

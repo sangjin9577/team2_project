@@ -7,5 +7,5 @@ public interface UserService {
 
     UserDTO getUserInfo(String userId) throws Exception;
 
-    int idCheck(int userId) throws Exception;
+    int idCheck(String userId) throws Exception;
 }
