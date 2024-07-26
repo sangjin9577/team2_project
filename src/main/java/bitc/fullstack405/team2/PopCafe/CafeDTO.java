@@ -10,4 +10,5 @@ public class CafeDTO {
   private String phone;
   private String cafeImg;
   private String salesTimes;
+  private String reservationOpenTimes;
 }
