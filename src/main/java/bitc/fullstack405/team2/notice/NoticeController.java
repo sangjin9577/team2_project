@@ -54,22 +54,27 @@ public class NoticeController {
 
     // notice 게시글 작성(view)
     @GetMapping("/notice/write")
-    public String  selectNoticeWrite() throws Exception {
+    public String selectNoticeWrite() throws Exception {
         return "notice/noticeWrite";
     }
 
+//    @GetMapping("/notice/write")
+//    public String selectNoticeWrite() throws Exception {
+//        return "main";
+//    }
+
     // notice 게시글 작성(내부 처리)
-    @PostMapping("/notice/write")
-    public String  noticeWrite(NoticeDTO notice, @RequestParam("uploadFiles") MultipartFile file) throws Exception {
-        if (file.isEmpty()) {
-            return "notice/noticeWrite";
-        }
-
-        // 1. cafe_name으로 cafe_id 조회
-        int cafeId = noticeService.getCafeIdByName(notice.getName());
-
-        // 2. cafe_id를 notice 객체에 설정
-        notice.setCafeId(cafeId);
+//    @PostMapping("/notice/write")
+//    public String  noticeWrite(NoticeDTO notice, @RequestParam("uploadFiles") MultipartFile file) throws Exception {
+//        if (file.isEmpty()) {
+//            return "notice/noticeWrite";
+//        }
+//
+//        // 1. cafe_name으로 cafe_id 조회
+//        int cafeId = noticeService.getCafeIdByName(notice.getName());
+//
+//        // 2. cafe_id를 notice 객체에 설정
+//        notice.setCafeId(cafeId);
 
 
         // 3. notice_test 테이블에 데이터 삽입
@@ -81,7 +86,7 @@ public class NoticeController {
 //            return "Error creating notice";
 //        }
 
-        noticeService.insertNotice(notice, multipart);
-        return "redirect:/notice";
-    }
+//        noticeService.insertNotice(notice, multipart);
+//        return "redirect:/notice";
+//    }
 }
