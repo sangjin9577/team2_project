@@ -19,11 +19,11 @@ public class CafeController {
 
         return mv;
     }
-
-    @RequestMapping("/locationmain")
-    public String themeMain() throws Exception{
-//    ModelAndView mv = new ModelAndView("main/main");
-        return "location/locationmain";
-    }
+//
+//    @RequestMapping("/locationmain")
+//    public String themeMain() throws Exception{
+////    ModelAndView mv = new ModelAndView("main/main");
+//        return "location/locationmain";
+//    }
 
 }
