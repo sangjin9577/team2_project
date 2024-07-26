@@ -3,6 +3,8 @@ package bitc.fullstack405.team2.PopCafe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CafeServiceImpl implements CafeService {
 
@@ -10,7 +12,12 @@ public class CafeServiceImpl implements CafeService {
   private CafeMapper cafeMapper;
 
   @Override
-  public CafeDTO selectCafe() throws Exception {
-    return cafeMapper.selectCafe();
+  public List<CafeDTO> selectCafeList() throws Exception {
+    return List.of();
+  }
+
+  @Override
+  public CafeDTO selectCafe(int cafeId) throws Exception {
+    return cafeMapper.selectCafe(cafeId);
   }
 }
