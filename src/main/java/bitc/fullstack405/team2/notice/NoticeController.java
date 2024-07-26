@@ -60,7 +60,7 @@ public class NoticeController {
 
 //    @GetMapping("/notice/write")
 //    public String selectNoticeWrite() throws Exception {
-//        return "main";
+//        return "redirect:/main";
 //    }
 
     // notice 게시글 작성(내부 처리)
@@ -76,7 +76,6 @@ public class NoticeController {
 //        // 2. cafe_id를 notice 객체에 설정
 //        notice.setCafeId(cafeId);
 
-
         // 3. notice_test 테이블에 데이터 삽입
 //        try {
 //            noticeService.insertNotice(notice);
@@ -85,8 +84,8 @@ public class NoticeController {
 //            e.printStackTrace();
 //            return "Error creating notice";
 //        }
-
+//
 //        noticeService.insertNotice(notice, multipart);
 //        return "redirect:/notice";
-//    }
-}
+    }
+//}
