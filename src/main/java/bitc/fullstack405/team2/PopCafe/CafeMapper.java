@@ -5,5 +5,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CafeMapper {
 
-  CafeDTO selectCafe() throws Exception;
+  CafeDTO selectCafe(int cafeId) throws Exception;
 }

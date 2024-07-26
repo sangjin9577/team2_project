@@ -12,4 +12,5 @@ public class ThemeDTO {
   private int people;
   private int playTime;
   private int payment;
+  private String imgUrl;
 }
