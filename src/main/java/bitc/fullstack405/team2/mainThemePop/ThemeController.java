@@ -29,25 +29,32 @@ public class ThemeController {
     @RequestMapping("/themepopup2")
   public ModelAndView selectThemeList() throws Exception {
     ModelAndView mv = new ModelAndView("main/main");
+
+    // 팝업에 붙일 테마 데이터
     List<ThemeCafeDTO> themeList = themeService.selectThemeCafeList();
     mv.addObject("themeList", themeList);
+
+
+
 
     return mv;
   }
 
-
-  // 예약하기 단순 이동
-  @RequestMapping("/reservation")
-  public String goReservation() throws Exception{
-
-    return "main/reservation";
-  }
 
   @ResponseBody
   @RequestMapping(value = "/ajax/mainItems", method = RequestMethod.POST)
   public Object ajaxMainItems(@RequestParam("cafeIdx") int idx) throws Exception {
     List<ThemeCafeDTO> mainItems = themeService.mainItemsList(idx);
     return mainItems;
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/ajax/reviewlist", method = RequestMethod.POST)
+  public Object ajaxReviewList(@RequestParam("cafeIdx") int cafeIdx, @RequestParam("themeIdx") int themeIdx) throws Exception {
+    // 팝업에 붙일 리뷰 목록, 카페id, 테마id 로 식별, 맵퍼에서 파람 사용해야함
+
+    List<ThemeCafeDTO> reviewList = themeService.selectReviewList(cafeIdx, themeIdx);
+    return reviewList;
   }
 
 

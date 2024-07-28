@@ -27,7 +27,34 @@
         on
             theme.cafe_id = cafe.cafe_id
         where
-            theme.cafe_id = #{cafe_id}
+            theme.cafe_id = #{cafeId}
+    </select>
+
+    <select id="selectTheme" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="int">
+        select
+            title, people_limit, playtime, payment, img_url, name
+        from
+            theme
+        join
+            cafe
+        on
+            theme.cafe_id = cafe.cafe_id
+        where
+            theme.theme_id = #{themeId}
+    </select>
+
+    <select id="selectReviewList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="map">
+        select
+            board_idx, title, cafe_id, theme_id
+        from
+            communication
+        where
+            cafe_id = #{cafeId}
+        and
+            theme_id = #{themeId}
+        order by
+            board_idx
+        desc
     </select>
 
 

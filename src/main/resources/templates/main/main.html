@@ -52,8 +52,10 @@
             // }
 
             $("#hongdae").on("click", function () {
-
                 let val = 1;
+
+
+
 
                 $.ajax({
                     url: "/ajax/mainItems",
@@ -61,6 +63,10 @@
                     data: {cafeIdx: val},
                     dataType: "json",
                     success: function (data) {
+
+
+
+
                         const tag = $("#changePoster");
 
                         tag.empty();
@@ -68,6 +74,20 @@
                         // 태그 부분 함수를 따로 만들어서 추가하면 코드 간결해짐
                         // 함수 매개변수로 data 받고 리턴해주라고함 ??
                         for (let i = 0; i < data.length; i++) {
+
+                            // $.ajax({
+                            //     url: "/ajax/reviewlist",
+                            //     type: "POST",
+                            //     data: {cafeIdx: val, themeIdx: data[i].themeId},
+                            //     dataType: "json",
+                            //     success:function(data){
+                            //         console.log("통신 성공");
+                            //     },
+                            //     error : function (){
+                            //         console.log("통신 실패");
+                            //     }
+                            // });
+
                             let html = "<td class='col-3'><div class='border img_box' style='display: grid; justify-content: center'>";
                             html += "<a style='display: flex; justify-content: center' href='#' data-bs-toggle='modal' data-bs-target='#myModal" + data[i].themeId + "'><img src='" + data[i].imgUrl + "' style='height:303px; width: 303px' alt='1'></a>";
                             html += "<div style='height: 82px; width: 303px'><h4>" + data[i].title + "</h4><span>" + data[i].name + " </span><span>" + data[i].genre + " </span><span>" + data[i].themeRank + "</span></div></div>";
@@ -79,7 +99,7 @@
                             html += "</div>";
                             html += "<div class='modal-body'>";
                             html += "<div class='row'>";
-                            html += "<div class='col-5'>사진 <img src='" + data[i].imgUrl + "' alt='사진' style='height:303px; width: 303px' alt='1'></div>";
+                            html += "<div class='col-5'><img src='" + data[i].imgUrl + "' alt='사진' style='height:303px; width: 303px' alt='1'></div>";
                             html += "<div class='col-7'>";
                             html += "<div class='row mt-2'>";
                             html += "<div class='col'>지점명 " + data[i].name + "</div>";
@@ -141,7 +161,7 @@
                             html += "</div>";
                             html += "<div class='modal-body'>";
                             html += "<div class='row'>";
-                            html += "<div class='col-5 '>사진 <img src='" + data[i].imgUrl + "' alt='사진' style='height:303px; width: 303px' alt='1'></div>";
+                            html += "<div class='col-5 '><img src='" + data[i].imgUrl + "' alt='사진' style='height:303px; width: 303px' alt='1'></div>";
                             html += "<div class='col-7'>";
                             html += "<div class='row mt-2'>";
                             html += "<div class='col'>지점명 " + data[i].name + "</div>";
@@ -175,6 +195,9 @@
                 });
             });
 
+
+
+
             $("#busan").on("click", function () {
                 let val = 6;
 
@@ -201,9 +224,9 @@
                             html += "<button type='button' class='btn-close' data-bs-dismiss='modal'></button>";
                             html += "</div>";
                             html += "<div class='modal-body'>";
-                            html += "<div class='row my-3 mx-3'>";
-                            html += "<div class='col-5 bg-warning'>사진 <img src='" + data[i].imgUrl + "' alt='사진' style='height:303px; width: 303px' alt='1'></div>";
-                            html += "<div class='col-7 bg-info'>";
+                            html += "<div class='row'>";
+                            html += "<div class='col-5'><img src='" + data[i].imgUrl + "' alt='사진' style='height:303px; width: 303px' alt='1'></div>";
+                            html += "<div class='col-7'>";
                             html += "<div class='row mt-2'>";
                             html += "<div class='col'>지점명 " + data[i].name + "</div>";
                             html += "<div class='col'>플레이타임 " + data[i].playTime + "분</div>";
@@ -293,70 +316,7 @@
 <body>
 <!-- 네비게이션 -->
 <!-- 브랜드 로고 -->
-    <nav class="navbar navbar-expand navbar-light bg-light container-fluid fixed-top justify-content-between">
-        <div>
-            <a class="navbar-brand ms-3" href="/themepopup2" target="_self">
-                <img src="https://xdungeon.net/layout/images/common/logo.png">
-            </a>
-        </div>
-        <!-- 네비게이션 메뉴 -->
-        <!-- 메뉴 1 -->
-        <div>
-            <ul class="navbar-nav me-3">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        RESERVATION
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">에약 안내</a></li>
-                        <li><a class="dropdown-item" href="/reservation" target="_self">예약 하기</a></li>
-                        <li><a class="dropdown-item" href="#">예약 확인</a></li>
-                    </ul>
-                </li>
-
-                <!-- 메뉴 2 -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        NOTICE
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="notice_NOTICE.html">NOTICE</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="notice_FAQ.html">FAQ</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <!-- 메뉴 3 -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        COMM
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="commList.html">COMM</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="reviewList.html">REVIEW</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- 메뉴 4 -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/locationMain" target="_self">LOCATION</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">로그인</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
+<header th:replace="layout/header.html :: header"></header>
     <!-- 메인 이미지 -->
     <div class="container-fluid">
         <video style="height: 800px; width: 100%;" muted autoplay loop>

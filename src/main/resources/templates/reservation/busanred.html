@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>비트포비아 던전 예약하기(부산레드)</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>예약하기(부산레드)</title>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
     <style>
         strong {
             border: 1px solid black;
@@ -70,28 +76,211 @@
             padding: 0;
             margin: 0;
         }
+
+        .timebtn a{
+            border-style:solid;
+            border-color: #6ea8fe;
+            padding: 10px 20px 10px 20px ;
+            /*padding : T R B L;*/
+            /*color: #6c757d;*/
+
+        }
     </style>
-
     <script>
-        // 현재 날짜
-        function getCurrentDate() {
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const day = String(today.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-        //   window.onload : 페이지가 완전히 로드된 후 실행되는 이벤트 핸들러
-        window.onload = function () {
-            document.getElementById('date').value = getCurrentDate();
-        }
+        $(document).ready(function (){
 
+            let now = new Date(); // 현재 날짜 및 시간
+            let nowHour = now.getHours(); // 시
+            let nowMins = now.getMinutes(); // 분
+
+            console.log(nowHour); // 12시 51분 기준 12 51로 잘 뜸
+            console.log(nowMins);
+
+            //1번 테마 시간 자동 비활성화
+            let theme1part1 = document.getElementById("theme1part1").getAttribute('data-value');
+            let theme1part2 = document.getElementById("theme1part2").getAttribute('data-value');
+            let theme1part3 = document.getElementById("theme1part3").getAttribute('data-value');
+
+            if (nowHour >= theme1part1) {
+                // a 태그 사용 시 비활성화
+                document.querySelector("#theme1part1").removeAttribute('href');
+                $("#theme1part1").css("background-color", "#6c757d");
+
+                // 버튼 태그 사용 시 비활성화
+                // $("#part1").attr("disabled",true);
+            }
+            if (nowHour >= theme1part2) {
+                document.querySelector("#theme1part2").removeAttribute('href');
+                $("#theme1part2").css("background-color", "#6c757d");
+            }
+            if (nowHour >= theme1part3) {
+                document.querySelector("#theme1part3").removeAttribute('href');
+                $("#theme1part3").css("background-color", "#6c757d");
+            }
+
+
+            // 2번 테마 시간 자동 비활성화
+            let theme2part1 = document.getElementById("theme2part1").getAttribute('data-value');
+            let theme2part2 = document.getElementById("theme2part2").getAttribute('data-value');
+            let theme2part3 = document.getElementById("theme2part3").getAttribute('data-value');
+
+            if (nowHour >= theme2part1) {
+                document.querySelector("#theme2part1").removeAttribute('href');
+                $("#theme2part1").css("background-color", "#6c757d");
+            }
+            if (nowHour >= theme2part2) {
+                document.querySelector("#theme2part2").removeAttribute('href');
+                $("#theme2part2").css("background-color", "#6c757d");
+            }
+            if (nowHour >= theme2part3) {
+                document.querySelector("#theme2part3").removeAttribute('href');
+                $("#theme2part3").css("background-color", "#6c757d");
+            }
+
+            // 3번 테마 시간 자동 비활성화
+            let theme3part1 = document.getElementById("theme3part1").getAttribute('data-value');
+            let theme3part2 = document.getElementById("theme3part2").getAttribute('data-value');
+            let theme3part3 = document.getElementById("theme3part3").getAttribute('data-value');
+
+            if (nowHour >= theme3part1) {
+                document.querySelector("#theme3part1").removeAttribute('href');
+                $("#theme3part1").css("background-color", "#6c757d");
+            }
+            if (nowHour >= theme3part2) {
+                document.querySelector("#theme3part2").removeAttribute('href');
+                $("#theme3part2").css("background-color", "#6c757d");
+            }
+            if (nowHour >= theme3part3) {
+                document.querySelector("#theme3part3").removeAttribute('href');
+                $("#theme3part3").css("background-color", "#6c757d");
+            }
+
+            // 4번 테마 시간 자동 비활성화
+            let theme4part1 = document.getElementById("theme4part1").getAttribute('data-value');
+            let theme4part2 = document.getElementById("theme4part2").getAttribute('data-value');
+            let theme4part3 = document.getElementById("theme4part3").getAttribute('data-value');
+
+            if (nowHour >= theme4part1) {
+                document.querySelector("#theme4part1").removeAttribute('href');
+                $("#theme4part1").css("background-color", "#6c757d");
+            }
+            if (nowHour >= theme4part2) {
+                document.querySelector("#theme4part2").removeAttribute('href');
+                $("#theme4part2").css("background-color", "#6c757d");
+            }
+            if (nowHour >= theme4part3) {
+                document.querySelector("#theme4part3").removeAttribute('href');
+                $("#theme4part3").css("background-color", "#6c757d");
+            }
+
+
+
+            // 현재 주소를 문자열로 저장
+            let url = document.location.href;
+            console.log(url);
+            // 문자열로 바꾼 주소 뒤에서 한개 잘라오기
+            let cafeid = url.slice(-1);
+            console.log(cafeid);
+
+            // let val1 = 1; // 카페 아이디로 보낸 값
+            // let val2 = 1; // 테마 아이디는 전송 안해도 될듯 ??
+            $.ajax({
+                url: "/ajax/restimelist",
+                type: "POST",
+                data: {cafeIdx: cafeid},
+                dataType: "json",
+                success: function (data) {
+                    // 해당 카페 예약 데이터 끌고와서 버튼 값이랑 비교
+                    // 같은 시간이 있으면 비활성화
+                    for(let i =0 ; i< data.length; i++){
+                        console.log(data[i].resTime);
+                        // 1번 테마
+                        if(data[i].themeId == 1){
+                            if(data[i].resTime == theme1part1){
+                                document.querySelector("#theme1part1").removeAttribute('href');
+                                $("#theme1part1").css("background-color", "pink");
+                            }
+                            if(data[i].resTime == theme1part2){
+                                document.querySelector("#theme1part2").removeAttribute('href');
+                                $("#theme1part2").css("background-color", "pink");
+                            }
+                            if(data[i].resTime == theme1part3){
+                                document.querySelector("#theme1part3").removeAttribute('href');
+                                $("#theme1part3").css("background-color", "pink");
+                            }
+                        }
+
+                        // 2번 테마
+                        if(data[i].themeId == 2){
+                            if(data[i].resTime == theme2part1){
+                                document.querySelector("#theme2part1").removeAttribute('href');
+                                $("#theme2part1").css("background-color", "pink");
+                            }
+                            if(data[i].resTime == theme2part2){
+                                document.querySelector("#theme2part2").removeAttribute('href');
+                                $("#theme2part2").css("background-color", "pink");
+                            }
+                            if(data[i].resTime == theme2part3){
+                                document.querySelector("#theme2part3").removeAttribute('href');
+                                $("#theme2part3").css("background-color", "pink");
+                            }
+                        }
+                        // 3번 테마
+                        if(data[i].themeId == 3){
+                            if(data[i].resTime == theme3part1){
+                                document.querySelector("#theme3part1").removeAttribute('href');
+                                $("#theme3part1").css("background-color", "pink");
+                            }
+                            if(data[i].resTime == theme3part2){
+                                document.querySelector("#theme3part2").removeAttribute('href');
+                                $("#theme3part2").css("background-color", "pink");
+                            }
+                            if(data[i].resTime == theme3part3){
+                                document.querySelector("#theme3part3").removeAttribute('href');
+                                $("#theme3part3").css("background-color", "pink");
+                            }
+                        }
+
+                        // 4번 테마
+                        if(data[i].themeId == 4){
+                            if(data[i].resTime == theme4part1){
+                                document.querySelector("#theme4part1").removeAttribute('href');
+                                $("#theme4part1").css("background-color", "pink");
+                            }
+                            if(data[i].resTime == theme4part2){
+                                document.querySelector("#theme4part2").removeAttribute('href');
+                                $("#theme4part2").css("background-color", "pink");
+                            }
+                            if(data[i].resTime == theme4part3){
+                                document.querySelector("#theme4part3").removeAttribute('href');
+                                $("#theme4part3").css("background-color", "pink");
+                            }
+                        }
+
+                    }
+                    console.log("통신성공");
+                },
+                error : function (){
+                    alert("통신 중 오류 발생");
+                }
+            });
+
+
+
+            // 버튼 사용시 페이지 이동
+            // $("#part2").click(function() {
+            //    location.href = "/hongdae/1/2/10"
+            // });
+
+
+        });
     </script>
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <script src="../js/bootstrap.bundle.js"></script>
+
 </head>
 
 <body>
+<header th:replace="layout/header.html :: header"></header>
+
 <div id="container">
     <div class="container mt-5">
         <div class="row">
@@ -101,29 +290,29 @@
                     <div class="row">
                         <ul class="list-group center mb-5 p-4 ">
                             <li class="list-group-item">
-                                <button type="submit" class="list-group-btn"><a href="hongdae.html">홍대던전</a></button>
+                                <button type="submit" class="list-group-btn"><a href="/hongdae" id="hongdae" th:href="@{/hongdae/1}">홍대던전</a></button>
                             </li>
                             <li class="list-group-item mt-5">
-                                <button class="list-group-btn"><a href="#">홍대던전Ⅲ</a></button>
+                                <button class="list-group-btn"><a href="/gangnam" id="gangname" th:href="@{/gangnam/2}">강남던전</a></button>
                             </li>
                             <li class="list-group-item mt-5">
-                                <button class="list-group-btn"><a href="#">강남던전</a></button>
+                                <button class="list-group-btn"><a href="/busanred" id="busanred" th:href="@{/busanred/6}">서면던전 레드(부산)</a></button>
                             </li>
-                            <li class="list-group-item mt-5">
-                                <button class="list-group-btn"><a href="#">강남던전Ⅱ</a></button>
-                            </li>
-                            <li class="list-group-item mt-5">
-                                <button class="list-group-btn"><a href="#">던전루나(강남)</a></button>
-                            </li>
-                            <li class="list-group-item mt-5">
-                                <button class="list-group-btn"><a href="#">서면던전(부산)</a></button>
-                            </li>
-                            <li class="list-group-item mt-5">
-                                <button class="list-group-btn"><a href="#">서면던전 레드(부산)</a></button>
-                            </li>
-                            <li class="list-group-item mt-5">
-                                <button class="list-group-btn"><a href="#">던전101</a></button>
-                            </li>
+                            <!--                            <li class="list-group-item mt-5">-->
+                            <!--                                <button class="list-group-btn"><a href="/hongdaetwo" id="hongdaetwo" >홍대던전Ⅲ</a></button>-->
+                            <!--                            </li>-->
+                            <!--                            <li class="list-group-item mt-5">-->
+                            <!--                                <button class="list-group-btn"><a href="/gangnamtwo"id="gangnametwo">강남던전Ⅱ</a></button>-->
+                            <!--                            </li>-->
+                            <!--                            <li class="list-group-item mt-5">-->
+                            <!--                                <button class="list-group-btn"><a href="/gangnamluna"id="luna">던전루나(강남)</a></button>-->
+                            <!--                            </li>-->
+                            <!--                            <li class="list-group-item mt-5">-->
+                            <!--                                <button class="list-group-btn"><a href="/busan" id="busan">서면던전(부산)</a></button>-->
+                            <!--                            </li>-->
+                            <!--                            <li class="list-group-item mt-5">-->
+                            <!--                                <button class="list-group-btn"><a href="#" id="dun">던전101</a></button>-->
+                            <!--                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -136,67 +325,123 @@
                         <div class="col-3">결제하기</div>
                         <div class="col-3">예약완료</div>
                     </div>
-                    <br><br>
                 </div>
-                <form class="mb-5">
-                    <input type="date" id="date">
-                </form>
-                <div class="col-3">
-                    <div class="d-flex">
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="#" style="width: 180px;">
-                            <strong>던전 제목1</strong>
+
+                <div class="row mt-2">
+                    <form>
+                        <input type="date" id="date">
+                    </form>
+                </div>
+
+                <div class="row mt-2 border h-100">
+                    <!--테마포스터 라인-->
+                    <div class="col-4 border h-100">
+                        <div class="row border" style="height: 250px"
+                             th:if="${#lists.size(themeList)}>0" th:each="item:${themeList}" >
+                            <img th:src="@{${item.imgUrl}}" alt="#" class="p-0" style="width: 185px; height:185px; ">
+                            <p th:text="${item.title}"></p>
                         </div>
-                        <ul id="time" class="d-flex col-6 list-unstyled text-center my-5 p-4">
-                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>
-                        </ul>
+                    </div>
+                    <!--타임테이블 라인-->
+
+                    <div class="col-8 border h-100">
+                        <!--1번 테마 시간-->
+                        <div class="row border timebtn " style="height: 250px">
+                            <div class="align-content-center">
+                                <a href="/hongdae/1/1/10" id="theme1part1" data-value="10">10:00</a>
+                                <a href="/hongdae/1/1/12" id="theme1part2" data-value="15">15:00</a>
+                                <a href="/hongdae/1/1/14" id="theme1part3" data-value="20">20:00</a>
+                                <button disabled>test</button>
+                            </div>
+                        </div>
+                        <!--2번 테마 시간-->
+                        <div class="row border timebtn" style="height: 250px">
+                            <div class="align-content-center">
+                                <a href="/hongdae/1/2/10" id="theme2part1" data-value="10">10:00</a>
+                                <a href="/hongdae/1/2/12" id="theme2part2" data-value="15">15:00</a>
+                                <a href="/hongdae/1/2/14" id="theme2part3" data-value="20">20:00</a>
+                                <button disabled>test</button>
+                            </div>
+                        </div>
+                        <!--3번 테마 시간-->
+                        <div class="row border timebtn" style="height: 250px">
+                            <div class="align-content-center">
+                                <a href="/hongdae/1/3/10" id="theme3part1" data-value="10">10:00</a>
+                                <a href="/hongdae/1/3/12" id="theme3part2" data-value="15">15:00</a>
+                                <a href="/hongdae/1/3/14" id="theme3part3" data-value="20">20:00</a>
+                                <button disabled>test</button>
+                            </div>
+                        </div>
+                        <!--4번 테마 시간-->
+                        <div class="row border timebtn" style="height: 250px">
+                            <div class="align-content-center">
+                                <a href="/hongdae/1/4/10" id="theme4part1" data-value="10">10:00</a>
+                                <a href="/hongdae/1/4/12" id="theme4part2" data-value="15">15:00</a>
+                                <a href="/hongdae/1/4/14" id="theme4part3" data-value="20">20:00</a>
+                                <button disabled>test</button>
+                            </div>
+                        </div>
+                        <div class="row border" style="height: 250px">  </div>
+                        <div class="row border" style="height: 250px">  </div>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="d-flex">
-                        <div class="flex-column align-items-center">
-                            <img src="#" style="width: 180px;">
-                            <strong>던전 제목2</strong>
-                        </div>
-                        <ul class="d-flex col-6 list-unstyled text-center my-5 p-4">
-                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="d-flex">
-                        <div class="flex-column align-items-center">
-                            <img src="C:\fullstack405\img\테마3.png" style="width: 180px;">
-                            <strong>던전 제목3</strong>
-                        </div>
-                        <ul class="d-flex col-6 list-unstyled text-center my-5 p-4">
-                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="d-flex">
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="C:\fullstack405\img\테마1.png" style="width: 180px;">
-                            <strong>던전 제목4</strong>
-                        </div>
-                        <ul class="d-flex col-6 list-unstyled text-center my-5 p-4">
-                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>
-                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>
-                        </ul>
-                    </div>
-                </div>
+
+                <!--                <div class="col-3">-->
+                <!--                    <div class="d-flex">-->
+                <!--                        <div class="d-flex flex-column align-items-center">-->
+                <!--                            <img src="${}" style="width: 180px;">-->
+                <!--                            <strong>던전 제목1</strong>-->
+                <!--                        </div>-->
+                <!--                        <ul id="time" class="d-flex col-6 list-unstyled text-center my-5 p-4">-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>-->
+                <!--                        </ul>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-3">-->
+                <!--                    <div class="d-flex">-->
+                <!--                        <div class="flex-column align-items-center">-->
+                <!--                            <img src="#" style="width: 180px;">-->
+                <!--                            <strong>던전 제목2</strong>-->
+                <!--                        </div>-->
+                <!--                        <ul class="d-flex col-6 list-unstyled text-center my-5 p-4">-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>-->
+                <!--                        </ul>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-3">-->
+                <!--                    <div class="d-flex">-->
+                <!--                        <div class="flex-column align-items-center">-->
+                <!--                            <img src="C:\fullstack405\img\테마3.png" style="width: 180px;">-->
+                <!--                            <strong>던전 제목3</strong>-->
+                <!--                        </div>-->
+                <!--                        <ul class="d-flex col-6 list-unstyled text-center my-5 p-4">-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
+                <!--                        </ul>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-3">-->
+                <!--                    <div class="d-flex">-->
+                <!--                        <div class="d-flex flex-column align-items-center">-->
+                <!--                            <img src="C:\fullstack405\img\테마1.png" style="width: 180px;">-->
+                <!--                            <strong>던전 제목4</strong>-->
+                <!--                        </div>-->
+                <!--                        <ul class="d-flex col-6 list-unstyled text-center my-5 p-4">-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
+                <!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
+                <!--                        </ul>-->
+                <!--                    </div>-->
+                <!--                </div>-->
             </div>
         </div>
     </div>
