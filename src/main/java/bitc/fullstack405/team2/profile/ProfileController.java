@@ -12,26 +12,6 @@ import java.util.List;
 public class ProfileController {
   @Autowired
   private ProfileService profileService;
-//
-//  @Autowired
-//  private ProfileService profileService;
-//
-////  프로필 기본 페이지
-////  @RequestMapping("/profile")
-////  public String getProfileMain() {
-////
-////    return "profile/profilemain";  // profilemain.html을 반환
-////  }
-//
-//  @RequestMapping("/profile")
-//  public ModelAndView selectProfile(@RequestParam("userId") String userId) throws Exception{
-//    ModelAndView mv = new ModelAndView("profile/profilemain");
-//
-//    List<ProfileDTO> profileList =  profileService.selectProfileList(userId);
-//    mv.addObject("profileList", profileList);
-//
-//    return mv;
-//  }
 
   @RequestMapping("/profile")
   public ModelAndView profileMain() throws Exception {
