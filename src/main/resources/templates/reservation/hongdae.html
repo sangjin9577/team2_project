@@ -272,6 +272,20 @@
             //    location.href = "/hongdae/1/2/10"
             // });
 
+            // 오늘 날짜
+            let today = new Date();
+
+            document.getElementById('date').value=today.toISOString().substring(0,10);
+            // date 태그의 최솟값을 오늘로 지정, 오늘 이전 날짜 선택 못함
+            document.getElementById('date').min = today.toISOString().substring(0,10);
+            // 오늘 기준 1주일만 선택 가능
+            today.setDate(today.getDate()+6);
+            document.getElementById('date').max= today.toISOString().substring(0,10);
+
+            $("#date").on("change",function (){
+                // 이미 카페 아이디에 맞춰서 예약 정보는 다 불러와져 있음, 날짜 데이터랑 비교해서 비활성화 시켜야함
+               // 페이지 새로 열리면서 날짜 데이터 주소에 저장됨
+            });
 
         });
     </script>
@@ -279,7 +293,7 @@
 </head>
 
 <body>
-<header th:replace="layout/header.html :: header"></header>
+<header th:replace="~{layout/header.html :: header}"></header>
 
 <div id="container">
     <div class="container mt-5">
@@ -329,7 +343,10 @@
 
                 <div class="row mt-2">
                     <form>
-                        <input type="date" id="date">
+                        <div class="col-3">
+                            <input class="form-control" type="date" id="date" min="">
+                            <buttton type="submit" hidden></buttton>
+                        </div>
                     </form>
                 </div>
 

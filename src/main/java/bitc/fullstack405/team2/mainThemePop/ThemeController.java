@@ -34,8 +34,10 @@ public class ThemeController {
     List<ThemeCafeDTO> themeList = themeService.selectThemeCafeList();
     mv.addObject("themeList", themeList);
 
-
-
+    // 리뷰 리스트를 다 불러오고 ajax에 if 문넣어서 정보 구분??
+    List<ThemeCafeDTO> reviewList = themeService.selectReviewList();
+    mv.addObject("reviewList", reviewList);
+    System.out.println("리뷰 리스트 불러오기 성공");
 
     return mv;
   }
@@ -50,10 +52,10 @@ public class ThemeController {
 
   @ResponseBody
   @RequestMapping(value = "/ajax/reviewlist", method = RequestMethod.POST)
-  public Object ajaxReviewList(@RequestParam("cafeIdx") int cafeIdx, @RequestParam("themeIdx") int themeIdx) throws Exception {
+  public Object ajaxReviewList(@RequestParam("cafeIdx") int cafeIdx ,@RequestParam("themeIdx") int themeIdx) throws Exception {
     // 팝업에 붙일 리뷰 목록, 카페id, 테마id 로 식별, 맵퍼에서 파람 사용해야함
 
-    List<ThemeCafeDTO> reviewList = themeService.selectReviewList(cafeIdx, themeIdx);
+    List<ThemeCafeDTO> reviewList = themeService.selectAjaxReviewList(cafeIdx, themeIdx);
     return reviewList;
   }
 

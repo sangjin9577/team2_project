@@ -14,5 +14,7 @@ public interface ThemeService {
 
   List<ThemeCafeDTO> mainItemsList(int idx) throws Exception;
 
-  List<ThemeCafeDTO> selectReviewList(int cafeIdx, int themeIdx) throws Exception;
+  List<ThemeCafeDTO> selectReviewList() throws Exception;
+
+  List<ThemeCafeDTO> selectAjaxReviewList(int cafeIdx, int themeIdx) throws Exception;
 }
