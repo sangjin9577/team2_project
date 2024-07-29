@@ -1,8 +1,6 @@
 package bitc.fullstack405.team2.notice;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import java.util.List;
 
 public interface NoticeService {
@@ -14,5 +12,11 @@ public interface NoticeService {
 
     int getCafeIdByName(String name) throws Exception;
 
-    void insertNotice(NoticeDTO notice, MultipartHttpServletRequest multipart) throws Exception;
+    void insertNotice(NoticeDTO notice, MultipartFile uploadFile) throws Exception;
+
+    void deleteNotice(int noticeId) throws Exception;
+
+    void updateNotice(NoticeDTO notice, MultipartFile uploadFile) throws Exception;
+
+    List<NoticeDTO> selectFAQ() throws Exception;
 }

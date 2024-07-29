@@ -11,8 +11,10 @@ public class NoticeDTO {
     private String createdAt;
     private String startDate;
     private String endDate;
-    private String imageUrl;
+    private String noticeImage;
     private int cafeId;
     private int hitCnt;
     private String name;
+    private String faqId;
+    private String content;
 }
