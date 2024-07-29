@@ -6,7 +6,7 @@
 <mapper namespace="bitc.fullstack405.team2.cafeResrvation.ResMapper">
     <select id="selectResTime" resultType="bitc.fullstack405.team2.cafeResrvation.ResDTO" parameterType="int">
         select
-            cafe_id, theme_id, state, res_time
+            cafe_id, theme_id, state, res_time, reservation_date
         from
             reservation
         where

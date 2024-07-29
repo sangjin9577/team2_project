@@ -91,176 +91,215 @@
 
             let now = new Date(); // 현재 날짜 및 시간
             let nowHour = now.getHours(); // 시
-            let nowMins = now.getMinutes(); // 분
 
-            console.log(nowHour); // 12시 51분 기준 12 51로 잘 뜸
-            console.log(nowMins);
+            // 현재 주소에서 date 값 가져오기
+            let url = document.location.href;
+            let searchParam = new URL(url).searchParams;
+            let dateParam = searchParam.get("date")
+            console.log(dateParam);
 
-            //1번 테마 시간 자동 비활성화
+            // 오늘 날짜말고 선택한 날짜 value에 넣음
+            document.getElementById('date').value=dateParam;
+
+            // // 일단 오늘 날짜 넣고
+            // document.getElementById('date').value = now.toISOString().substring(0, 10);
+            // // 날짜 선택 버튼 누르면 주소에 있는 날짜로 바뀌게 해보자 ?
+            // $("#date-select").on("click", function(){
+            //     // 오늘 날짜말고 선택한 날짜 value에 넣음
+            //     document.getElementById('date').value=dateParam;
+            // });
+
+            // date 태그의 최솟값을 오늘로 지정, 오늘 이전 날짜 선택 못함
+            document.getElementById('date').min = now.toISOString().substring(0,10);
+            // 오늘 기준 1주일만 선택 가능
+            now.setDate(now.getDate()+6);
+            document.getElementById('date').max= now.toISOString().substring(0,10);
+
+
+
+            // 오늘 날짜 가져오기
+            function getToday(){
+            let today = new Date();
+            return today.getFullYear() + "-" + ("0"+(today.getMonth()+1)).slice(-2)+"-"+("0"+today.getDate()).slice(-2);
+            }
+
+            //1번 버튼 테마 시간 저장
             let theme1part1 = document.getElementById("theme1part1").getAttribute('data-value');
             let theme1part2 = document.getElementById("theme1part2").getAttribute('data-value');
             let theme1part3 = document.getElementById("theme1part3").getAttribute('data-value');
 
-            if (nowHour >= theme1part1) {
-                // a 태그 사용 시 비활성화
-                document.querySelector("#theme1part1").removeAttribute('href');
-                $("#theme1part1").css("background-color", "#6c757d");
-
-                // 버튼 태그 사용 시 비활성화
-                // $("#part1").attr("disabled",true);
-            }
-            if (nowHour >= theme1part2) {
-                document.querySelector("#theme1part2").removeAttribute('href');
-                $("#theme1part2").css("background-color", "#6c757d");
-            }
-            if (nowHour >= theme1part3) {
-                document.querySelector("#theme1part3").removeAttribute('href');
-                $("#theme1part3").css("background-color", "#6c757d");
-            }
-
-
-            // 2번 테마 시간 자동 비활성화
+            // 2번 ㅂㅌ 테마 시간 저장
             let theme2part1 = document.getElementById("theme2part1").getAttribute('data-value');
             let theme2part2 = document.getElementById("theme2part2").getAttribute('data-value');
             let theme2part3 = document.getElementById("theme2part3").getAttribute('data-value');
 
-            if (nowHour >= theme2part1) {
-                document.querySelector("#theme2part1").removeAttribute('href');
-                $("#theme2part1").css("background-color", "#6c757d");
-            }
-            if (nowHour >= theme2part2) {
-                document.querySelector("#theme2part2").removeAttribute('href');
-                $("#theme2part2").css("background-color", "#6c757d");
-            }
-            if (nowHour >= theme2part3) {
-                document.querySelector("#theme2part3").removeAttribute('href');
-                $("#theme2part3").css("background-color", "#6c757d");
-            }
-
-            // 3번 테마 시간 자동 비활성화
+            // 3번 ㅂㅌ 테마 시간 지정
             let theme3part1 = document.getElementById("theme3part1").getAttribute('data-value');
             let theme3part2 = document.getElementById("theme3part2").getAttribute('data-value');
             let theme3part3 = document.getElementById("theme3part3").getAttribute('data-value');
 
-            if (nowHour >= theme3part1) {
-                document.querySelector("#theme3part1").removeAttribute('href');
-                $("#theme3part1").css("background-color", "#6c757d");
-            }
-            if (nowHour >= theme3part2) {
-                document.querySelector("#theme3part2").removeAttribute('href');
-                $("#theme3part2").css("background-color", "#6c757d");
-            }
-            if (nowHour >= theme3part3) {
-                document.querySelector("#theme3part3").removeAttribute('href');
-                $("#theme3part3").css("background-color", "#6c757d");
-            }
 
-            // 4번 테마 시간 자동 비활성화
+            // 4번 ㅂㅌ 테마 시간 지정
             let theme4part1 = document.getElementById("theme4part1").getAttribute('data-value');
             let theme4part2 = document.getElementById("theme4part2").getAttribute('data-value');
             let theme4part3 = document.getElementById("theme4part3").getAttribute('data-value');
 
-            if (nowHour >= theme4part1) {
-                document.querySelector("#theme4part1").removeAttribute('href');
-                $("#theme4part1").css("background-color", "#6c757d");
-            }
-            if (nowHour >= theme4part2) {
-                document.querySelector("#theme4part2").removeAttribute('href');
-                $("#theme4part2").css("background-color", "#6c757d");
-            }
-            if (nowHour >= theme4part3) {
-                document.querySelector("#theme4part3").removeAttribute('href');
-                $("#theme4part3").css("background-color", "#6c757d");
+            let today = getToday();
+            console.log(today);
+            // 주소에 있는 값이 오늘 날짜이면 시간 자동 비활성화
+            if(dateParam == today){
+
+                // 1번 테마 시간 비활성화
+                if (nowHour >= theme1part1) {
+                    // a 태그 사용 시 비활성화
+                    document.querySelector("#theme1part1").removeAttribute('href');
+                    $("#theme1part1").css("background-color", "#6c757d");
+
+                    // 버튼 태그 사용 시 비활성화
+                    // $("#part1").attr("disabled",true);
+                }
+                if (nowHour >= theme1part2) {
+                    document.querySelector("#theme1part2").removeAttribute('href');
+                    $("#theme1part2").css("background-color", "#6c757d");
+                }
+                if (nowHour >= theme1part3) {
+                    document.querySelector("#theme1part3").removeAttribute('href');
+                    $("#theme1part3").css("background-color", "#6c757d");
+                }
+
+                // 2번 테마 시간 비활성화
+                if (nowHour >= theme2part1) {
+                    document.querySelector("#theme2part1").removeAttribute('href');
+                    $("#theme2part1").css("background-color", "#6c757d");
+                }
+                if (nowHour >= theme2part2) {
+                    document.querySelector("#theme2part2").removeAttribute('href');
+                    $("#theme2part2").css("background-color", "#6c757d");
+                }
+                if (nowHour >= theme2part3) {
+                    document.querySelector("#theme2part3").removeAttribute('href');
+                    $("#theme2part3").css("background-color", "#6c757d");
+                }
+
+
+                // 3번 테마 시간 비활성화
+                if (nowHour >= theme3part1) {
+                    document.querySelector("#theme3part1").removeAttribute('href');
+                    $("#theme3part1").css("background-color", "#6c757d");
+                }
+                if (nowHour >= theme3part2) {
+                    document.querySelector("#theme3part2").removeAttribute('href');
+                    $("#theme3part2").css("background-color", "#6c757d");
+                }
+                if (nowHour >= theme3part3) {
+                    document.querySelector("#theme3part3").removeAttribute('href');
+                    $("#theme3part3").css("background-color", "#6c757d");
+                }
+
+                // 4번 테마 시간 비활성화
+                if (nowHour >= theme4part1) {
+                    document.querySelector("#theme4part1").removeAttribute('href');
+                    $("#theme4part1").css("background-color", "#6c757d");
+                }
+                if (nowHour >= theme4part2) {
+                    document.querySelector("#theme4part2").removeAttribute('href');
+                    $("#theme4part2").css("background-color", "#6c757d");
+                }
+                if (nowHour >= theme4part3) {
+                    document.querySelector("#theme4part3").removeAttribute('href');
+                    $("#theme4part3").css("background-color", "#6c757d");
+                }
             }
 
 
 
-            // 현재 주소를 문자열로 저장
-            let url = document.location.href;
-            console.log(url);
-            // 문자열로 바꾼 주소 뒤에서 한개 잘라오기
-            let cafeid = url.slice(-1);
+
+            // url:현지 전체 주소 , 문자열로 바꾼 주소 앞에서 한개 잘라오기
+            // http 부터 시작
+            let cafeid = url.slice(30,31);
             console.log(cafeid);
-            
-            // let val1 = 1; // 카페 아이디로 보낸 값
-            // let val2 = 1; // 테마 아이디는 전송 안해도 될듯 ??
+
             $.ajax({
                 url: "/ajax/restimelist",
                 type: "POST",
                 data: {cafeIdx: cafeid},
                 dataType: "json",
                 success: function (data) {
-                    // 해당 카페 예약 데이터 끌고와서 버튼 값이랑 비교
-                    // 같은 시간이 있으면 비활성화
-                    for(let i =0 ; i< data.length; i++){
-                        console.log(data[i].resTime);
-                        // 1번 테마
-                        if(data[i].themeId == 1){
-                            if(data[i].resTime == theme1part1){
-                                document.querySelector("#theme1part1").removeAttribute('href');
-                                $("#theme1part1").css("background-color", "pink");
-                            }
-                            if(data[i].resTime == theme1part2){
-                                document.querySelector("#theme1part2").removeAttribute('href');
-                                $("#theme1part2").css("background-color", "pink");
-                            }
-                            if(data[i].resTime == theme1part3){
-                                document.querySelector("#theme1part3").removeAttribute('href');
-                                $("#theme1part3").css("background-color", "pink");
-                            }
-                        }
+                    // 해당 카페 예약 데이터 끌고와서 시간은 버튼 값이랑 비교, 같은 시간이 있으면 비활성화
+                    // 주소창이랑 예약 날짜 같은지 확인해야함
+                    console.log("dateParam:"+dateParam);
 
-                        // 2번 테마
-                        if(data[i].themeId == 2){
-                            if(data[i].resTime == theme2part1){
-                                document.querySelector("#theme2part1").removeAttribute('href');
-                                $("#theme2part1").css("background-color", "pink");
+                    for (let i = 0; i < data.length; i++) {
+                        if (dateParam == data[i].reservationDate) {
+                            console.log("reservationDate:"+data[i].reservationDate);
+                            console.log(data[i].resTime);
+                            // 1번 테마
+                            if (data[i].themeId == 1) {
+                                if (data[i].resTime == theme1part1) {
+                                    document.querySelector("#theme1part1").removeAttribute('href');
+                                    $("#theme1part1").css("background-color", "pink");
+                                }
+                                else if (data[i].resTime == theme1part2) {
+                                    document.querySelector("#theme1part2").removeAttribute('href');
+                                    $("#theme1part2").css("background-color", "pink");
+                                }
+                                else if (data[i].resTime == theme1part3) {
+                                    document.querySelector("#theme1part3").removeAttribute('href');
+                                    $("#theme1part3").css("background-color", "pink");
+                                }
                             }
-                            if(data[i].resTime == theme2part2){
-                                document.querySelector("#theme2part2").removeAttribute('href');
-                                $("#theme2part2").css("background-color", "pink");
-                            }
-                            if(data[i].resTime == theme2part3){
-                                document.querySelector("#theme2part3").removeAttribute('href');
-                                $("#theme2part3").css("background-color", "pink");
-                            }
-                        }
-                        // 3번 테마
-                        if(data[i].themeId == 3){
-                            if(data[i].resTime == theme3part1){
-                                document.querySelector("#theme3part1").removeAttribute('href');
-                                $("#theme3part1").css("background-color", "pink");
-                            }
-                            if(data[i].resTime == theme3part2){
-                                document.querySelector("#theme3part2").removeAttribute('href');
-                                $("#theme3part2").css("background-color", "pink");
-                            }
-                            if(data[i].resTime == theme3part3){
-                                document.querySelector("#theme3part3").removeAttribute('href');
-                                $("#theme3part3").css("background-color", "pink");
-                            }
-                        }
 
-                        // 4번 테마
-                        if(data[i].themeId == 4){
-                            if(data[i].resTime == theme4part1){
-                                document.querySelector("#theme4part1").removeAttribute('href');
-                                $("#theme4part1").css("background-color", "pink");
+                            // 2번 테마
+                            if (data[i].themeId == 2) {
+                                if (data[i].resTime == theme2part1) {
+                                    document.querySelector("#theme2part1").removeAttribute('href');
+                                    $("#theme2part1").css("background-color", "pink");
+                                }
+                                if (data[i].resTime == theme2part2) {
+                                    document.querySelector("#theme2part2").removeAttribute('href');
+                                    $("#theme2part2").css("background-color", "pink");
+                                }
+                                if (data[i].resTime == theme2part3) {
+                                    document.querySelector("#theme2part3").removeAttribute('href');
+                                    $("#theme2part3").css("background-color", "pink");
+                                }
                             }
-                            if(data[i].resTime == theme4part2){
-                                document.querySelector("#theme4part2").removeAttribute('href');
-                                $("#theme4part2").css("background-color", "pink");
+                            // 3번 테마
+                            if (data[i].themeId == 3) {
+                                if (data[i].resTime == theme3part1) {
+                                    document.querySelector("#theme3part1").removeAttribute('href');
+                                    $("#theme3part1").css("background-color", "pink");
+                                }
+                                if (data[i].resTime == theme3part2) {
+                                    document.querySelector("#theme3part2").removeAttribute('href');
+                                    $("#theme3part2").css("background-color", "pink");
+                                }
+                                if (data[i].resTime == theme3part3) {
+                                    document.querySelector("#theme3part3").removeAttribute('href');
+                                    $("#theme3part3").css("background-color", "pink");
+                                }
                             }
-                            if(data[i].resTime == theme4part3){
-                                document.querySelector("#theme4part3").removeAttribute('href');
-                                $("#theme4part3").css("background-color", "pink");
+
+                            // 4번 테마
+                            if (data[i].themeId == 4) {
+                                if (data[i].resTime == theme4part1) {
+                                    document.querySelector("#theme4part1").removeAttribute('href');
+                                    $("#theme4part1").css("background-color", "pink");
+                                }
+                                if (data[i].resTime == theme4part2) {
+                                    document.querySelector("#theme4part2").removeAttribute('href');
+                                    $("#theme4part2").css("background-color", "pink");
+                                }
+                                if (data[i].resTime == theme4part3) {
+                                    document.querySelector("#theme4part3").removeAttribute('href');
+                                    $("#theme4part3").css("background-color", "pink");
+                                }
                             }
                         }
-
                     }
                     console.log("통신성공");
                 },
-                error : function (){
+                error: function () {
                     alert("통신 중 오류 발생");
                 }
             });
@@ -272,22 +311,8 @@
             //    location.href = "/hongdae/1/2/10"
             // });
 
-            // 오늘 날짜
-            let today = new Date();
 
-            document.getElementById('date').value=today.toISOString().substring(0,10);
-            // date 태그의 최솟값을 오늘로 지정, 오늘 이전 날짜 선택 못함
-            document.getElementById('date').min = today.toISOString().substring(0,10);
-            // 오늘 기준 1주일만 선택 가능
-            today.setDate(today.getDate()+6);
-            document.getElementById('date').max= today.toISOString().substring(0,10);
 
-            // $("#date").on("change",function (){
-            //     // 이미 카페 아이디에 맞춰서 예약 정보는 다 불러와져 있음, 날짜 데이터랑 비교해서 비활성화 시켜야함
-            //    // 페이지 새로 열리면서 날짜 데이터 주소에 저장됨
-            //     const frm = $("#frm")[0];
-            //     frm.submit();
-            // });
 
         });
     </script>
@@ -345,9 +370,9 @@
 
                 <div class="row mt-2">
                     <form name="frm" action="/hongdae/1" method="get" >
-                        <div class="col-3">
-                            <input class="form-control" type="date" name="date" id="date" min="">
-                            <button type="submit">전송</button>
+                        <div class="col-3 d-flex">
+                            <input class="form-control me-2" type="date" name="date" id="date" min="" value="">
+                            <button class="btn btn-outline-primary" type="submit" id="date-select" style="width: 80px">선택</button>
                         </div>
                     </form>
                 </div>
@@ -370,7 +395,6 @@
                                 <a href="/hongdae/1/1/10" id="theme1part1" data-value="10">10:00</a>
                                 <a href="/hongdae/1/1/12" id="theme1part2" data-value="15">15:00</a>
                                 <a href="/hongdae/1/1/14" id="theme1part3" data-value="20">20:00</a>
-                                <button disabled>test</button>
                             </div>
                         </div>
                         <!--2번 테마 시간-->
@@ -379,7 +403,6 @@
                                 <a href="/hongdae/1/2/10" id="theme2part1" data-value="10">10:00</a>
                                 <a href="/hongdae/1/2/12" id="theme2part2" data-value="15">15:00</a>
                                 <a href="/hongdae/1/2/14" id="theme2part3" data-value="20">20:00</a>
-                                <button disabled>test</button>
                             </div>
                         </div>
                         <!--3번 테마 시간-->
@@ -388,7 +411,6 @@
                                 <a href="/hongdae/1/3/10" id="theme3part1" data-value="10">10:00</a>
                                 <a href="/hongdae/1/3/12" id="theme3part2" data-value="15">15:00</a>
                                 <a href="/hongdae/1/3/14" id="theme3part3" data-value="20">20:00</a>
-                                <button disabled>test</button>
                             </div>
                         </div>
                         <!--4번 테마 시간-->
@@ -397,11 +419,8 @@
                                 <a href="/hongdae/1/4/10" id="theme4part1" data-value="10">10:00</a>
                                 <a href="/hongdae/1/4/12" id="theme4part2" data-value="15">15:00</a>
                                 <a href="/hongdae/1/4/14" id="theme4part3" data-value="20">20:00</a>
-                                <button disabled>test</button>
                             </div>
                         </div>
-                        <div class="row border" style="height: 250px">  </div>
-                        <div class="row border" style="height: 250px">  </div>
                     </div>
                 </div>
 
