@@ -20,4 +20,6 @@ public interface NoticeMapper {
     void deleteNotice(int noticeId) throws Exception;
 
     void updateNotice(NoticeDTO notice) throws Exception;
+
+    List<NoticeDTO> selectFAQ() throws Exception;
 }

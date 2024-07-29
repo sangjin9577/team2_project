@@ -111,4 +111,10 @@
         WHERE
             notice_id = #{noticeId}
     </update>
+
+    <!-- FAQ 데이터 가져오기 -->
+    <select id="selectFAQ" parameterType="bitc.fullstack405.team2.notice.NoticeDTO">
+        SELECT faq_id, title, content, faq_image
+        FROM faq
+    </select>
 </mapper>

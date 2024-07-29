@@ -20,10 +20,15 @@ public class NoticeController {
         return "index";
     }
 
-    // FAQ 목록 출력
+    // FAQ 목록 출력(view)
     @GetMapping("/notice/FAQ")
-    public String  selectFAQ() throws Exception {
-        return "notice/notice_FAQ";
+    public ModelAndView  selectFAQ() throws Exception {
+        ModelAndView mv = new ModelAndView("notice/notice_FAQ");
+
+        List<NoticeDTO> FAQList = noticeService.selectFAQ();
+        mv.addObject("FAQList", FAQList);
+
+        return mv;
     }
 
     // notice 게시판 목록 출력
