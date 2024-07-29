@@ -4,9 +4,10 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="bitc.fullstack405.team2.mainThemePop.ThemeMapper">
+<!--    메인에서 홍대 테마 먼저 보이게 하는 부분-->
     <select id="selectThemeCafeList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="int">
         select
-            theme_id, title, theme_rank, genre, synopsis, people_limit, playtime, payment, img_url, name
+            theme_id, title, theme_rank, genre, synopsis, people_limit, playtime, payment, img_url, name, theme.cafe_id
         from
             theme
         join
@@ -17,9 +18,10 @@
             theme.cafe_id = 1
     </select>
 
+<!--    ajax 테마 정보 필요한 부분-->
     <select id="mainItemsList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="int">
         select
-            theme_id, title, theme_rank, genre, synopsis, people_limit, playtime, payment, img_url, name
+            theme_id, title, theme_rank, genre, synopsis, people_limit, playtime, payment, img_url, name, theme.cafe_id
         from
             theme
         join
@@ -27,7 +29,46 @@
         on
             theme.cafe_id = cafe.cafe_id
         where
-            theme.cafe_id = #{cafe_id}
+            theme.cafe_id = #{cafeId}
+    </select>
+
+    <select id="selectTheme" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="int">
+        select
+            title, people_limit, playtime, payment, img_url, name
+        from
+            theme
+        join
+            cafe
+        on
+            theme.cafe_id = cafe.cafe_id
+        where
+            theme.theme_id = #{themeId}
+    </select>
+
+<!--    리뷰 목록 -->
+    <select id="selectReviewList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO">
+        select
+            board_idx, comm_title, cafe_id, theme_id
+        from
+            communication
+        order by
+            board_idx
+        desc
+    </select>
+
+    <!--   ajax 리뷰 목록 -->
+    <select id="selectAjaxReviewList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="map">
+        select
+            board_idx, comm_title, cafe_id, theme_id
+        from
+            communication
+        where
+            cafe_id = #{cafeIdx}
+        and
+            theme_id = #{themeIdx}
+        order by
+            board_idx
+        desc
     </select>
 
 

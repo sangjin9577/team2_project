@@ -1,11 +1,9 @@
 package bitc.fullstack405.team2.notice;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -16,16 +14,15 @@ public class NoticeController {
     @Autowired
     private NoticeService noticeService;
 
-    // 기본 주소 설정
-    @RequestMapping({"", "/"})
-    public String index() {
-        return "index";
-    }
-
-    // FAQ 목록 출력
+    // FAQ 목록 출력(view)
     @GetMapping("/notice/FAQ")
-    public String  selectFAQ() throws Exception {
-        return "notice/notice_FAQ";
+    public ModelAndView  selectFAQ() throws Exception {
+        ModelAndView mv = new ModelAndView("notice/notice_FAQ");
+
+        List<NoticeDTO> FAQList = noticeService.selectFAQ();
+        mv.addObject("FAQList", FAQList);
+
+        return mv;
     }
 
     // notice 게시판 목록 출력
@@ -54,38 +51,68 @@ public class NoticeController {
 
     // notice 게시글 작성(view)
     @GetMapping("/notice/write")
-    public String selectNoticeWrite() throws Exception {
+    public String noticeWrite() throws Exception {
         return "notice/noticeWrite";
     }
 
-//    @GetMapping("/notice/write")
-//    public String selectNoticeWrite() throws Exception {
-//        return "redirect:/main";
-//    }
-
     // notice 게시글 작성(내부 처리)
-//    @PostMapping("/notice/write")
-//    public String  noticeWrite(NoticeDTO notice, @RequestParam("uploadFiles") MultipartFile file) throws Exception {
-//        if (file.isEmpty()) {
-//            return "notice/noticeWrite";
-//        }
-//
-//        // 1. cafe_name으로 cafe_id 조회
-//        int cafeId = noticeService.getCafeIdByName(notice.getName());
-//
-//        // 2. cafe_id를 notice 객체에 설정
-//        notice.setCafeId(cafeId);
+    @PostMapping("/notice/write")
+    public String noticeWrite(NoticeDTO notice, @RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
 
-        // 3. notice_test 테이블에 데이터 삽입
-//        try {
-//            noticeService.insertNotice(notice);
-//            return "Notice created successfully";
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "Error creating notice";
-//        }
-//
-//        noticeService.insertNotice(notice, multipart);
-//        return "redirect:/notice";
+        int cafeId = 0;
+        
+        // 지점명이 전체가 아니면 해당 지점의 id 가져오기
+        if(!notice.getName().equals("전체")) {
+            cafeId = noticeService.getCafeIdByName(notice.getName());
+        }
+
+        // cafeId를 notice 객체에 설정
+        notice.setCafeId(cafeId);
+
+        noticeService.insertNotice(notice, uploadFile);
+        return "redirect:/notice";
     }
-//}
+
+    // notice 게시물 삭제
+    @DeleteMapping("/notice/{noticeId}")
+    public String deleteNotice(int noticeId) throws Exception {
+        noticeService.deleteNotice(noticeId);
+
+        return "redirect:/notice";
+    }
+
+    // notice 게시글 수정(view)
+    @GetMapping("/notice/edit/{noticeId}")
+    public ModelAndView noticeEdit(@PathVariable("noticeId") int noticeId) throws Exception {
+        noticeService.updateHitCount(noticeId);
+
+        ModelAndView mv = new ModelAndView("notice/noticeEdit");
+
+        NoticeDTO notice = noticeService.selectNoticeDetail(noticeId);
+        mv.addObject("notice", notice);
+
+        return mv;
+    }
+
+    // notice 게시물 수정(내부 처리)
+    @PutMapping("/notice/edit/{noticeId}")
+    public String updateNotice(@PathVariable("noticeId") int noticeId, NoticeDTO notice, @RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
+        int cafeId = 0;
+
+        // 지점명이 전체가 아니면 해당 지점의 id 가져오기
+        if(!notice.getName().equals("전체")) {
+            cafeId = noticeService.getCafeIdByName(notice.getName());
+        }
+
+        // cafeId를 notice 객체에 설정
+        notice.setCafeId(cafeId);
+        // noticeId를 notice 객체에 설정
+        notice.setNoticeId(noticeId);
+
+        noticeService.updateNotice(notice, uploadFile);
+
+        return "redirect:/notice";
+    }
+
+
+}

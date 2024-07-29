@@ -1,11 +1,8 @@
 package bitc.fullstack405.team2.notice;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 
@@ -15,8 +12,8 @@ public class NoticeServiceImpl implements NoticeService {
     @Autowired
     private NoticeMapper noticeMapper;
 
-//    @Autowired
-//    private FileUtils fileUtils;
+    @Autowired
+    private NoticeFileUtils fileUtils;
 
     // notice 목록
     @Override
@@ -36,19 +33,39 @@ public class NoticeServiceImpl implements NoticeService {
         noticeMapper.updateHitCount(noticeId);
     }
 
-//    @Override
+    // 매장 ID 가져오기
+    @Override
     public int getCafeIdByName(String name) throws Exception {
         return noticeMapper.getCafeIdByName(name);
     }
 
+    // notice 글 등록
     @Override
-    public void insertNotice(NoticeDTO notice, MultipartHttpServletRequest multipart) throws Exception {
+    public void insertNotice(NoticeDTO notice, MultipartFile uploadFile) throws Exception {
+        // FileUtils에서 DB에 저장할 파일 이름 가져오기
+        String noticeImage = fileUtils.parseFileInfo(uploadFile);
+        notice.setNoticeImage(noticeImage);
         noticeMapper.insertNotice(notice);
     }
 
-    // notice 글 등록 - 관리자
-//    @Override
-//    public void insertNotice(NoticeDTO notice, MultipartFile multipart) throws Exception {
-//        noticeMapper.insertNotice(notice);
-//    }
+    // notice 글 삭제
+    @Override
+    public void deleteNotice(int noticeId) throws Exception {
+        noticeMapper.deleteNotice(noticeId);
+    }
+
+    // notice 글 수정
+    @Override
+    public void updateNotice(NoticeDTO notice, MultipartFile uploadFile) throws Exception {
+        // FileUtils에서 DB에 저장할 파일 이름 가져오기
+        String noticeImage = fileUtils.parseFileInfo(uploadFile);
+        notice.setNoticeImage(noticeImage);
+        noticeMapper.updateNotice(notice);
+    }
+
+    // FAQ 목록
+    @Override
+    public List<NoticeDTO> selectFAQ() throws Exception {
+        return noticeMapper.selectFAQ();
+    }
 }

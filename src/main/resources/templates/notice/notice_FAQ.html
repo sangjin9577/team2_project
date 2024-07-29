@@ -6,8 +6,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>notice_FAQ</title>
+    <title>FAQ</title>
 
+<!--    <style>-->
+<!--        .btn-faq, .btn-notice {-->
+<!--            border: 2px solid black;-->
+<!--            width: 200px;-->
+<!--            border-radius: 0;-->
+<!--        }-->
+<!--        .btn-notice:hover {-->
+<!--            border: 2px solid black;-->
+<!--            background-color: #ff6e27;-->
+<!--        }-->
+<!--        .btn-faq {-->
+<!--            background-color: #ff6e27;-->
+<!--        }-->
+
+<!--        .btn-faq:hover {-->
+<!--            border: 2px solid black;-->
+<!--            background-color: #ff6e27;-->
+<!--        }-->
+<!--    </style>-->
+
+</head>
+<body>
     <div class="container-fluid fixed-top">
         <!-- 네비게이션 -->
         <!-- 브랜드 로고 -->
@@ -41,7 +63,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="notice_NOTICE.html">NOTICE</a>
+                                <a class="dropdown-item" href="noticeList.html">NOTICE</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="notice_FAQ.html">FAQ</a>
@@ -78,19 +100,18 @@
     <div class="container-fluid text-center" style="margin-top: 5%;">
         <h1><strong>FAQ</strong></h1>
     </div>
-</head>
-<body>
+
     <div class="container mt-5">
         <div class="row">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <button type="button" class="btn btn-white">
-                        <a class="nav-link"  href="/notice">NOTICE</a>
+                    <button type="button" class="btn btn-notice me-3">
+                        <a class="nav-link text-dark fw-bolder" href="/notice">NOTICE</a>
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-white">
-                        <a class="nav-link"  href="/notice/FAQ">FAQ</a>
+                    <button type="button" class="btn btn-faq">
+                        <a class="nav-link text-dark fw-bold" href="/notice/FAQ">FAQ</a>
                     </button>
                 </li>
             </ul>
@@ -99,156 +120,24 @@
 
     <div class="container mt-5">
         <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseTwo">
-                        게임 이용 안내
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div>* 입장 전 게임 설명 및 유의사항 안내를 위하여 이용 시간보다 10분 일찍 도착 부탁드립니다. (게임 시작 시간 이후 도착 시 테마 이용 시간이 차감될 수 있습니다.)</div>
-                        <div>* 휴대폰, 인화성 물질 및 소지품은 라커룸에 보관하셔야 합니다.</div>
-                        <div>* 과도한 음주 후 플레이는 입장이 제한될 수 있습니다.</div>
-                        <div>* 힌트용 태블릿에 힌트 코드를 입력하여 힌트를 사용할 수 있습니다. 힌트 사용 횟수는 무제한이며, 탈출 시 탈출 성공 기념 티켓을 제공합니다.</div>
-                        <div>* 게임의 상세한 내용에 대한 스포일러는 금지되어 있습니다.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        예약 오픈 시간 안내
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div>* 평일/주말 상관없이 해당 시간에 예약 오픈됩니다.</div>
-                        <div>* 매일 하루씩 예약 오픈하며 일주일 치의 예약만 가능합니다.</div>
-
-                        <div class="container" style="margin-top: 5%;">
-                            <img src="https://xdungeon.net/file/cheditor/20240110150044_cavutwvp.jpg" alt="" style="width: 70%;">
+            <!-- FAQList를 순회하며 각 항목에 대한 아코디언 생성 -->
+            <div th:if="${#lists.size(FAQList)} > 0" th:each="item : ${FAQList}">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" th:id="'heading' + ${item.faqId}">
+                        <button class="accordion-button collapsed" type="button"
+                                th:data-bs-toggle="'collapse'"
+                                th:data-bs-target="'#collapse' + ${item.faqId}"
+                                th:aria-controls="'collapse' + ${item.faqId}"
+                                aria-expanded="false"
+                                th:text="${item.title}">
+                            <!-- 버튼 텍스트 -->
+                        </button>
+                    </h2>
+                    <div th:id="'collapse' + ${item.faqId}" class="accordion-collapse collapse"
+                        th:aria-labelledby="'heading' + ${item.faqId}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body" th:utext="${item.content}">
+                            <!-- FAQ 항목의 내용 -->
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        예약 안내
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div>* 예약자 이름, 연락처 두 가지 정보만 입력하시면 예약이 가능합니다.</div>
-                        <div>* 예약 확정 및 예약번호 문자 발송을 위하여 확인 가능한 연락처로 입력 부탁드립니다. </div>
-                        <div>* 가상계좌 입금 대기 시간은 예약하기 버튼 클릭부터 최대 10분까지이고, 10분 이내 미입금시 자동 예약 취소 됩니다.</div>
-                        <div>* 입금 시 예약자명과 입금자명이 일치해야 합니다.</div>
-                        <div>* 문자로 발송된 예약번호로 예약 조회 및 취소 가능합니다.</div>
-                        <div>* 예약완료 문자를 받지 못하신 경우 예약이 안된 경우이니 해당 매장으로 유선 문의 부탁드립니다. </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                        예약 변경(날짜 / 시간 / 인원변경)
-                    </button>
-                </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div>* 이용 날짜 및 시간, 테마 변경은 불가능합니다. 사이트를 통해 취소 후 재예약 부탁드립니다.</div>
-                        <div>* 이용 인원이 변경된 경우, 이용일 당일 매장에서 추가 결제 및 부분 환불 도와드리겠습니다.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseTwo">
-                        예약 취소
-                    </button>
-                </h2>
-                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div>* 예약 취소는 게임 플레이 1일 전까지 가능합니다. (자정 기준)</div>
-                        <div>* 홈페이지 상단 'RESERVATION' > '예약확인 및 취소' 탭을 통해 예약 취소하실 수 있습니다.</div>
-                        <div>* 당일 예약 건을 포함하여 게임 이용 당일에는 취소 및 환불이 불가합니다.</div>
-                        <div>* 환불 계좌번호 입력 시, 예약자명과 예금주명이 일치해야 합니다.</div>
-                        <div>* 환불은 영업일 기준 최대 1~2일 소요될 수 있습니다.</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
-                        단체 문의
-                    </button>
-                </h2>
-                <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div> * 각 지점별 단체 예약에 대한 규정이 상이하므로, 단체 예약을 원하실 경우 각 지점에 유선 문의 부탁드립니다. </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseThree">
-                        현금영수증안내
-                    </button>
-                </h2>
-                <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div>* 온라인 예약의 경우 현금영수증은 결제하기 단계에서 신청 가능합니다.</div>
-                        <div>* 온라인 예약의 경우 현금영수증 매장 발급 or 현금영수증 정보 수정 불가능합니다.</div>
-                        <div>* 현금영수증 발행 여부는 개인 홈텍스에서 확인 부탁드립니다.</div>
-                        <br>
-                        <div>* 모바일 예약 : 결제하기 단계에서 예약자 연락처로 자동 입력 및 발행됩니다.</div>
-                        <br>
-                        <div class="container">
-                            <img src="https://xdungeon.net/file/cheditor/20231127190923_wilfbekb.png" alt="" style="width: 70%;">
-                        </div>
-                        <br>
-                        <div>* PC 예약 : 결제하기 단계에서 현금영수증 정보 입력해주시면 발행 가능합니다.</div>
-                        <br>
-                        <div class="container">
-                            <img src="https://xdungeon.net/file/cheditor/20231127191251_shtdokyz.png" alt="" style="width: 70%;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseTwo">
-                        가상계좌 입금시간 안내
-                    </button>
-                </h2>
-                <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div>* 가상계좌 입금이 안되는 경우, 점검이 끝난 뒤 다시 시도해주세요.</div>
-                        <br>
-                        <div class="container">
-                            <img src="https://xdungeon.net/file/cheditor/20231212181351_dkbzmsov.png" alt="" style="width: 60%;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseThree">
-                        날짜 선택이 안될 경우
-                    </button>
-                </h2>
-                <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <div>* 인터넷 쿠키 및 캐쉬 삭제하신 뒤 다시 이용 부탁드립니다.</div>
                     </div>
                 </div>
             </div>

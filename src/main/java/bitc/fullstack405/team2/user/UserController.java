@@ -39,7 +39,7 @@ public class UserController {
     public String registerUser(UserDTO user) throws Exception {
         userService.insertUser(user);
 
-        return "redirect:/";
+        return "redirect:/user/login";
     }
 
     // 로그인(view)
@@ -73,7 +73,7 @@ public class UserController {
             session.setMaxInactiveInterval(60 * 60 * 1);
 
             // 메인 페이지로 리다이렉트
-            return "redirect:/";
+            return "redirect:/main";
         }
         else { // 로그인 실패
             return "redirect:login?loginError=invalid";
@@ -102,6 +102,6 @@ public class UserController {
         session.invalidate();
 
         // 메인 페이지로 리다이렉트
-        return "redirect:/";
+        return "redirect:/main";
     }
 }
