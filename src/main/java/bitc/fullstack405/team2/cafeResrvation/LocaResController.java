@@ -36,6 +36,17 @@ public class LocaResController {
     return mv;
   }
 
+  @GetMapping("/test_reservation")
+  public String selectDate(){
+    return "/reservation/test_writeReservation";
+  }
+
+  @ResponseBody
+  @PostMapping("/test_reservation")
+  public String selectDate(String date){
+   return date;
+  }
+
   // 예약 정보 입력 페이지로 이동
   @RequestMapping("/{cafeName}/{cafeIdx}/{themeIdx}/{time}")
   public ModelAndView CafeResInfo(@PathVariable int themeIdx) throws Exception{

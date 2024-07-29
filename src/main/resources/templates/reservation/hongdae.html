@@ -282,10 +282,12 @@
             today.setDate(today.getDate()+6);
             document.getElementById('date').max= today.toISOString().substring(0,10);
 
-            $("#date").on("change",function (){
-                // 이미 카페 아이디에 맞춰서 예약 정보는 다 불러와져 있음, 날짜 데이터랑 비교해서 비활성화 시켜야함
-               // 페이지 새로 열리면서 날짜 데이터 주소에 저장됨
-            });
+            // $("#date").on("change",function (){
+            //     // 이미 카페 아이디에 맞춰서 예약 정보는 다 불러와져 있음, 날짜 데이터랑 비교해서 비활성화 시켜야함
+            //    // 페이지 새로 열리면서 날짜 데이터 주소에 저장됨
+            //     const frm = $("#frm")[0];
+            //     frm.submit();
+            // });
 
         });
     </script>
@@ -342,10 +344,10 @@
                 </div>
 
                 <div class="row mt-2">
-                    <form>
+                    <form name="frm" action="/test_reservation" method="post" >
                         <div class="col-3">
                             <input class="form-control" type="date" id="date" min="">
-                            <buttton type="submit" hidden></buttton>
+                            <button type="submit">전송</button>
                         </div>
                     </form>
                 </div>
