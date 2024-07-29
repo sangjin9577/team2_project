@@ -43,7 +43,10 @@ public class NoticeController {
 
         ModelAndView mv = new ModelAndView("notice/noticeDetail");
 
-        NoticeDTO notice = noticeService.selectNoticeDetail(noticeId);
+        NoticeDTO notice = noticeService.selectNoticeDetail(noticeId); // 현재 게시물 조회
+        notice.setPreviousPost(noticeService.getPreviousPost(noticeId)); // 이전 게시물 ID 조회
+        notice.setNextPost(noticeService.getNextPost(noticeId)); // 다음 게시물 ID 조회
+
         mv.addObject("notice", notice);
 
         return mv;

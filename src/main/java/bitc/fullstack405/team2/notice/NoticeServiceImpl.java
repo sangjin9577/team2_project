@@ -68,4 +68,14 @@ public class NoticeServiceImpl implements NoticeService {
     public List<NoticeDTO> selectFAQ() throws Exception {
         return noticeMapper.selectFAQ();
     }
+
+    @Override
+    public int getPreviousPost(int noticeId) throws Exception {
+        return noticeMapper.findPreviousPost(noticeId);
+    }
+
+    @Override
+    public int getNextPost(int noticeId) throws Exception {
+        return noticeMapper.findNextPost(noticeId);
+    }
 }
