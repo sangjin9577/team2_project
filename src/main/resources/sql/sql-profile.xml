@@ -9,6 +9,8 @@
             user_id, user_pw, user_name, email, gender, age, mobile_number, nickname, point
         FROM
             user
+        WHERE
+            user_id = #{userId}
     </select>
 
     <select id="selectProfileDetail" resultType="bitc.fullstack405.team2.profile.ProfileDTO" parameterType="String">

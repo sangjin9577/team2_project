@@ -9,10 +9,10 @@ public class ProfileDTO {
   private String userId;
   private String userPw;
   private String userName;
-  private String userEmail;
+  private String email;
   private String gender;
   private int age;
-  private String userPhone;
+  private String mobileNumber;
   private String nickname;
   private int point;
 }

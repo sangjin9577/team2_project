@@ -1,5 +1,7 @@
 package bitc.fullstack405.team2.profile;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +26,11 @@ public class ProfileController {
   }
 
   @RequestMapping("/profiledetail")
-  public ModelAndView profileDetail(@RequestParam("userId") String userId) throws Exception {
+  public ModelAndView profileDetail(HttpServletRequest req) throws Exception {
     ModelAndView mv = new ModelAndView("profile/profiledetail");
+
+    HttpSession session = req.getSession();
+    String userId = (String) session.getAttribute("userId");
 
     ProfileDTO profile = profileService.selectProfileDetail(userId);
     mv.addObject("profile", profile);

@@ -14,6 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
+<header th:replace="~{layout/header.html :: header}"></header>
+
 <section id="profile1" class="container mt-5">
     <h1 class="text-center">PROFILE</h1>
     <div class="border border-3">
@@ -25,7 +27,7 @@
             <form action="profilemain.html">
                 <div class="form-floating">
                     <input type="text" class="form-control" id="username" name="userName" readonly>
-                    <label for="username" >이름</label>
+                    <label for="username">이름</label>
                 </div>
                 <div class="form-floating">
                     <input type="text" class="form-control" id="usernickname" name="userId" readonly>
