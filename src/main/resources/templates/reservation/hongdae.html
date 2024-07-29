@@ -181,7 +181,7 @@
             // 문자열로 바꾼 주소 뒤에서 한개 잘라오기
             let cafeid = url.slice(-1);
             console.log(cafeid);
-
+            
             // let val1 = 1; // 카페 아이디로 보낸 값
             // let val2 = 1; // 테마 아이디는 전송 안해도 될듯 ??
             $.ajax({
@@ -344,9 +344,9 @@
                 </div>
 
                 <div class="row mt-2">
-                    <form name="frm" action="/test_reservation" method="post" >
+                    <form name="frm" action="/hongdae/1" method="get" >
                         <div class="col-3">
-                            <input class="form-control" type="date" id="date" min="">
+                            <input class="form-control" type="date" name="date" id="date" min="">
                             <button type="submit">전송</button>
                         </div>
                     </form>
