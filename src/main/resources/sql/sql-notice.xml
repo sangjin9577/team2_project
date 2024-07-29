@@ -114,7 +114,7 @@
 
     <!-- FAQ 데이터 가져오기 -->
     <select id="selectFAQ" parameterType="bitc.fullstack405.team2.notice.NoticeDTO">
-        SELECT faq_id, title, content, faq_image
+        SELECT faq_id, title, content
         FROM faq
     </select>
 </mapper>

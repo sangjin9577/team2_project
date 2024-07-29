@@ -14,12 +14,6 @@ public class NoticeController {
     @Autowired
     private NoticeService noticeService;
 
-    // 기본 주소 설정
-    @RequestMapping({"", "/"})
-    public String index() {
-        return "index";
-    }
-
     // FAQ 목록 출력(view)
     @GetMapping("/notice/FAQ")
     public ModelAndView  selectFAQ() throws Exception {
@@ -79,7 +73,7 @@ public class NoticeController {
         return "redirect:/notice";
     }
 
-    // 공지사항 게시물 삭제
+    // notice 게시물 삭제
     @DeleteMapping("/notice/{noticeId}")
     public String deleteNotice(int noticeId) throws Exception {
         noticeService.deleteNotice(noticeId);
@@ -100,7 +94,7 @@ public class NoticeController {
         return mv;
     }
 
-    // 공지사항 게시물 수정(내부 처리)
+    // notice 게시물 수정(내부 처리)
     @PutMapping("/notice/edit/{noticeId}")
     public String updateNotice(@PathVariable("noticeId") int noticeId, NoticeDTO notice, @RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
         int cafeId = 0;
@@ -119,4 +113,6 @@ public class NoticeController {
 
         return "redirect:/notice";
     }
+
+
 }

@@ -16,6 +16,5 @@ public class NoticeDTO {
     private int hitCnt;
     private String name;
     private String faqId;
-    private String faqImage;
     private String content;
 }
