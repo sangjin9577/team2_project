@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="bitc.fullstack405.team2.mainThemePop.ThemeMapper">
-    <select id="selectTheme" resultType="bitc.fullstack405.team2.mainThemePop.ThemeDTO" parameterType="int">
+    <select id="selectsTheme" resultType="bitc.fullstack405.team2.mainThemePop.ThemeDTO" parameterType="int">
         select
             theme_id, title, theme_rank, genre, synopsis, people_limit, playtime, payment, img_url
         from

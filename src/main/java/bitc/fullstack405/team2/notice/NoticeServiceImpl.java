@@ -33,11 +33,13 @@ public class NoticeServiceImpl implements NoticeService {
         noticeMapper.updateHitCount(noticeId);
     }
 
+    // 매장 ID 가져오기
     @Override
     public int getCafeIdByName(String name) throws Exception {
         return noticeMapper.getCafeIdByName(name);
     }
 
+    // notice 글 등록
     @Override
     public void insertNotice(NoticeDTO notice, MultipartFile uploadFile) throws Exception {
         // FileUtils에서 DB에 저장할 파일 이름 가져오기
@@ -46,11 +48,13 @@ public class NoticeServiceImpl implements NoticeService {
         noticeMapper.insertNotice(notice);
     }
 
+    // notice 글 삭제
     @Override
     public void deleteNotice(int noticeId) throws Exception {
         noticeMapper.deleteNotice(noticeId);
     }
 
+    // notice 글 수정
     @Override
     public void updateNotice(NoticeDTO notice, MultipartFile uploadFile) throws Exception {
         // FileUtils에서 DB에 저장할 파일 이름 가져오기

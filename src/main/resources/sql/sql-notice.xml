@@ -34,16 +34,16 @@
                 WHEN c.name IS NOT NULL THEN c.name
                 ELSE '전체'
             END AS name
-        FROM
-            notice n
-            LEFT JOIN
-            cafe c
-        ON
-            n.cafe_id = c.cafe_id
-        WHERE
-            n.notice_id = #{noticeId}
-        AND
-            n.deleted_yn = 'N'
+            FROM
+                notice n
+                LEFT JOIN
+                cafe c
+            ON
+                n.cafe_id = c.cafe_id
+            WHERE
+                n.notice_id = #{noticeId}
+            AND
+                n.deleted_yn = 'N'
     </select>
 
     <!-- cafe_id 조회 -->
@@ -124,8 +124,13 @@
                 deleted_yn = 'N'
             ORDER BY
                 notice_id DESC
+<<<<<<< HEAD
         LIMIT 1),
         0
+=======
+            LIMIT 1),
+            0
+>>>>>>> 73e1bfc04f9d2ca524e5cd41c9fa8de4f519c430
         ) AS notice_id
     </select>
 
