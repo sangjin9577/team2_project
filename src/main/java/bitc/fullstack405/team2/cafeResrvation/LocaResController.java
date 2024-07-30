@@ -1,13 +1,8 @@
 package bitc.fullstack405.team2.cafeResrvation;
 
-import bitc.fullstack405.team2.PopCafe.CafeDTO;
-import bitc.fullstack405.team2.PopCafe.CafeService;
 import bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO;
-import bitc.fullstack405.team2.mainThemePop.ThemeDTO;
 import bitc.fullstack405.team2.mainThemePop.ThemeService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,19 +32,25 @@ public class LocaResController {
     return mv;
   }
 
-
   @GetMapping("/{cafeName}/{cafeIdx}/{date}")
-  public String selectDate(@PathVariable(name = "date") String date){
+  public String selectDate1(@PathVariable(name = "date") String date){
+
+    return date;
+  }
+
+  @GetMapping("/{cafeName}/{cafeIdx}/{themeIdx}/{time}/{date}")
+  public String selectDate2(@PathVariable(name = "date") String date){
 
    return date;
   }
 
   // 예약 정보 입력 페이지로 이동
-  @RequestMapping("/{cafeName}/{cafeIdx}/{themeIdx}/{time}")
-  public ModelAndView CafeResInfo(@PathVariable int cafeIdx, @PathVariable int themeIdx) throws Exception{
+  @RequestMapping("/{cafeName}/{cafeIdx}/{themeIdx}/{time}/{date}")
+  public ModelAndView CafeResInfo(@PathVariable("cafeIdx") int cafeIdx, @PathVariable("themeIdx") int themeIdx, @PathVariable("date") String date) throws Exception{
     ModelAndView mv = new ModelAndView("reservation/test_writeResInfo");
     ThemeCafeDTO themeInfo = themeService.selectTheme(cafeIdx, themeIdx);
     mv.addObject("themeInfo", themeInfo);
+    mv.addObject("date", date);
     return mv;
   }
 
