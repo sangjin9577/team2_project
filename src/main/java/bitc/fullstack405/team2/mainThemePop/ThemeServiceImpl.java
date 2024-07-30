@@ -1,5 +1,6 @@
 package bitc.fullstack405.team2.mainThemePop;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,8 @@ public class ThemeServiceImpl implements
   private ThemeMapper themeMapper;
 
   @Override
-  public ThemeCafeDTO selectTheme(int idx) throws Exception {
-    return themeMapper.selectTheme(idx);
+  public ThemeCafeDTO selectTheme(int cafeId,int themeId) throws Exception {
+    return themeMapper.selectTheme(cafeId, themeId);
   }
 
   @Override

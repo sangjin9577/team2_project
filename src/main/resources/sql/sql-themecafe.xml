@@ -32,6 +32,7 @@
             theme.cafe_id = #{cafeId}
     </select>
 
+<!--    시간 선택 시 필요한 카페, 테마 정보 1줄-->
     <select id="selectTheme" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="int">
         select
             title, people_limit, playtime, payment, img_url, name
@@ -43,6 +44,8 @@
             theme.cafe_id = cafe.cafe_id
         where
             theme.theme_id = #{themeId}
+        and
+            theme.cafe_id = #{cafeId}
     </select>
 
 <!--    리뷰 목록 -->
