@@ -34,11 +34,18 @@
             position: fixed;
             right: 0;
             top: 80%;
-            transform: translateY(-50%);
+            transform: translateX(-20%) translateY(-50%);
             border-radius: 50px;
             background-color: hotpink;
             text-align: center;
+            text-decoration: none;
             padding-top: 35px;
+            color: white;
+        }
+
+        #quickmenu:hover{
+            background-color: lightpink;
+
         }
     </style>
 </head>
@@ -49,15 +56,15 @@
 <main>
     <div class="container mt-5">
         <table>
-            <tr class="d-flex flex-wrap" id="changePoster">
+            <tr id="changePoster">
                 <!--                        카페 리스트 반복분으로 붙이기-->
-                <td class="col-3" th:if="${#lists.size(cafeList)} > 0" th:each="item:${cafeList}">
-                    <div class="border img_box" style="display: grid; justify-content: center">
+                <td class="col-3" th:if="${#lists.size(cafeList)} > 0 and ${itemStat.index} == 0 or ${itemStat.index} == 1 or ${itemStat.index} == 5" th:each="item:${cafeList}">
+                    <div class="border border-black img_box" style="width:303px; display: grid; justify-content: center">
                         <a href="#" data-bs-toggle="modal" th:data-bs-target="'#myModal'+ ${itemStat.index}">
                             <img src="#" alt="11" th:src="@{${item.cafeImg}}" style="height:303px; width: 303px">
                         </a>
-                        <div style="height: 82px; width: 303px;">
-                            <p th:text="${item.name}">cafe name</p>
+                        <div style="height: 60px; width: 303px;">
+                            <h5 class="text-center my-3" th:text="${item.name}">cafe name</h5>
                         </div>
                     </div>
 
@@ -70,35 +77,46 @@
                                 </div>
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    <div class="row my-3 mx-3">
-                                        <div class="col-5 bg-warning">
+                                    <div class="row">
+                                        <div class="col-5" style="display:flex; justify-content:flex-start; align-items: center">
                                             <img src="#" alt="11" th:src="@{${item.cafeImg}}"
                                                  style="height:303px; width: 303px">
                                         </div>
-                                        <div class="col-7 bg-info">
-                                            <div class="mt-3">
-                                                <div>지점명</div>
-                                                <div th:text="${item.name}"></div>
+                                        <div class="col-7">
+                                            <div class="row mt-3">
+                                                <div class="col">지점명 <p class="m-0" th:text="${item.name}"></p></div>
                                             </div>
-                                            <div>
+
+                                            <hr class="p-0 m-0">
+
+                                            <div class="row mt-2">
                                                 <div>영업시간</div>
                                                 <div th:text="${item.salesTimes}"></div>
                                             </div>
-                                            <div>
+
+                                            <hr class="p-0 m-0">
+
+                                            <div class="row mt-2">
                                                 <div>전화번호</div>
                                                 <div th:text="${item.phone}"></div>
                                             </div>
-                                            <div>
+
+                                            <hr class="p-0 m-0">
+
+                                            <div class="row mt-2">
                                                 <div>주소</div>
                                                 <div th:text="${item.address}"></div>
                                             </div>
-                                            <div>
+
+                                            <hr class="p-0 m-0">
+
+                                            <div class="row mt-2">
                                                 <div>예약오픈시간</div>
                                                 <div th:text="${item.reservationOpenTimes}"></div>
                                             </div>
                                         </div>
                                         <div class="mt-3 d-grid">
-                                            <a href="/reservation" class="btn btn-warning">예약하기</a>
+                                            <a href="/reservation" th:href="@{/reservation/hongdae/1}" class="btn btn-warning">예약하기</a>
                                         </div>
                                     </div>
                                 </div>

@@ -15,7 +15,7 @@ public interface ThemeMapper {
 
   List<ThemeCafeDTO> mainItemsList(int idx) throws Exception;
 
-  ThemeCafeDTO selectTheme(int idx) throws Exception;
+  ThemeCafeDTO selectTheme(@Param("cafeId") int cafeId,  @Param("themeId") int themeId) throws Exception;
 
   List<ThemeCafeDTO> selectReviewList() throws Exception;
 
