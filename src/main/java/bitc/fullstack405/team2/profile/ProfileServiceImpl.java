@@ -11,9 +11,14 @@ public class ProfileServiceImpl implements ProfileService {
     @Autowired
     private ProfileMapper profileMapper;
 
+//    @Override
+//    public List<ProfileDTO> selectProfileList() throws Exception {
+//        return profileMapper.selectProfileList();
+//    }
+
     @Override
-    public List<ProfileDTO> selectProfileList() throws Exception {
-        return profileMapper.selectProfileList();
+    public ProfileDTO selectProfile(String userId) throws Exception {
+        return profileMapper.selectProfile(userId);
     }
 
     @Override

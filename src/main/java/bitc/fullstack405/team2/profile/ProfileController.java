@@ -14,13 +14,26 @@ import java.util.List;
 public class ProfileController {
   @Autowired
   private ProfileService profileService;
-
+//
+//  @RequestMapping("/profile")
+//  public ModelAndView profileMain() throws Exception {
+//    ModelAndView mv = new ModelAndView("profile/profilemain");
+//
+//    List<ProfileDTO> profileList = profileService.selectProfileList();
+//    mv.addObject("profileList", profileList);
+//
+//    return mv;
+//  }
+//
   @RequestMapping("/profile")
-  public ModelAndView profileMain() throws Exception {
+  public ModelAndView profileMain(HttpServletRequest req) throws Exception {
     ModelAndView mv = new ModelAndView("profile/profilemain");
 
-    List<ProfileDTO> profileList = profileService.selectProfileList();
-    mv.addObject("profileList", profileList);
+    HttpSession session = req.getSession();
+    String userId = (String) session.getAttribute("userId");
+
+    ProfileDTO profile = profileService.selectProfile(userId);
+    mv.addObject("profile", profile);
 
     return mv;
   }

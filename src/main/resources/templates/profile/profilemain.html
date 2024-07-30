@@ -26,27 +26,27 @@
         <div class="col-sm-4">
             <form action="profilemain.html">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="username" name="userName" readonly>
-                    <label for="username">이름</label>
+                    <input type="text" class="form-control" id="username" name="userName" placeholder="이름" readonly>
+                    <label for="username" th:text="${profile.userName}">이름</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="usernickname" name="userId" readonly>
-                    <label for="usernickname">닉네임</label>
+                    <input type="text" class="form-control" id="usernickname" name="userId" placeholder="닉네임" readonly>
+                    <label for="usernickname" th:text="${profile.nickname}">닉네임</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="useremail" name="userEmail" readonly>
-                    <label for="useremail">이메일</label>
+                    <input type="text" class="form-control" id="useremail" name="userEmail" placeholder="이메일" readonly>
+                    <label for="useremail" th:text="${profile.email}">이메일</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="userphone" name="userPhone" readonly>
-                    <label for="userphone">전화번호</label>
+                    <input type="text" class="form-control" id="userphone" name="userPhone" placeholder="전화번호" readonly>
+                    <label for="userphone" th:text="${profile.mobileNumber}">전화번호</label>
                 </div>
             </form>
         </div>
     </div>
     </div>
     <div>
-        <a href="profiledetail.html" class="d-grid gap-2 col-6 mx-auto mt-5">
+        <a href="profiledetail" class="d-grid gap-2 col-6 mx-auto mt-5">
             <button type="button" class="btn btn-primary">상세보기</button>
         </a>
     </div>

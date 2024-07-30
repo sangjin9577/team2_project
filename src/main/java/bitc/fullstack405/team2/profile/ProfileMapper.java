@@ -6,7 +6,8 @@ import java.util.List;
 
 @Mapper
 public interface ProfileMapper {
-  List<ProfileDTO> selectProfileList() throws Exception;
+//  List<ProfileDTO> selectProfileList() throws Exception;
+  ProfileDTO selectProfile(String userId) throws Exception;
 
   ProfileDTO selectProfileDetail(String userId) throws Exception;
 }
