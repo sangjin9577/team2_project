@@ -1,4 +1,4 @@
-package bitc.fullstack405.team2.dbconfig;
+package bitc.fullstack405.team2.configuration;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

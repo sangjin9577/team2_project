@@ -20,10 +20,15 @@ public class NoticeController {
         return "index";
     }
 
-    // FAQ 목록 출력
+    // FAQ 목록 출력(view)
     @GetMapping("/notice/FAQ")
-    public String  selectFAQ() throws Exception {
-        return "notice/notice_FAQ";
+    public ModelAndView  selectFAQ() throws Exception {
+        ModelAndView mv = new ModelAndView("notice/notice_FAQ");
+
+        List<NoticeDTO> FAQList = noticeService.selectFAQ();
+        mv.addObject("FAQList", FAQList);
+
+        return mv;
     }
 
     // notice 게시판 목록 출력
@@ -44,7 +49,10 @@ public class NoticeController {
 
         ModelAndView mv = new ModelAndView("notice/noticeDetail");
 
-        NoticeDTO notice = noticeService.selectNoticeDetail(noticeId);
+        NoticeDTO notice = noticeService.selectNoticeDetail(noticeId); // 현재 게시물 조회
+        notice.setPreviousPost(noticeService.getPreviousPost(noticeId)); // 이전 게시물 ID 조회
+        notice.setNextPost(noticeService.getNextPost(noticeId)); // 다음 게시물 ID 조회
+
         mv.addObject("notice", notice);
 
         return mv;
