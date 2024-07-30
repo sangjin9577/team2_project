@@ -29,6 +29,7 @@ public class ProfileController {
   public ModelAndView profileDetail(HttpServletRequest req) throws Exception {
     ModelAndView mv = new ModelAndView("profile/profiledetail");
 
+    // HttpServletRequest 써서 userId 를 세션에서 받아오기
     HttpSession session = req.getSession();
     String userId = (String) session.getAttribute("userId");
 
