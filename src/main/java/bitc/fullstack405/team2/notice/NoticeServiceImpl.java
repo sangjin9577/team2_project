@@ -1,5 +1,7 @@
 package bitc.fullstack405.team2.notice;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,9 +17,15 @@ public class NoticeServiceImpl implements NoticeService {
     @Autowired
     private NoticeFileUtils fileUtils;
 
-    // notice 목록
+//    // notice 목록
+//    @Override
+//    public List<NoticeDTO> selectNoticeList() throws Exception {
+//        return noticeMapper.selectNoticeList();
+//    }
+
     @Override
-    public List<NoticeDTO> selectNoticeList() throws Exception {
+    public Page<NoticeDTO> selectNoticeList(int pageNum) throws Exception {
+        PageHelper.startPage(pageNum, 5);
         return noticeMapper.selectNoticeList();
     }
 
@@ -33,13 +41,11 @@ public class NoticeServiceImpl implements NoticeService {
         noticeMapper.updateHitCount(noticeId);
     }
 
-    // 매장 ID 가져오기
     @Override
     public int getCafeIdByName(String name) throws Exception {
         return noticeMapper.getCafeIdByName(name);
     }
 
-    // notice 글 등록
     @Override
     public void insertNotice(NoticeDTO notice, MultipartFile uploadFile) throws Exception {
         // FileUtils에서 DB에 저장할 파일 이름 가져오기
@@ -48,13 +54,11 @@ public class NoticeServiceImpl implements NoticeService {
         noticeMapper.insertNotice(notice);
     }
 
-    // notice 글 삭제
     @Override
     public void deleteNotice(int noticeId) throws Exception {
         noticeMapper.deleteNotice(noticeId);
     }
 
-    // notice 글 수정
     @Override
     public void updateNotice(NoticeDTO notice, MultipartFile uploadFile) throws Exception {
         // FileUtils에서 DB에 저장할 파일 이름 가져오기
@@ -67,5 +71,15 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public List<NoticeDTO> selectFAQ() throws Exception {
         return noticeMapper.selectFAQ();
+    }
+
+    @Override
+    public int getPreviousPost(int noticeId) throws Exception {
+        return noticeMapper.findPreviousPost(noticeId);
+    }
+
+    @Override
+    public int getNextPost(int noticeId) throws Exception {
+        return noticeMapper.findNextPost(noticeId);
     }
 }

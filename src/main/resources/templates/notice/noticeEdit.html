@@ -53,166 +53,90 @@
     </script>
 </head>
 <body>
-
-<main>
-    <div class="container-fluid fixed-top">
-        <!-- 네비게이션 -->
-        <!-- 브랜드 로고 -->
-        <nav class="navbar navbar-expand navbar-light bg-light container-fluid fixed-top justify-content-between">
-            <div>
-                <a class="navbar-brand ms-3" href="main.html" target="_blank">
-                    <img src="https://xdungeon.net/layout/images/common/logo.png">
-                </a>
-            </div>
-            <!-- 네비게이션 메뉴 -->
-            <!-- 메뉴 1 -->
-            <div>
-                <ul class="navbar-nav me-3">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            RESERVATION
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">에약 안내</a></li>
-                            <li><a class="dropdown-item" href="/reservation">예약 하기</a></li>
-                            <li><a class="dropdown-item" href="#">예약 확인</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- 메뉴 2 -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            NOTICE
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item" href="notice_NOTICE.html">NOTICE</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="notice_FAQ.html">FAQ</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- 메뉴 3 -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            COMM
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item" href="commList.html">COMM</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="reviewList.html">REVIEW</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- 메뉴 4 -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">LOCATION</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">로그인</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-
-    <div class="container">
-        <section style="margin-top: 75px;">
-            <div class="p-4 text-center border rounded-4 bg-secondary-subtle">
-                <h1 class="display-4">비트포비아 던전</h1>
-                <h2 class="mt-3"><small>[관리자] 공지사항 수정</small></h2>
-            </div>
-        </section>
-    </div>
-
-    <div class="container mt-5">
-        <section>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <form th:action="'/notice/edit/' + ${notice.noticeId}" method="post" enctype="multipart/form-data">
-                        <input type="hidden" id="method" name="_method">
-                        <input type="hidden" id="notice-id" name="noticeId" th:value="${notice.noticeId}"/>
-                        <div class="row mb-3">
-                            <!-- 카테고리 선택 -->
-                            <div class="col-12 col-md-6">
-                                <label for="category" class="form-label">카테고리</label>
-                                <select class="form-select" id="category" name="category">
-                                    <option>카테고리 선택</option>
-                                    <option value="공지" th:selected="${notice.category == '공지'}">공지</option>
-                                    <option value="이벤트" th:selected="${notice.category == '이벤트'}">이벤트</option>
-                                </select>
-                            </div>
-
-                            <!-- 지점 선택 -->
-                            <div class="col-12 col-md-6">
-                                <label for="name" class="form-label">지점</label>
-                                <select class="form-select" id="name" name="name">
-                                    <option>지점 선택</option>
-                                    <option value="전체" th:selected="${notice.name == '전체'}">전체</option>
-                                    <option value="홍대던전" th:selected="${notice.name == '홍대던전'}">홍대던전</option>
-                                    <option value="강남던전" th:selected="${notice.name == '강남던전'}">강남던전</option>
-                                    <option value="던전루나(강남)" th:selected="${notice.name == '던전루나(강남)'}">던전루나(강남)</option>
-                                    <option value="던전101" th:selected="${notice.name == '던전101'}">던전101</option>
-                                    <option value="서면던전(부산)" th:selected="${notice.name == '서면던전(부산)'}">서면던전(부산)</option>
-                                    <option value="서면던전 레드(부산)" th:selected="${notice.name == '서면던전 레드(부산)'}">서면던전 레드(부산)</option>
-                                    <option value="홍대던전Ⅲ" th:selected="${notice.name == '홍대던전Ⅲ'}">홍대던전Ⅲ</option>
-                                    <option value="강남던전Ⅱ" th:selected="${notice.name == '강남던전Ⅱ'}">강남던전Ⅱ</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- 제목 입력 -->
-                        <div class="mb-3">
-                            <label for="title" class="form-label">제목</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요" th:value="${notice.title}">
-                        </div>
-
-                        <!-- 시작 날짜 입력 -->
-                        <div class="mb-3">
-                            <label for="start-date" class="form-label">시작 날짜</label>
-                            <input type="date" class="form-control" id="start-date" name="startDate"
-                                th:value="${notice.startDate}">
-                        </div>
-
-                        <!-- 마감 날짜 입력 -->
-                        <div class="mb-3">
-                            <label for="end-date" class="form-label">마감 날짜</label>
-                            <input type="date" class="form-control" id="end-date" name="endDate"
-                                th:value="${notice.endDate}">
-                        </div>
-
-                        <!-- 첨부파일 업로드 -->
-                        <div class="mb-3">
-                            <label for="upload-file" class="form-label">첨부파일</label>
-                            <input type="file" class="form-control" id="upload-file" name="uploadFile">
-                        </div>
-
-                        <div class="d-flex justify-content-end">
-                            <button type="reset" class="btn btn-secondary me-2" id="btn-cancel">취소</button>
-                            <button type="submit" class="btn btn-primary" id="btn-submit">확인</button>
-                        </div>
-                    </form>
+    <header th:replace="~{layout/header.html :: header}"></header>
+    <main>
+        <div class="container">
+            <section style="margin-top: 75px;">
+                <div class="p-4 text-center border rounded-4 bg-secondary-subtle">
+                    <h1 class="display-4">비트포비아 던전</h1>
+                    <h2 class="mt-3"><small>[관리자] 공지사항 수정</small></h2>
                 </div>
-            </div>
-        </section>
-    </div>
-</main>
+            </section>
+        </div>
 
-<footer class="mt-5 p-5 border-top border-2">
-    <div class="container-fluid">
-        <p class="text-center lead text-muted">Logo</p>
-        <p class="text-center lead text-muted">부산 부산진구 동성로 137 B1 102호</p>
-        <p class="text-center lead text-muted">0507-1368-4894</p>
-        <p class="text-center lead text-muted">http://go.busanitacademy.com</p>
-        <p class="text-center lead text-muted">made by fullstack405</p>
-    </div>
-</footer>
+        <div class="container mt-5">
+            <section>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <form th:action="'/notice/edit/' + ${notice.noticeId}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" id="method" name="_method">
+                            <input type="hidden" id="notice-id" name="noticeId" th:value="${notice.noticeId}"/>
+                            <div class="row mb-3">
+                                <!-- 카테고리 선택 -->
+                                <div class="col-12 col-md-6">
+                                    <label for="category" class="form-label">카테고리</label>
+                                    <select class="form-select" id="category" name="category">
+                                        <option>카테고리 선택</option>
+                                        <option value="공지" th:selected="${notice.category == '공지'}">공지</option>
+                                        <option value="이벤트" th:selected="${notice.category == '이벤트'}">이벤트</option>
+                                    </select>
+                                </div>
+
+                                <!-- 지점 선택 -->
+                                <div class="col-12 col-md-6">
+                                    <label for="name" class="form-label">지점</label>
+                                    <select class="form-select" id="name" name="name">
+                                        <option>지점 선택</option>
+                                        <option value="전체" th:selected="${notice.name == '전체'}">전체</option>
+                                        <option value="홍대던전" th:selected="${notice.name == '홍대던전'}">홍대던전</option>
+                                        <option value="강남던전" th:selected="${notice.name == '강남던전'}">강남던전</option>
+                                        <option value="던전루나(강남)" th:selected="${notice.name == '던전루나(강남)'}">던전루나(강남)</option>
+                                        <option value="던전101" th:selected="${notice.name == '던전101'}">던전101</option>
+                                        <option value="서면던전(부산)" th:selected="${notice.name == '서면던전(부산)'}">서면던전(부산)</option>
+                                        <option value="서면던전 레드(부산)" th:selected="${notice.name == '서면던전 레드(부산)'}">서면던전 레드(부산)</option>
+                                        <option value="홍대던전Ⅲ" th:selected="${notice.name == '홍대던전Ⅲ'}">홍대던전Ⅲ</option>
+                                        <option value="강남던전Ⅱ" th:selected="${notice.name == '강남던전Ⅱ'}">강남던전Ⅱ</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- 제목 입력 -->
+                            <div class="mb-3">
+                                <label for="title" class="form-label">제목</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요" th:value="${notice.title}">
+                            </div>
+
+                            <!-- 시작 날짜 입력 -->
+                            <div class="mb-3">
+                                <label for="start-date" class="form-label">시작 날짜</label>
+                                <input type="date" class="form-control" id="start-date" name="startDate"
+                                    th:value="${notice.startDate}">
+                            </div>
+
+                            <!-- 마감 날짜 입력 -->
+                            <div class="mb-3">
+                                <label for="end-date" class="form-label">마감 날짜</label>
+                                <input type="date" class="form-control" id="end-date" name="endDate"
+                                    th:value="${notice.endDate}">
+                            </div>
+
+                            <!-- 첨부파일 업로드 -->
+                            <div class="mb-3">
+                                <label for="upload-file" class="form-label">첨부파일</label>
+                                <input type="file" class="form-control" id="upload-file" name="uploadFile">
+                            </div>
+
+                            <div class="d-flex justify-content-end">
+                                <button type="reset" class="btn btn-secondary me-2" id="btn-cancel">취소</button>
+                                <button type="submit" class="btn btn-primary" id="btn-submit">확인</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <header th:replace="~{layout/footer.html :: footer}"></header>
 </body>
 </html>
