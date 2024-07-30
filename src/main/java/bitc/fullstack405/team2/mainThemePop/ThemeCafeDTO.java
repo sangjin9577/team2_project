@@ -13,14 +13,11 @@ public class ThemeCafeDTO {
     private int playTime;
     private int payment;
     private String imgUrl;
-
     private int cafeId;
     private String name;
     private String address;
     private String phone;
     private String cafeImg;
     private String salesTimes;
-
-    private String commTitle;
 
 }

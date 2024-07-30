@@ -43,7 +43,69 @@
     </style>
 </head>
 <body class="p-5">
-<header th:replace="~{layout/header.html :: header}"></header>
+<nav class="navbar navbar-expand navbar-light bg-light container-fluid fixed-top justify-content-between">
+    <div>
+        <a class="navbar-brand ms-3" href="/themepopup2" target="_blank">
+            <img src="https://xdungeon.net/layout/images/common/logo.png">
+        </a>
+    </div>
+    <!-- 네비게이션 메뉴 -->
+    <!-- 메뉴 1 -->
+    <div>
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    RESERVATION
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">에약 안내</a></li>
+                    <li><a class="dropdown-item" href="/reservation">예약 하기</a></li>
+                    <li><a class="dropdown-item" href="#">예약 확인</a></li>
+                </ul>
+            </li>
+
+            <!-- 메뉴 2 -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    NOTICE
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="notice_NOTICE.html">NOTICE</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="notice_FAQ.html">FAQ</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- 메뉴 3 -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    COMM
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="commList.html">COMM</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="reviewList.html">REVIEW</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- 메뉴 4 -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">LOCATION</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">로그인</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <br>
 <h1 class="text-center">LOCATION</h1>
 <main>

@@ -11,7 +11,7 @@ public class ThemeServiceImpl implements
   private ThemeMapper themeMapper;
 
   @Override
-  public ThemeCafeDTO selectTheme(int idx) throws Exception {
+  public ThemeDTO selectTheme(int idx) throws Exception {
     return themeMapper.selectTheme(idx);
   }
 
@@ -32,15 +32,5 @@ public class ThemeServiceImpl implements
   @Override
   public List<ThemeCafeDTO> mainItemsList(int idx) throws Exception {
     return themeMapper.mainItemsList(idx);
-  }
-
-  @Override
-  public List<ThemeCafeDTO> selectReviewList() throws Exception {
-    return themeMapper.selectReviewList();
-  }
-
-  @Override
-  public List<ThemeCafeDTO> selectAjaxReviewList(int cafeIdx, int themeIdx) throws Exception {
-    return themeMapper.selectAjaxReviewList(cafeIdx, themeIdx);
   }
 }

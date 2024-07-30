@@ -137,16 +137,8 @@
 
         <div class="d-flex flex-column align-items-start">
             <div class="mb-3 mx-auto">
-<!--                <img src="/noticeImg/1581670649501800.jpg" alt="Notice Image" class="img-fluid"/>-->
-<!--                <img th:src="@{/img/bang.jpg}" alt="Notice Image" />-->
-<!--                <img th:src="@{|/img/bang.jpg|}" alt="Notice Image" />-->
-                <img th:src="@{|/noticeImg/bang.jpg|}" class="img-fluid"/>
-<!--                <img th:src="@{|/noticeImg/${notice.noticeImage}|}" class="img-fluid"/>-->
+                <img th:src="@{'/noticeImg/' + ${notice.noticeImage}}" alt="Notice Image" class="img-fluid"/>
             </div>
-
-            <p th:text="${notice.noticeId}"></p>
-            <p th:text="${notice.noticeImage}"></p>
-
             <div class="d-flex justify-content-end w-100">
                 <!-- 이전글 버튼 -->
                 <a th:if="${notice.previousPost != 0}" th:href="@{/notice/{noticeId}(noticeId=${notice.previousPost})}" class="btn btn-primary">이전글</a>
@@ -154,10 +146,6 @@
                 <!-- 다음글 버튼 -->
                 <a th:if="${notice.nextPost != 0}" th:href="@{/notice/{noticeId}(noticeId=${notice.nextPost})}" class="btn btn-primary ms-2">다음글</a>
             </div>
-
-<!--            <div class="d-flex justify-content-end w-100">-->
-<!--                <a href="notice2.html" class="btn btn-primary">다음글</a>-->
-<!--            </div>-->
         </div>
     </div>
 
