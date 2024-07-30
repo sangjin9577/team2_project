@@ -35,7 +35,7 @@
 <!--    시간 선택 시 필요한 카페, 테마 정보 1줄-->
     <select id="selectTheme" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="int">
         select
-            title, people_limit, playtime, payment, img_url, name
+            title, people_limit, playtime, payment, img_url, name, theme.theme_id, theme.cafe_id
         from
             theme
         join
@@ -56,10 +56,10 @@
             communication
         order by
             board_idx
-        desc
+        desc limit 3
     </select>
 
-    <!--   ajax 리뷰 목록 -->
+    <!--   ajax 리뷰 목록 , 최신 3개만 가져옴-->
     <select id="selectAjaxReviewList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="map">
         select
             board_idx, comm_title, cafe_id, theme_id
@@ -72,6 +72,7 @@
         order by
             board_idx
         desc
+            limit 3
     </select>
 
 

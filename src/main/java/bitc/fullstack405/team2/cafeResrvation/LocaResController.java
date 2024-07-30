@@ -20,8 +20,8 @@ public class LocaResController {
 
 
   // 주소에서 카페이름, idx 받아오기
-  @RequestMapping("/{cafeName}/{cafeIdx}")
-  public ModelAndView HongdaeSelect(@PathVariable String cafeName, @PathVariable int cafeIdx) throws Exception {
+  @RequestMapping("reservation/{cafeName}/{cafeIdx}")
+  public ModelAndView HongdaeSelect(@PathVariable("cafeName") String cafeName, @PathVariable("cafeIdx") int cafeIdx) throws Exception {
     // requestparam 대신 pathvariable 쓰니까 됨
     
     // 카페이름 받아오고 뷰 주소에 붙임
@@ -32,20 +32,20 @@ public class LocaResController {
     return mv;
   }
 
-  @GetMapping("/{cafeName}/{cafeIdx}/{date}")
-  public String selectDate1(@PathVariable(name = "date") String date){
+//  @GetMapping("reservation/{cafeName}/{cafeIdx}/{date}")
+//  public String selectDate1(@PathVariable(name = "date") String date){
+//    System.out.println(date);
+//    return date;
+//  }
 
-    return date;
-  }
-
-  @GetMapping("/{cafeName}/{cafeIdx}/{themeIdx}/{time}/{date}")
-  public String selectDate2(@PathVariable(name = "date") String date){
-
-   return date;
-  }
+//  @GetMapping("reservation/{cafeName}/{cafeIdx}/{themeIdx}/{time}/{date}")
+//  public String selectDate2(@PathVariable(name = "date") String date){
+//
+//   return date;
+//  }
 
   // 예약 정보 입력 페이지로 이동
-  @RequestMapping("/{cafeName}/{cafeIdx}/{themeIdx}/{time}/{date}")
+  @RequestMapping("reservation/{cafeName}/{cafeIdx}/{themeIdx}/{time}/{date}")
   public ModelAndView CafeResInfo(@PathVariable("cafeIdx") int cafeIdx, @PathVariable("themeIdx") int themeIdx, @PathVariable("date") String date) throws Exception{
     ModelAndView mv = new ModelAndView("reservation/test_writeResInfo");
     ThemeCafeDTO themeInfo = themeService.selectTheme(cafeIdx, themeIdx);

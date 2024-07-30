@@ -34,7 +34,7 @@ public class ThemeController {
     List<ThemeCafeDTO> themeList = themeService.selectThemeCafeList();
     mv.addObject("themeList", themeList);
 
-    // 리뷰 리스트를 다 불러오고 ajax에 if 문넣어서 정보 구분??
+    // 그냥 리뷰 함수
     List<ThemeCafeDTO> reviewList = themeService.selectReviewList();
     mv.addObject("reviewList", reviewList);
     System.out.println("리뷰 리스트 불러오기 성공");
@@ -50,6 +50,8 @@ public class ThemeController {
     return mainItems;
   }
 
+
+  // ajax 리뷰 함수
   @ResponseBody
   @RequestMapping(value = "/ajax/reviewlist", method = RequestMethod.POST)
   public Object ajaxReviewList(@RequestParam("cafeIdx") int cafeIdx ,@RequestParam("themeIdx") int themeIdx) throws Exception {
