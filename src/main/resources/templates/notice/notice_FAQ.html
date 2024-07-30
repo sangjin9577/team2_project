@@ -10,21 +10,27 @@
 
     <style>
         .btn-faq, .btn-notice {
-            border: 2px solid black;
-            width: 200px;
+            border: 1px solid black;
+            width: 158px;
             border-radius: 0;
         }
-        .btn-notice:hover {
-            border: 2px solid black;
-            background-color: #ff6e27;
+
+        .btn-faq:hover, .btn-notice:hover {
+            color: white !important;
+            border: 1px solid black;
+            background-color: #ff6e27 !important;
         }
+
         .btn-faq {
             background-color: #ff6e27;
         }
 
-        .btn-faq:hover {
-            border: 2px solid black;
-            background-color: #ff6e27; /* 같은 색상으로 유지 */
+        .text-notice {
+            color: black;
+        }
+
+        .text-notice:hover {
+            color: white;
         }
     </style>
 
@@ -41,12 +47,12 @@
             <ul class="nav justify-content-center">
                 <li class="nav-item">
                     <button type="button" class="btn btn-notice me-3">
-                        <a class="nav-link text-dark fw-bolder" href="/notice">NOTICE</a>
+                        <a class="nav-link fw-bolder text-notice" href="/notice">NOTICE</a>
                     </button>
                 </li>
                 <li class="nav-item">
                     <button type="button" class="btn btn-faq">
-                        <a class="nav-link text-dark fw-bold" href="/notice/FAQ">FAQ</a>
+                        <a class="nav-link fw-bolder text-light text-faq" href="/notice/FAQ">FAQ</a>
                     </button>
                 </li>
             </ul>

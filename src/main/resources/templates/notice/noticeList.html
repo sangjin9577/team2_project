@@ -32,6 +32,22 @@
         .text-faq:hover {
             color: white;
         }
+
+        .page-link {
+            color: black;
+            border-color: gray;
+        }
+
+        .page-item.active .page-link {
+            color: #fff;
+            background-color: #ff6e27; /* 활성 페이지 버튼 주황색 */
+            border-color: #ff6e27; /* 활성 페이지 버튼 테두리 */
+        }
+
+        .page-link:hover {
+            color: black;
+            border-color: black;
+        }
     </style>
 </head>
 <body>
@@ -78,27 +94,19 @@
             <ul class="pagination justify-content-center">
 
                 <!-- 이전 페이지 버튼 -->
-                <!-- th:classappend : thymeleaf를 통해서 기존 class 속성에 내용 추가 -->
-                <!-- getPrePage() : PageHelper 에서 제공하는 객체가 가지고 있는 prePage값 가져오기 -->
                 <li class="page-item" th:classappend="${pageInfo.getPrePage() == 0} ? 'disabled'">
                     <a href="#" class="page-link" th:href="@{/notice(pageNum=${pageInfo.getPrePage()})}">&laquo;</a>
                 </li>
 
                 <!-- 네비게이션 버튼 -->
-                <!-- th:each를 사용하여 페이지네이션 버튼을 반복적으로 생성함 -->
-                <!-- #numbers : thymeleaf에서 제공하는 숫자 유틸리티 객체 -->
-                <!-- #numbers.sequence(시작번호, 끝번호) : 시작번호부터 끝번호까지의 숫자 배열을 생성 -->
                 <li class="page-item" th:each="page : ${#numbers.sequence(pageInfo.getNavigateFirstPage(), pageInfo.getNavigateLastPage())}"
                     th:classappend="${page == pageInfo.getPageNum()} ? 'active'">
                     <a href="#" class="page-link" th:href="@{/notice(pageNum=${page})}" th:text="${page}">1</a>
                 </li>
 
                 <!-- 다음 페이지 버튼 -->
-                <!-- getNextPage() : PageHelper 에서 제공하는 객체가 가지고 있는 nextPage값 가져오기 -->
                 <li class="page-item" th:classappend="${pageInfo.getNextPage() == 0} ? 'disabled'">
                     <a href="#" class="page-link" th:href="@{/notice(pageNum=${pageInfo.getNextPage()})}">&raquo;</a>
-                    <!-- 블록 단위로 페이지  넘기기-->
-<!--                    <a href="#" class="page-link" th:href="@{/notice(pageNum=${pageInfo.getNavigateLastPage()+1})}">&raquo;</a>-->
                 </li>
             </ul>
         </div>
