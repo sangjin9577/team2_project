@@ -1,5 +1,6 @@
 package bitc.fullstack405.team2.notice;
 
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -11,7 +12,8 @@ public interface NoticeMapper {
 
     void insertNotice(NoticeDTO notice) throws Exception;
 
-    List<NoticeDTO> selectNoticeList() throws Exception;
+//    List<NoticeDTO> selectNoticeList() throws Exception;
+    Page<NoticeDTO> selectNoticeList() throws Exception;
 
     NoticeDTO selectNoticeDetail(int noticeId) throws Exception;
 

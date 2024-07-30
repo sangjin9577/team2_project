@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 @Configuration
 // @PropertySource : 설정 파일의 위치를 지정하는 어노테이션
 @PropertySource("classpath:/application.properties")
-public class DatabaseConfiguration {
+public class DatabaseConfig {
 
   // @Autowired : 스프링 프레임워크가 해당 객체를 생성 및 관리하도록 하는 어노테이션
   @Autowired

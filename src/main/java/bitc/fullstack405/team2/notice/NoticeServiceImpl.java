@@ -1,5 +1,7 @@
 package bitc.fullstack405.team2.notice;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,9 +17,15 @@ public class NoticeServiceImpl implements NoticeService {
     @Autowired
     private NoticeFileUtils fileUtils;
 
-    // notice 목록
+//    // notice 목록
+//    @Override
+//    public List<NoticeDTO> selectNoticeList() throws Exception {
+//        return noticeMapper.selectNoticeList();
+//    }
+
     @Override
-    public List<NoticeDTO> selectNoticeList() throws Exception {
+    public Page<NoticeDTO> selectNoticeList(int pageNum) throws Exception {
+        PageHelper.startPage(pageNum, 5);
         return noticeMapper.selectNoticeList();
     }
 
