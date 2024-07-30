@@ -16,9 +16,9 @@
 
 
     <style>
-        strong {
-            border: 1px solid black;
-        }
+        /*strong {*/
+        /*    border: 1px solid black;*/
+        /*}*/
 
         #res1 {
             border: 1px solid black;
@@ -27,10 +27,10 @@
         #all {
             border: 1px solid black;
         }
-        #container{
-            margin-top: 100px;
-            border: 1px solid black;
-        }
+        /*#container{*/
+        /*    margin-top: 100px;*/
+        /*    border: 1px solid black;*/
+        /*}*/
 
         .list-group-btn {
             background-color: white;
@@ -404,17 +404,18 @@
 
 </head>
 
-<body>
+<body class="mt-5">
 <header th:replace="~{layout/header.html :: header}"></header>
 
 <div id="container">
     <div class="container mt-3">
+        <h3 class="text-center mb-5 p-4"><strong>RESERVATION</strong></h3>
         <div class="row">
             <div class="col-md-3" style="background-color: #F5F5F5;" id="all">
-                <h4 class="text-center mb-5 p-4"><b>RESERVATION</b></h4>
-                <div class="container mt-5">
-                    <div class="row">
-                        <ul class="list-group center mb-5 p-4 ">
+                <h4 class="text-center mt-5"><strong>LOCATION</strong></h4>
+                <div class="container">
+                    <div class="row mt-5">
+                        <ul class="list-group center">
                             <li class="list-group-item">
                                 <button type="submit" class="list-group-btn"><a href="/hongdae" id="hongdae" th:href="@{/reservation/hongdae/1}">홍대던전</a></button>
                             </li>
@@ -594,6 +595,7 @@
         </div>
     </div>
 </div>
+<footer th:replace="~{/layout/footer :: footer}"></footer>
 </body>
 
 </html>

@@ -48,15 +48,34 @@
 
         }
     </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1&family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        .do-hyeon-regular {
+            font-family: "Do Hyeon", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .gothic-a1-regular {
+            font-family: "Gothic A1", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+
+    </style>
 </head>
 <body class="p-5">
 <header th:replace="~{layout/header.html :: header}"></header>
 <br>
-<h1 class="text-center">LOCATION</h1>
+<h1 class="text-center"><strong>LOCATION</strong></h1>
 <main>
     <div class="container mt-5">
-        <table>
-            <tr id="changePoster">
+        <table class="d-flex justify-content-center">
+            <tr  id="changePoster">
                 <!--                        카페 리스트 반복분으로 붙이기-->
                 <td class="col-3" th:if="${#lists.size(cafeList)} > 0 and ${itemStat.index} == 0 or ${itemStat.index} == 1 or ${itemStat.index} == 5" th:each="item:${cafeList}">
                     <div class="border border-black img_box" style="width:303px; display: grid; justify-content: center">
@@ -64,7 +83,7 @@
                             <img src="#" alt="11" th:src="@{${item.cafeImg}}" style="height:303px; width: 303px">
                         </a>
                         <div style="height: 60px; width: 303px;">
-                            <h5 class="text-center my-3" th:text="${item.name}">cafe name</h5>
+                            <h5 class="text-center my-3 gothic-a1-regular" th:text="${item.name}">cafe name</h5>
                         </div>
                     </div>
 
