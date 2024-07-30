@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bitc.fullstack405.team2.cafeResrvation.ResMapper">
+    <select id="selectResTime" resultType="bitc.fullstack405.team2.cafeResrvation.ResDTO" parameterType="int">
+        select
+            cafe_id, theme_id, state, res_time
+        from
+            reservation
+        where
+            cafe_id = #{cafeId}
+        and
+            state = 'T'
+    </select>
+
+</mapper>
