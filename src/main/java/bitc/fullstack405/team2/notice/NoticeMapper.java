@@ -20,4 +20,10 @@ public interface NoticeMapper {
     void deleteNotice(int noticeId) throws Exception;
 
     void updateNotice(NoticeDTO notice) throws Exception;
+
+    List<NoticeDTO> selectFAQ() throws Exception;
+
+    int findPreviousPost(int noticeId) throws Exception;
+
+    int findNextPost(int noticeId) throws Exception;
 }

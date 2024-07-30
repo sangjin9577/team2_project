@@ -15,4 +15,9 @@ public class NoticeDTO {
     private int cafeId;
     private int hitCnt;
     private String name;
+    private int previousPost;
+    private int nextPost;
+
+    private String faqId;
+    private String content;
 }

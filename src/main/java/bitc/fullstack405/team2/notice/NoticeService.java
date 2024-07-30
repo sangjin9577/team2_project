@@ -17,4 +17,10 @@ public interface NoticeService {
     void deleteNotice(int noticeId) throws Exception;
 
     void updateNotice(NoticeDTO notice, MultipartFile uploadFile) throws Exception;
+
+    List<NoticeDTO> selectFAQ() throws Exception;
+
+    int getPreviousPost(int noticeId) throws Exception;
+
+    int getNextPost(int noticeId) throws Exception;
 }
