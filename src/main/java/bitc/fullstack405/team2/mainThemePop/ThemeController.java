@@ -18,15 +18,8 @@ public class ThemeController {
   @Autowired
   private CafeService cafeService;
 
-  @RequestMapping("/main")
-  public String themeMain() throws Exception{
-//    ModelAndView mv = new ModelAndView("main/main");
-    return "main/main";
-  }
-
-
   // 테마 정보 리스트 불러와보기
-    @RequestMapping("/themepopup2")
+    @RequestMapping("/main")
   public ModelAndView selectThemeList() throws Exception {
     ModelAndView mv = new ModelAndView("main/main");
 
