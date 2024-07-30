@@ -8,7 +8,9 @@ public interface ProfileService {
   ProfileDTO selectProfile(String userId) throws Exception;
 
   ProfileDTO selectProfileDetail(String userId) throws Exception;
-//
+
+  ProfileDTO selectProfileUpdate(String userId) throws Exception;
+
 //  public List<ProfileDTO> selectProfileList(String userId) throws Exception;
 
 }

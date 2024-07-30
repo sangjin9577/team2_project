@@ -14,7 +14,8 @@ import java.util.List;
 public class ProfileController {
   @Autowired
   private ProfileService profileService;
-//
+
+//  세션 로그인 정보 없이 유저 정보 가져오기
 //  @RequestMapping("/profile")
 //  public ModelAndView profileMain() throws Exception {
 //    ModelAndView mv = new ModelAndView("profile/profilemain");
@@ -24,7 +25,8 @@ public class ProfileController {
 //
 //    return mv;
 //  }
-//
+
+//  유저 정보 MYPAGE 가기
   @RequestMapping("/profile")
   public ModelAndView profileMain(HttpServletRequest req) throws Exception {
     ModelAndView mv = new ModelAndView("profile/profilemain");
@@ -38,6 +40,7 @@ public class ProfileController {
     return mv;
   }
 
+//  유저 정보 상세보기
   @RequestMapping("/profiledetail")
   public ModelAndView profileDetail(HttpServletRequest req) throws Exception {
     ModelAndView mv = new ModelAndView("profile/profiledetail");
@@ -51,4 +54,19 @@ public class ProfileController {
 
     return mv;
   }
+
+//  유저 정보 수정
+  @RequestMapping("/profileedit")
+  public ModelAndView profileEdit(HttpServletRequest req) throws Exception {
+    ModelAndView mv = new ModelAndView("profile/profileedit");
+
+    HttpSession session = req.getSession();
+    String userId = (String) session.getAttribute("userId");
+
+    ProfileDTO profile = profileService.selectProfileUpdate(userId);
+    mv.addObject("profile", profile);
+
+    return mv;
+  }
+
 }
