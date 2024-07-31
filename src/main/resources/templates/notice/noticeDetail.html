@@ -96,9 +96,9 @@
                 <div class="d-flex flex-column flex-grow-1 me-3">
                     <div class="d-flex align-items-center mb-2">
                         <div class="d-flex align-items-center me-2">
-                            <span class="badge text-bg-secondary me-2" th:text="${review.cafeName}">이벤트</span>
-                            <span class="fw-bold" th:text="'[' + ${review.name} + ']'"></span>
-                            <span class="fw-bold ms-2" th:text="${review.title}">서면던전 레드이벤트 모음</span>
+                            <span class="badge text-bg-secondary me-2" th:text="${notice.category}">이벤트</span>
+                            <span class="fw-bold" th:text="'[' + ${notice.name} + ']'"></span>
+                            <span class="fw-bold ms-2" th:text="${notice.title}">서면던전 레드이벤트 모음</span>
                         </div>
                     </div>
 
@@ -112,7 +112,7 @@
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <a href="/review" class="btn-list me-2" th:classappend="${session.userId == item.} ? 'me-2' : ''">목록</a>
+                    <a href="/notice" class="btn-list me-2" th:classappend="${session.adminCk == 1} ? 'me-2' : ''">목록</a>
                     <a href="#" th:classappend="${session.adminCk == 1} ? 'd-block' : 'd-none'" class="btn-edit me-2" id="btn-edit">수정</a>
                     <a href="#" th:classappend="${session.adminCk == 1} ? 'd-block' : 'd-none'" class="btn-delete " id="btn-delete">삭제</a>
                 </div>
