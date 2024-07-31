@@ -12,6 +12,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/noticeImg/**").addResourceLocations("file:///C:/fullstack405/noticeImg/");
 
         // 지정한 외부폴더를 스프링의 내부 폴더로 추가(community)
-        registry.addResourceHandler("/communityImg/**").addResourceLocations("file:///C:/fullstack405/communityImg/");
+        registry.addResourceHandler("/reviewImg/**").addResourceLocations("file:///C:/fullstack405/reviewImg/");
     }
 }
