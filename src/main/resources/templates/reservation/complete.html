@@ -10,31 +10,43 @@
 
         #container{
             margin-top: 100px;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
         }
     </style>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <script src="../js/bootstrap.bundle.js"></script>
 </head>
 <body>
+<header th:replace="~{layout/header.html :: header}"></header>
     <div id="container">
         <div class="container mt-5">
             <h3 class="text-center mb-5 p-4"><strong>RESERVATION</strong></h3>
-            <div class="row text-center">
-                <div class="col border" >
-                    <p class="my-1">예약하기</p>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-9">
+                    <div class="row text-center">
+                        <div class="col border" >
+                            <p class="my-1">예약하기</p>
+                        </div>
+                        <div class="col border" >
+                            <p class="my-1">예약정보입력</p>
+                        </div>
+                        <div class="col border" style="background-color: orange;">
+                            <p class="my-1">예약완료</p>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-center">예약이 완료되었습니다.</h3>
+                        <h3 class="text-center">예약 상세내역은 마이페이지에서 확인해주세요.</h3>
+                    </div>
                 </div>
-                <div class="col border" >
-                    <p class="my-1">예약정보입력</p>
-                </div>
-                <div class="col border" style="background-color: orange;">
-                    <p class="my-1">예약완료</p>
-                </div>
+                <div class="col"></div>
+
             </div>
-            <div>
-                <h3>예약이 완료되었습니다. 예약 상세내역은 마이페이지에서 확인해주세요.</h3>
-            </div>
+
+
       </div>
     </div>
+<footer th:replace="~{/layout/footer :: footer}"></footer>
 </body>
 </html>
