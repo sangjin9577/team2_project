@@ -1,5 +1,6 @@
 package bitc.fullstack405.team2.review;
 
+import bitc.fullstack405.team2.notice.NoticeService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ public class ReviewController {
 
     @Autowired
     private ReviewService reviewService;
+
+    @Autowired
+    private NoticeService noticeService;
 
     // review 게시판 목록 출력(페이징)
     @GetMapping("/review")
@@ -51,22 +55,17 @@ public class ReviewController {
     }
 
     // review 게시글 작성(내부 처리)
-//    @PostMapping("/review/write")
-//    public String reviewWrite(ReviewDTO review, @RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
-//
-//        int cafeId = 0;
-//
-//        // 지점명이 전체가 아니면 해당 지점의 id 가져오기
-//        if(!notice.getName().equals("전체")) {
-//            cafeId = noticeService.getCafeIdByName(notice.getName());
-//        }
-//
-//        // cafeId를 notice 객체에 설정
-//        notice.setCafeId(cafeId);
-//
-//        noticeService.insertNotice(notice, uploadFile);
-//        return "redirect:/notice";
-//    }
+    @PostMapping("/review/write")
+    public String reviewWrite(ReviewDTO review, @RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
+
+        int cafeId = noticeService.getCafeIdByName(review.getCafeName());
+
+        // cafeId를 review 객체에 설정
+        review.setCafeId(cafeId);
+
+        reviewService.insertReview(review, uploadFile);
+        return "redirect:/review";
+    }
 //
 //    // notice 게시물 삭제
 //    @DeleteMapping("/notice/{noticeId}")

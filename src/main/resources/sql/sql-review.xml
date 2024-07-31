@@ -7,7 +7,7 @@
 
     <select id="selectReviewList" resultType="bitc.fullstack405.team2.review.ReviewDTO">
         SELECT
-            c.board_idx, c.comm_title, c.contents, c.create_user, c.createAt,
+            c.board_idx, c.comm_title, c.contents, u.nickname AS create_user, c.createAt,
             c.hit_cnt, t.title AS theme_title, ca.name AS cafe_name
         FROM
             communication c
@@ -15,6 +15,8 @@
             theme t ON c.comm_theme_idx = t.theme_idx
         LEFT JOIN
             cafe ca ON c.cafe_id = ca.cafe_id
+        LEFT JOIN
+            user u ON c.create_user = u.user_id
         WHERE
             c.deleted_yn = 'N'
         ORDER BY
@@ -34,7 +36,7 @@
     <!-- review 게시물 상세, 수정 화면 -->
     <select id="selectReviewDetail" parameterType="int" resultType="bitc.fullstack405.team2.review.ReviewDTO">
         SELECT
-            c.board_idx, c.comm_title, c.contents, c.create_user, c.createAt,
+            c.board_idx, c.comm_title, c.contents, c.createAt, u.nickname AS create_user,
             c.hit_cnt, t.title AS theme_title, ca.name AS cafe_name, c.comm_image
         FROM
             communication c
@@ -42,6 +44,8 @@
             theme t ON c.comm_theme_idx = t.theme_idx
         LEFT JOIN
             cafe ca ON c.cafe_id = ca.cafe_id
+        LEFT JOIN
+            user u ON c.create_user = u.user_id
         WHERE
             c.deleted_yn = 'N'
         AND
@@ -49,4 +53,12 @@
         ORDER BY
             c.board_idx DESC
     </select>
+
+    <!-- review 게시글 등록 -->
+    <insert id="insertReview" parameterType="bitc.fullstack405.team2.review.ReviewDTO">
+        INSERT INTO communication
+            (comm_title, contents, create_user, createAt, cafe_id, comm_image, comm_theme_idx)
+        VALUES
+            (#{commTitle}, #{contents}, #{createUser}, now(), #{cafeId}, #{commImage}, #{commThemeIdx})
+    </insert>
 </mapper>

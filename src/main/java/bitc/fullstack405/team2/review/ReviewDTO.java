@@ -2,7 +2,7 @@ package bitc.fullstack405.team2.review;
 
 import lombok.Data;
 
-// notice 테이블과 데이터를 주고 받기 위한 DTO 클래스
+// communication 테이블과 데이터를 주고 받기 위한 DTO 클래스
 @Data
 public class ReviewDTO {
     private int boardIdx;

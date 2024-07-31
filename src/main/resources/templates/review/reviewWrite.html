@@ -108,7 +108,7 @@
                 var cafe = $('#cafe').val();
                 var theme = $('#theme').val();
                 var title = $('#title').val();
-                var uploadFile = $('#upload-file').val();
+                var contents = $('#contents').val();
 
                 if (cafe === '지점 선택') {
                     event.preventDefault();
@@ -128,11 +128,6 @@
                 if(contents === '' ) {
                     event.preventDefault();
                     alert('내용을 입력해 주세요.');
-                    return false;
-                }
-                if (uploadFile === '') {
-                    event.preventDefault();
-                    alert('첨부파일을 선택해 주세요.');
                     return false;
                 }
             });
@@ -168,7 +163,7 @@
                             <!-- 테마 선택 -->
                             <div class="col-12 col-md-6">
                                 <label for="theme" class="form-label">테마</label>
-                                <select class="form-select" id="theme" name="themeName">
+                                <select class="form-select" id="theme" name="commThemeIdx">
                                     <option value="" selected>테마 선택</option>
                                 </select>
                             </div>
@@ -177,7 +172,7 @@
                         <!-- 제목 입력 -->
                         <div class="mb-3">
                             <label for="title" class="form-label">제목</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
+                            <input type="text" class="form-control" id="title" name="commTitle" placeholder="제목을 입력하세요">
                         </div>
 
                         <!-- 내용 입력 -->

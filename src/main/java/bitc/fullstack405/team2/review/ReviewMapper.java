@@ -9,7 +9,7 @@ import java.util.List;
 public interface ReviewMapper {
 //    int getCafeIdByName(String name) throws Exception;
 //
-//    void insertNotice(ReviewDTO notice) throws Exception;
+    void insertReview(ReviewDTO review) throws Exception;
 
     Page<ReviewDTO> selectReviewList() throws Exception;
 

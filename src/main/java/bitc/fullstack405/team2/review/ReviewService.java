@@ -14,7 +14,7 @@ public interface ReviewService {
 //
 //    int getCafeIdByName(String name) throws Exception;
 //
-//    void insertNotice(ReviewDTO notice, MultipartFile uploadFile) throws Exception;
+    void insertReview(ReviewDTO review, MultipartFile uploadFile) throws Exception;
 //
 //    void deleteNotice(int noticeId) throws Exception;
 //
