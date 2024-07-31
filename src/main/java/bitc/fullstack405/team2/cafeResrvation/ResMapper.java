@@ -9,4 +9,6 @@ import java.util.List;
 public interface ResMapper {
   // 변수 2개 보낼 때 값을 받을 파라미터 짝 정해주기
   List<ResDTO> selectResTime(@Param("cafeId") int cafeIdx) throws Exception;
+
+  void insertResInfo(ResDTO res) throws Exception;
 }

@@ -36,7 +36,7 @@
             top: 80%;
             transform: translateX(-20%) translateY(-50%);
             border-radius: 50px;
-            background-color: hotpink;
+            background-color: orange;
             text-align: center;
             text-decoration: none;
             padding-top: 35px;
@@ -47,6 +47,22 @@
             background-color: lightpink;
 
         }
+
+        #quickmenu2 {
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            right: 0;
+            top: 90%;
+            transform: translateX(-85%) translateY(-50%);
+            border-radius: 50px;
+            background-color: orange;
+            text-align: center;
+            text-decoration: none;
+            padding-top: 10px;
+            color: white;
+        }
+
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,7 +86,7 @@
 </head>
 <body class="p-5">
 <header th:replace="~{layout/header.html :: header}"></header>
-<br>
+<br><br><br>
 <h1 class="text-center"><strong>LOCATION</strong></h1>
 <main>
     <div class="container mt-5">
@@ -148,9 +164,13 @@
         </table>
     </div>
     <nav>
-        <a id="quickmenu" href="/reservation">예약하기</a>
+        <a id="quickmenu" href="/reservation/hongdae/1">예약하기</a>
     </nav>
 </main>
+
+<nav>
+    <a id="quickmenu2" href="#">top</a>
+</nav>
 
 <footer th:replace="~{/layout/footer :: footer}"></footer>
 </body>

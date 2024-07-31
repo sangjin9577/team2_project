@@ -2,6 +2,10 @@ package bitc.fullstack405.team2.cafeResrvation;
 
 import bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO;
 import bitc.fullstack405.team2.mainThemePop.ThemeService;
+import bitc.fullstack405.team2.user.UserDTO;
+import bitc.fullstack405.team2.user.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +22,8 @@ public class LocaResController {
   @Autowired
   ResService resService;
 
+  @Autowired
+  UserService userService;
 
   // 주소에서 카페이름, idx 받아오기
   @RequestMapping("reservation/{cafeName}/{cafeIdx}")
@@ -46,11 +52,20 @@ public class LocaResController {
 
   // 예약 정보 입력 페이지로 이동
   @RequestMapping("reservation/{cafeName}/{cafeIdx}/{themeIdx}/{time}/{date}")
-  public ModelAndView CafeResInfo(@PathVariable("cafeIdx") int cafeIdx, @PathVariable("themeIdx") int themeIdx, @PathVariable("date") String date) throws Exception{
-    ModelAndView mv = new ModelAndView("reservation/test_writeResInfo");
+  public ModelAndView CafeResInfo(@PathVariable("cafeIdx") int cafeIdx, @PathVariable("themeIdx") int themeIdx, @PathVariable("time") int time, @PathVariable("date") String date, HttpServletRequest req) throws Exception{
+    ModelAndView mv = new ModelAndView("reservation/res2");
     ThemeCafeDTO themeInfo = themeService.selectTheme(cafeIdx, themeIdx);
+
     mv.addObject("themeInfo", themeInfo);
     mv.addObject("date", date);
+    mv.addObject("time", time);
+
+    HttpSession session = req.getSession();
+    String userId = (String)session.getAttribute("userId");
+
+    UserDTO user = userService.getUserInfo(userId);
+    mv.addObject("user", user);
+
     return mv;
   }
 
@@ -62,6 +77,18 @@ public class LocaResController {
     List<ResDTO> restimeList = resService.selectResTime(cafeIdx);
 
     return restimeList;
+  }
+
+  // 예약 정보 저장
+  @PostMapping("/reservation/write")
+  public String writeReservation(ResDTO res) throws Exception {
+    resService.insertResInfo(res);
+    return "redirect:/reservation/complete";
+  }
+
+  @RequestMapping("/reservation/complete")
+  public String completeReservation() throws Exception {
+    return "reservation/complete";
   }
 
 

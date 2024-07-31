@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ThemeCafeDTO {
-    private int themeId;
+    private int themeIdx;
     private String title;
     private String themeRank;
     private String genre;
@@ -22,5 +22,7 @@ public class ThemeCafeDTO {
     private String salesTimes;
 
     private String commTitle;
+
+    private int peopleLimit;
 
 }

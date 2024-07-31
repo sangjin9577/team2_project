@@ -34,7 +34,6 @@
 
         .list-group-btn {
             background-color: white;
-
             border: none;
             width: 100%;
             text-align: center;
@@ -48,8 +47,13 @@
             color: black;
         }
 
+        .list-group-btn a:hover {
+            text-decoration: none;
+            color: white;
+        }
         .list-group-btn:hover {
             background-color: orange;
+            color: white;
         }
 
         .time-link {
@@ -95,8 +99,58 @@
             color : white;
         }
 
+        .location-btn a{
+            /* 두께 선종류 색깔*/
+            border:1px solid orange;
+            border-radius: 10px;
+            /*border-color: #6ea8fe;*/
+            padding: 10px 100px 10px 100px ;
+            /*padding : T R B L;*/
+            /*color: #6c757d;*/
+            text-decoration: none;
+            color: black;
+        }
+        .location-btn a:hover{
+            background-color: orange;
+            color : white;
+        }
+
+        #quickmenu2 {
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            right: 0;
+            top: 90%;
+            transform: translateX(-85%) translateY(-50%);
+            border-radius: 50px;
+            background-color: orange;
+            text-align: center;
+            text-decoration: none;
+            padding-top: 10px;
+            color: white;
+        }
 
     </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1&family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        .do-hyeon-regular {
+            font-family: "Do Hyeon", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .gothic-a1-regular {
+            font-family: "Gothic A1", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+    </style>
+
+
     <script>
         $(document).ready(function (){
 
@@ -404,9 +458,9 @@
 
 </head>
 
-<body class="mt-5">
+<body>
 <header th:replace="~{layout/header.html :: header}"></header>
-
+<br><br><br>
 <div id="container">
     <div class="container mt-3">
         <h3 class="text-center mb-5 p-4"><strong>RESERVATION</strong></h3>
@@ -414,33 +468,16 @@
             <div class="col-md-3" style="background-color: #F5F5F5;" id="all">
                 <h4 class="text-center mt-5"><strong>LOCATION</strong></h4>
                 <div class="container">
-                    <div class="row mt-5">
-                        <ul class="list-group center ">
-                            <li class="list-group-item">
-                                <button type="submit" class="list-group-btn"><a href="/hongdae" id="hongdae" th:href="@{/reservation/hongdae/1}">홍대던전</a></button>
-                            </li>
-                            <li class="list-group-item mt-5">
-                                <button class="list-group-btn"><a href="/gangnam" id="gangname" th:href="@{/reservation/gangnam/2}">강남던전</a></button>
-                            </li>
-                            <li class="list-group-item mt-5">
-                                <button class="list-group-btn"><a href="/busanred" id="busanred" th:href="@{/reservation/busanred/6}">서면던전 레드(부산)</a></button>
-                            </li>
-<!--                            <li class="list-group-item mt-5">-->
-<!--                                <button class="list-group-btn"><a href="/hongdaetwo" id="hongdaetwo" >홍대던전Ⅲ</a></button>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item mt-5">-->
-<!--                                <button class="list-group-btn"><a href="/gangnamtwo"id="gangnametwo">강남던전Ⅱ</a></button>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item mt-5">-->
-<!--                                <button class="list-group-btn"><a href="/gangnamluna"id="luna">던전루나(강남)</a></button>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item mt-5">-->
-<!--                                <button class="list-group-btn"><a href="/busan" id="busan">서면던전(부산)</a></button>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item mt-5">-->
-<!--                                <button class="list-group-btn"><a href="#" id="dun">던전101</a></button>-->
-<!--                            </li>-->
-                        </ul>
+                    <div class="row mt-5 location-btn">
+                        <div class="d-flex justify-content-center">
+                            <a style="background-color: orange; color: white" href="/hongdae" id="hongdae" th:href="@{/reservation/hongdae/1}">홍대던전</a>
+                        </div>
+                        <div class="mt-5 d-flex justify-content-center">
+                            <a href="/gangnam" id="gangname" th:href="@{/reservation/gangnam/2}">강남던전</a>
+                        </div>
+                        <div class="mt-5 d-flex justify-content-center">
+                           <a style="padding-left: 60px; padding-right: 60px" href="/busanred" id="busanred" th:href="@{/reservation/busanred/6}">서면던전 레드(부산)</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -472,12 +509,12 @@
                         <div class="col-4 h-100">
                             <div class="row border d-flex justify-content-center align-items-center" style="height: 250px"
                                  th:if="${#lists.size(themeList)}>0" th:each="item:${themeList}" >
-                                <img th:src="@{${item.imgUrl}}" alt="#" class="p-0" style="width: 185px; height:185px; ">
-                                <p class="text-center" th:text="${item.title}"></p>
+                                <img th:src="@{${item.imgUrl}}" alt="#" class="pt-3" style="width: 185px; height:185px; ">
+                                <p class="pt-3 text-center gothic-a1-regular" th:text="${item.title}"></p>
                             </div>
                         </div>
-                        <!--타임테이블 라인-->
 
+                        <!--타임테이블 라인-->
                         <div class="col-8 h-100">
                             <!--1번 테마 시간-->
                             <div class="row border timebtn " style="height: 250px">
@@ -514,65 +551,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-<!--                <div class="col-3">-->
-<!--                    <div class="d-flex">-->
-<!--                        <div class="d-flex flex-column align-items-center">-->
-<!--                            <img src="${}" style="width: 180px;">-->
-<!--                            <strong>던전 제목1</strong>-->
-<!--                        </div>-->
-<!--                        <ul id="time" class="d-flex col-6 list-unstyled text-center my-5 p-4">-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="" class="time-link">12:00</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-3">-->
-<!--                    <div class="d-flex">-->
-<!--                        <div class="flex-column align-items-center">-->
-<!--                            <img src="#" style="width: 180px;">-->
-<!--                            <strong>던전 제목2</strong>-->
-<!--                        </div>-->
-<!--                        <ul class="d-flex col-6 list-unstyled text-center my-5 p-4">-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="#" class="time-link">12:00</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-3">-->
-<!--                    <div class="d-flex">-->
-<!--                        <div class="flex-column align-items-center">-->
-<!--                            <img src="C:\fullstack405\img\테마3.png" style="width: 180px;">-->
-<!--                            <strong>던전 제목3</strong>-->
-<!--                        </div>-->
-<!--                        <ul class="d-flex col-6 list-unstyled text-center my-5 p-4">-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-3">-->
-<!--                    <div class="d-flex">-->
-<!--                        <div class="d-flex flex-column align-items-center">-->
-<!--                            <img src="C:\fullstack405\img\테마1.png" style="width: 180px;">-->
-<!--                            <strong>던전 제목4</strong>-->
-<!--                        </div>-->
-<!--                        <ul class="d-flex col-6 list-unstyled text-center my-5 p-4">-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
-<!--                            <li class="border solid 1px m-3 p-2"><a href="res1.html" class="time-link">12:00</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
         </div>
     </div>
@@ -594,7 +572,9 @@
             </ul>
         </div>
     </div>
-
+    <nav>
+        <a id="quickmenu2" href="#">top</a>
+    </nav>
 
 <footer th:replace="~{/layout/footer :: footer}"></footer>
 </div>

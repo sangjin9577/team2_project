@@ -7,7 +7,7 @@
 <!--    메인에서 홍대 테마 먼저 보이게 하는 부분-->
     <select id="selectThemeCafeList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="int">
         select
-            theme_id, title, theme_rank, genre, synopsis, people_limit, playtime, payment, img_url, name, theme.cafe_id
+            theme_idx, title, theme_rank, genre, synopsis, people_limit, playtime, payment, img_url, name, theme.cafe_id
         from
             theme
         join
@@ -21,7 +21,7 @@
 <!--    ajax 테마 정보 필요한 부분-->
     <select id="mainItemsList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="int">
         select
-            theme_id, title, theme_rank, genre, synopsis, people_limit, playtime, payment, img_url, name, theme.cafe_id
+            theme_idx, title, theme_rank, genre, synopsis, people_limit, playtime, payment, img_url, name, theme.cafe_id
         from
             theme
         join
@@ -35,7 +35,7 @@
 <!--    시간 선택 시 필요한 카페, 테마 정보 1줄-->
     <select id="selectTheme" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="int">
         select
-            title, people_limit, playtime, payment, img_url, name, theme.theme_id, theme.cafe_id
+            title, people_limit, playtime, payment, img_url, name, theme.theme_idx, theme.cafe_id, theme.people_limit
         from
             theme
         join
@@ -43,7 +43,7 @@
         on
             theme.cafe_id = cafe.cafe_id
         where
-            theme.theme_id = #{themeId}
+            theme.theme_idx = #{themeId}
         and
             theme.cafe_id = #{cafeId}
     </select>
@@ -51,7 +51,7 @@
 <!--    리뷰 목록 -->
     <select id="selectReviewList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO">
         select
-            board_idx, comm_title, cafe_id, theme_id
+            board_idx, comm_title, cafe_id, comm_theme_idx
         from
             communication
         order by
@@ -62,13 +62,13 @@
     <!--   ajax 리뷰 목록 , 최신 3개만 가져옴-->
     <select id="selectAjaxReviewList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO" parameterType="map">
         select
-            board_idx, comm_title, cafe_id, theme_id
+            board_idx, comm_title, cafe_id, comm_theme_idx
         from
             communication
         where
             cafe_id = #{cafeIdx}
         and
-            theme_id = #{themeIdx}
+            comm_theme_idx = #{themeIdx}
         order by
             board_idx
         desc

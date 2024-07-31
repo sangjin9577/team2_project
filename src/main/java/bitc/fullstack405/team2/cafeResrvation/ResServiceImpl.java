@@ -14,4 +14,9 @@ public class ResServiceImpl implements ResService {
   public List<ResDTO> selectResTime(int cafeIdx) throws Exception {
     return resMapper.selectResTime(cafeIdx);
   }
+
+  @Override
+  public void insertResInfo(ResDTO res) throws Exception {
+    resMapper.insertResInfo(res);
+  }
 }
