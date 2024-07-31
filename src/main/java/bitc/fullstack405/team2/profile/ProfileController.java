@@ -37,6 +37,18 @@ public class ProfileController {
     ProfileDTO profile = profileService.selectProfile(userId);
     mv.addObject("profile", profile);
 
+    // 유저 예약 현황 보기
+    List<ProfileReservationDTO> profileList = profileService.selectProfileList(userId);
+    mv.addObject("profileList", profileList);
+
+    // 유저 예약 현황(현재)
+    List<ProfileReservationDTO> profileRv = profileService.selectProfileRv(userId);
+    mv.addObject("profileRv", profileRv);
+
+    // 유저 예약 현황(과거)
+    List<ProfileReservationDTO> profileOverRv = profileService.selectProfileOverRv(userId);
+    mv.addObject("profileOverRv", profileOverRv);
+
     return mv;
   }
 
@@ -68,5 +80,4 @@ public class ProfileController {
 
     return mv;
   }
-
 }

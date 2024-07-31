@@ -11,6 +11,9 @@ public interface ProfileService {
 
   ProfileDTO selectProfileUpdate(String userId) throws Exception;
 
-//  public List<ProfileDTO> selectProfileList(String userId) throws Exception;
+  List<ProfileReservationDTO> selectProfileList(String userId) throws Exception;
 
+  List<ProfileReservationDTO> selectProfileRv(String userId) throws Exception;
+
+  List<ProfileReservationDTO> selectProfileOverRv(String userId) throws Exception;
 }

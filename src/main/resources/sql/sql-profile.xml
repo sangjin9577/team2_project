@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 예약 테이블 내용 가져올려면 조인을 써야 하는건가....??? -->
 <mapper namespace="bitc.fullstack405.team2.profile.ProfileMapper">
+<!--    유저 정보 기본 보기    -->
     <select id="selectProfile" resultType="bitc.fullstack405.team2.profile.ProfileDTO">
         SELECT
             user_id, user_pw, user_name, email, gender, age, mobile_number, nickname, point
@@ -14,6 +14,7 @@
             user_id = #{userId}
     </select>
 
+<!--    유저 정보 상세 보기    -->
     <select id="selectProfileDetail" resultType="bitc.fullstack405.team2.profile.ProfileDTO" parameterType="String">
         SELECT
             user_id, user_pw, user_name, email, gender, age, mobile_number, nickname, point
@@ -23,12 +24,52 @@
             user_id = #{userId}
     </select>
 
+<!--    유저 정보 수정 하기    -->
     <update id="selectProfileUpdate" parameterType="bitc.fullstack405.team2.profile.ProfileDTO">
         UPDATE
-            user
+        user
         SET
-            user_pw = #{userPw}, email = #{email], mobile_number = mobileNumber, nickname = #{nickName}
+        user_pw = #{userPw}, email = #{email}, mobile_number = #{mobileNumber}, nickname = #{nickName}
         WHERE
-            user_id = #{userId};
+        user_id = #{userId}
     </update>
+
+<!--    유저 예약 현황 리스트    -->
+    <select id="selectProfileList" parameterType="String" resultType="bitc.fullstack405.team2.profile.ProfileDTO">
+        SELECT
+            res_id, res_time, reservation_date, state, createdAt, cafe_id, user_id, theme_id, cafe_name, theme_title
+        FROM
+            reservation
+        WHERE
+            user_id = #{userId}
+    </select>
+
+<!--    유저 예약 현황(현재)    -->
+    <select id="selectProfileRv" parameterType="String" resultType="bitc.fullstack405.team2.profile.ProfileDTO">
+        SELECT
+            res_id, res_time, reservation_date, state, createdAt, cafe_id, user_id, theme_id, cafe_name, theme_title
+        FROM
+            reservation
+        WHERE
+            user_id = #{userId}
+        ANd
+            state = 'T'
+        AND
+            reservation_date >= now()
+    </select>
+
+<!--    유저 예약 현황(과거)    -->
+    <select id="selectProfileOverRv" parameterType="String" resultType="bitc.fullstack405.team2.profile.ProfileDTO">
+        SELECT
+            res_id, res_time, reservation_date, state, createdAt, cafe_id, user_id, theme_id, cafe_name, theme_title
+        FROM
+            reservation
+        WHERE
+            user_id = #{userId}
+        ANd
+            state = 'T'
+        AND
+            reservation_date &lt; now()
+    </select>
+
 </mapper>

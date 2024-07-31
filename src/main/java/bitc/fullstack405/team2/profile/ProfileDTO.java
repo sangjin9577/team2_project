@@ -1,8 +1,6 @@
 package bitc.fullstack405.team2.profile;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class ProfileDTO {
@@ -15,10 +13,4 @@ public class ProfileDTO {
   private String mobileNumber;
   private String nickName;
   private int point;
-  private int resId;
-  private int resTime;
-  private String reservationDate;
-  private String createdAt;
-  private String cafeId;
-  private String themeId;
 }
