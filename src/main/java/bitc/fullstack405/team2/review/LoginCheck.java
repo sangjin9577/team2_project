@@ -37,7 +37,7 @@ public class LoginCheck implements HandlerInterceptor {
             System.out.println("User ID : " + (String) session.getAttribute("userId"));
 
             // 세션 유지 시간 설정
-            session.setMaxInactiveInterval(60);
+            session.setMaxInactiveInterval(60 * 60 * 1);
 
             // 반환값을 true로 전달, 필터 통과, 원래 접속하고자 했던 controller로 접속
             return true;
