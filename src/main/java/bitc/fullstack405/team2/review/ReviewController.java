@@ -66,24 +66,24 @@ public class ReviewController {
         reviewService.insertReview(review, uploadFile);
         return "redirect:/review";
     }
+
+    // review 게시물 삭제
+    @DeleteMapping("/review/{boardIdx}")
+    public String deleteReview(int boardIdx) throws Exception {
+        reviewService.deleteReview(boardIdx);
+
+        return "redirect:/review";
+    }
+
+    // review 게시글 수정(view)
+//    @GetMapping("/review/edit/{boardIdx}")
+//    public ModelAndView noticeEdit(@PathVariable("boardIdx") int boardIdx) throws Exception {
+//        reviewService.updateHitCount(boardIdx);
 //
-//    // notice 게시물 삭제
-//    @DeleteMapping("/notice/{noticeId}")
-//    public String deleteNotice(int noticeId) throws Exception {
-//        noticeService.deleteNotice(noticeId);
+//        ModelAndView mv = new ModelAndView("review/reviewEdit");
 //
-//        return "redirect:/notice";
-//    }
-//
-//    // notice 게시글 수정(view)
-//    @GetMapping("/notice/edit/{noticeId}")
-//    public ModelAndView noticeEdit(@PathVariable("noticeId") int noticeId) throws Exception {
-//        noticeService.updateHitCount(noticeId);
-//
-//        ModelAndView mv = new ModelAndView("notice/noticeEdit");
-//
-//        ReviewDTO notice = noticeService.selectNoticeDetail(noticeId);
-//        mv.addObject("notice", notice);
+//        ReviewDTO review = reviewService.selectReviewDetail(boardIdx);
+//        mv.addObject("review", review);
 //
 //        return mv;
 //    }

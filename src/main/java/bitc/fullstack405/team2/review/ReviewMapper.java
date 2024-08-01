@@ -16,10 +16,10 @@ public interface ReviewMapper {
     ReviewDTO selectReviewDetail(int boardIdx) throws Exception;
 
     void updateHitCount(int boardIdx) throws Exception;
-//
-//    void deleteNotice(int noticeId) throws Exception;
-//
-//    void updateNotice(ReviewDTO notice) throws Exception;
+
+    void deleteReview(int boardIdx) throws Exception;
+
+    void updateReview(ReviewDTO review) throws Exception;
 //
 //    List<ReviewDTO> selectFAQ() throws Exception;
 //

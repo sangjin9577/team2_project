@@ -44,4 +44,24 @@
         WHERE
             user_id = #{userId}
     </select>
+
+    <!-- 사용자 포인트 700 증가 -->
+    <update id="updateUserPoints700" parameterType="java.lang.String">
+        UPDATE
+            user
+        SET
+            point = point + 700
+        WHERE
+            user_id = #{userId}
+    </update>
+
+    <!-- 사용자 포인트 300 증가 -->
+    <update id="updateUserPoints300" parameterType="java.lang.String">
+        UPDATE
+            user
+        SET
+            point = point + 300
+        WHERE
+            user_id = #{userId}
+    </update>
 </mapper>

@@ -17,4 +17,8 @@ public interface UserMapper {
 
     // 사용자 정보 가져오기
     UserDTO getUserInfo(@Param("userId") String userId) throws Exception;
+
+    // 사용자 포인트 증가
+    void updateUserPoints700(@Param("userId") String userId) throws Exception;
+    void updateUserPoints300(@Param("userId") String userId) throws Exception;
 }

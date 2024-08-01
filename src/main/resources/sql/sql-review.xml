@@ -61,4 +61,29 @@
         VALUES
             (#{commTitle}, #{contents}, #{createUser}, now(), #{cafeId}, #{commImage}, #{commThemeIdx})
     </insert>
+
+    <!-- review 게시글 삭제 -->
+    <delete id="deleteReview" parameterType="int">
+        UPDATE
+            communication
+        SET
+            deleted_yn = 'Y', updateAt = now()
+        WHERE
+            board_idx = ${boardIdx}
+    </delete>
+
+    <!-- review 게시글 수정 -->
+    <update id="updateReview" parameterType="bitc.fullstack405.team2.review.ReviewDTO">
+        UPDATE
+            communication
+        SET
+            comm_title = #{commTitle},
+            cafe_id = #{cafeId}
+            contents,  = #{contents},
+            updatedAt = now(),
+            comm_image = #{commImage},
+            comm_theme_idx = #{commThemeIdx}
+        WHERE
+            board_idx = #{boardIdx}
+    </update>
 </mapper>

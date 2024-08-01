@@ -68,17 +68,17 @@
             <section>
                 <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <form th:action="'/notice/edit/' + ${notice.noticeId}" method="post" enctype="multipart/form-data">
+                        <form th:action="'/notice/edit/' + ${review.boardIdx}" method="post" enctype="multipart/form-data">
                             <input type="hidden" id="method" name="_method">
-                            <input type="hidden" id="notice-id" name="noticeId" th:value="${notice.noticeId}"/>
+                            <input type="hidden" id="review-id" name="boardIdx" th:value="${review.boardIdx}"/>
                             <div class="row mb-3">
                                 <!-- 카테고리 선택 -->
                                 <div class="col-12 col-md-6">
                                     <label for="category" class="form-label">카테고리</label>
                                     <select class="form-select" id="category" name="category">
                                         <option>카테고리 선택</option>
-                                        <option value="공지" th:selected="${notice.category == '공지'}">공지</option>
-                                        <option value="이벤트" th:selected="${notice.category == '이벤트'}">이벤트</option>
+                                        <option value="공지" th:selected="${review.category == '공지'}">공지</option>
+                                        <option value="이벤트" th:selected="${review.category == '이벤트'}">이벤트</option>
                                     </select>
                                 </div>
 

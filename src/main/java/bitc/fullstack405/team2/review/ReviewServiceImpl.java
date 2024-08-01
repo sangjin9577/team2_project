@@ -1,5 +1,6 @@
 package bitc.fullstack405.team2.review;
 
+import bitc.fullstack405.team2.user.UserMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import jakarta.servlet.http.HttpSession;
@@ -15,6 +16,9 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private ReviewMapper reviewMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
     private ReviewFileUtils fileUtils;
@@ -48,32 +52,36 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public void insertReview(ReviewDTO review, MultipartFile uploadFile) throws Exception {
 
-        if (!ObjectUtils.isEmpty(uploadFile)) {
-            // FileUtils에서 DB에 저장할 파일 이름 가져오기
-            String reviewImage = fileUtils.parseFileInfo(uploadFile);
-            review.setCommImage(reviewImage);
-        } else {
-            // uploadFile이 비어있으면 commImage에 null 값 설정
-            review.setCommImage(null);
-        }
-
         // 세션에서 userId 값을 가져와 review 객체에 설정
         String userId = (String) session.getAttribute("userId");
         review.setCreateUser(userId);
 
+        if (uploadFile != null && !uploadFile.isEmpty()) {
+            String reviewImage = fileUtils.parseFileInfo(uploadFile);
+            review.setCommImage(reviewImage);
+            userMapper.updateUserPoints700(userId);
+        } else {
+            review.setCommImage(null);
+            userMapper.updateUserPoints300(userId);
+        }
+
         reviewMapper.insertReview(review);
     }
-//
-//    @Override
-//    public void deleteNotice(int noticeId) throws Exception {
-//        noticeMapper.deleteNotice(noticeId);
-//    }
-//
-//    @Override
-//    public void updateNotice(ReviewDTO notice, MultipartFile uploadFile) throws Exception {
-//        // FileUtils에서 DB에 저장할 파일 이름 가져오기
-//        String noticeImage = fileUtils.parseFileInfo(uploadFile);
-//        notice.setNoticeImage(noticeImage);
-//        noticeMapper.updateNotice(notice);
-//    }
+
+    @Override
+    public void deleteReview(int boardIdx) throws Exception {
+        reviewMapper.deleteReview(boardIdx);
+    }
+
+    @Override
+    public void updateReview(ReviewDTO review, MultipartFile uploadFile) throws Exception {
+        if (uploadFile != null && !uploadFile.isEmpty()) {
+            String reviewImage = fileUtils.parseFileInfo(uploadFile);
+            review.setCommImage(reviewImage);
+        } else {
+            review.setCommImage(null);
+        }
+
+        reviewMapper.updateReview(review);
+    }
 }

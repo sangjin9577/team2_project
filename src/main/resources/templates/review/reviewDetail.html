@@ -111,8 +111,8 @@
 
                 <div class="d-flex align-items-center">
                     <a href="/review" class="btn-list me-2" th:classappend="${session.userId == review.createUser} ? 'me-2' : ''">목록</a>
-                    <a href="#" th:classappend="${session.userId == review.createUser} ? 'd-block' : 'd-none'" class="btn-edit me-2" id="btn-edit">수정</a>
-                    <a href="#" th:classappend="${session.userId == review.createUser} ? 'd-block' : 'd-none'" class="btn-delete " id="btn-delete">삭제</a>
+                    <a href="#" th:classappend="${session.nickname == review.createUser} ? 'd-block' : 'd-none'" class="btn-edit me-2" id="btn-edit">수정</a>
+                    <a href="#" th:classappend="${session.nickname == review.createUser} ? 'd-block' : 'd-none'" class="btn-delete " id="btn-delete">삭제</a>
                 </div>
             </div>
         </form>
@@ -124,7 +124,7 @@
                 <label for="contents" class="mb-5">
                     <textarea class="form-control" name="contents" id="contents" placeholder="내용" style="height: 150px" th:text="${review.contents}"></textarea>
                 </label>
-                <img th:if="${review.commImage != null and review.commImage != ''}" th:src="@{'/noticeImg/' + ${review.commImage}}" alt="Review Image" class="img-fluid"/>
+                <img th:if="${review.commImage != null and review.commImage != ''}" th:src="@{'/reviewImg/' + ${review.commImage}}" alt="Review Image" class="img-fluid"/>
             </div>
         </div>
     </div>
