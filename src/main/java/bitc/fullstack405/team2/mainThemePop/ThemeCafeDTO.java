@@ -21,7 +21,9 @@ public class ThemeCafeDTO {
     private String cafeImg;
     private String salesTimes;
 
+    private int boardIdx;
     private String commTitle;
+    private String commThemeIdx;
 
     private int peopleLimit;
 
