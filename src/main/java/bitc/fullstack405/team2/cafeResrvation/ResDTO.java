@@ -16,4 +16,5 @@ public class ResDTO {
 
   private int resPayment;
   private int resPeople;
+  private String serialNum;
 }

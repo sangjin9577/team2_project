@@ -17,9 +17,9 @@
 
     <insert id="insertResInfo" parameterType="bitc.fullstack405.team2.cafeResrvation.ResDTO">
         insert into reservation
-            (res_time, reservation_date, state, cafe_id, createdAt, user_id, theme_id, cafe_name, theme_title, res_payment, res_people)
+            (res_time, reservation_date, state, cafe_id, createdAt, user_id, theme_id, cafe_name, theme_title, res_payment, res_people, serial_num)
         value
-            (#{resTime},#{reservationDate},'T', #{cafeId}, now(), #{userId}, #{themeId}, #{cafeName}, #{themeTitle}, #{resPayment}, #{resPeople})
+            (#{resTime},#{reservationDate},'T', #{cafeId}, now(), #{userId}, #{themeId}, #{cafeName}, #{themeTitle}, #{resPayment}, #{resPeople}, #{serialNum})
     </insert>
 
 </mapper>
