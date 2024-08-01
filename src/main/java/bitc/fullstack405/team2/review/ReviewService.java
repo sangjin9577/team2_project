@@ -10,19 +10,10 @@ public interface ReviewService {
     ReviewDTO selectReviewDetail(int boardIdx) throws Exception;
 
     void updateHitCount(int boardIdx) throws Exception;
-//
-//    int getCafeIdByName(String name) throws Exception;
-//
+
     void insertReview(ReviewDTO review, MultipartFile uploadFile) throws Exception;
 
     void deleteReview(int boardIdx) throws Exception;
 
     void updateReview(ReviewDTO review, MultipartFile uploadFile) throws Exception;
-
-//
-//    List<ReviewDTO> selectFAQ() throws Exception;
-//
-//    int getPreviousPost(int noticeId) throws Exception;
-//
-//    int getNextPost(int noticeId) throws Exception;
 }

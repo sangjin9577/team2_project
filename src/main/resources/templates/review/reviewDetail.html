@@ -9,20 +9,6 @@
     <title>방탈출 카페 후기</title>
 
     <style>
-        .btn-previous, .btn-next {
-            background-color: #ededed;
-            text-decoration: none;
-            color: black;
-            width: 130px;
-            height: 50px;
-            text-align: center;
-            line-height: 50px;
-        }
-
-        .btn-previous:hover, .btn-next:hover {
-            background-color: #ff6e27;
-            color: white;
-        }
 
         .btn-list {
             width: 130px;
@@ -53,6 +39,51 @@
             background-color: red;
             color: white;
         }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 제목 스타일 */
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        /* 리뷰 컨테이너 */
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 배지 스타일 */
+        .badge {
+            font-size: 0.875rem;
+        }
+
+        /* 텍스트 영역 */
+        textarea {
+            width: 100%;            /* 부모 요소의 가로 너비에 맞게 설정 */
+            max-width: 100%;        /* 최대 폭을 부모 요소의 폭으로 제한 */
+            border: none;/* 테두리 제거 */
+            outline: none;          /* 포커스 시 테두리 제거 */
+            padding: 10px;
+            box-sizing: border-box; /* 패딩과 테두리가 너비에 포함되도록 설정 */
+            display: block;         /* block으로 설정하여 가로 너비를 100%로 확장 */
+        }
+
+        /* 이미지 스타일 */
+        img {
+            max-width: 100%;
+            height: 40%;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
     </style>
 
     <script>
@@ -79,58 +110,63 @@
 </head>
 <body>
 
-    <header th:replace="~{layout/header.html :: header}"></header>
+<header th:replace="~{layout/header.html :: header}"></header>
 
-    <div class="container-fluid text-center" style="margin-top: 5%;">
-        <h1><strong>REVIEW</strong></h1>
-    </div>
+<div class="container-fluid text-center mt-5">
+    <h1 class="display-4 fw-bold">REVIEW</h1>
+</div>
 
-    <div class="container mt-5">
-        <hr class="border border-dark border-2">
-        <form id="frm" action="#" method="POST">
-            <input type="hidden" id="method" name="_method">
-            <div class="d-flex align-items-start py-3">
-                <div class="d-flex flex-column flex-grow-1 me-3">
-                    <div class="d-flex align-items-center mb-2">
-                        <div class="d-flex align-items-center me-2">
-                            <span class="badge text-bg-secondary me-2" th:text="${review.cafeName}">이벤트</span>
-                            <span class="fw-bold" th:text="'[' + ${review.themeTitle} + ']'"></span>
-                            <span class="fw-bold ms-2" th:text="${review.commTitle}">서면던전 레드이벤트 모음</span>
-                        </div>
-                    </div>
+<div class="container mt-4">
+    <hr class="border border-dark border-2 mb-4">
 
-                    <input type="hidden" id="board-idx" name="boardIdx" th:value="${review.boardIdx}"/>
-                    <input type="hidden" id="comm_theme-idx" name="commThemeIdx" th:value="${review.commThemeIdx}"/>
-
-                    <p class="mb-0">
-                        작성일: <span th:text="${review.createAt}">2023-09-01 14:45:12</span>
-                        <br>
-                        조회수: <span th:text="${review.hitCnt}">28,854회</span>
-                        <br>
-                        작성자:  <span th:text="${review.createUser}">닉네임</span>
-                    </p>
+    <form id="frm" action="#" method="POST">
+        <input type="hidden" id="method" name="_method">
+        <div class="row mb-4">
+            <div class="col-md-8 d-flex flex-column">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="badge bg-secondary me-2" th:text="${review.cafeName}">이벤트</span>
+                    <span class="fw-bold text-muted" th:text="'[' + ${review.themeTitle} + ']'"></span>
+                    <span class="fw-bold ms-2 fs-5" th:text="${review.commTitle}">서면던전 레드이벤트 모음</span>
                 </div>
 
-                <div class="d-flex align-items-center">
-                    <a href="/review" class="btn-list me-2" th:classappend="${session.userId == review.createUser} ? 'me-2' : ''">목록</a>
-                    <a href="#" th:classappend="${session.nickname == review.createUser} ? 'd-block' : 'd-none'" class="btn-edit me-2" id="btn-edit">수정</a>
-                    <a href="#" th:classappend="${session.nickname == review.createUser} ? 'd-block' : 'd-none'" class="btn-delete " id="btn-delete">삭제</a>
-                </div>
-            </div>
-        </form>
+                <input type="hidden" id="board-idx" name="boardIdx" th:value="${review.boardIdx}"/>
+                <input type="hidden" id="comm_theme-idx" name="commThemeIdx" th:value="${review.commThemeIdx}"/>
 
-        <hr class="border border-secondary">
-
-        <div class="d-flex flex-column align-items-start">
-            <div class="mb-3 mx-auto">
-                <label for="contents" class="mb-5">
-                    <textarea class="form-control" name="contents" id="contents" placeholder="내용" style="height: 150px" th:text="${review.contents}"></textarea>
-                </label>
-                <img th:if="${review.commImage != null and review.commImage != ''}" th:src="@{'/reviewImg/' + ${review.commImage}}" alt="Review Image" class="img-fluid"/>
+                <p class="text-muted mb-0">
+                    작성일: <span th:text="${review.createAt}">2023-09-01 14:45:12</span>
+                    <br>
+                    조회수: <span th:text="${review.hitCnt}">28,854회</span>
+                    <br>
+                    작성자:  <span th:text="${review.createUser}">닉네임</span>
+                </p>
             </div>
+
+            <div class="col-md-4 d-flex align-items-center justify-content-end">
+                <a href="/review" class="btn-list btn-outline-secondary me-2">목록</a>
+                <a href="#" th:classappend="${session.nickname == review.createUser} ? 'd-block' : 'd-none'" class="btn-edit btn-outline-primary me-2" id="btn-edit">수정</a>
+                <a href="#" th:classappend="${session.nickname == review.createUser} ? 'd-block' : 'd-none'" class="btn-delete btn-outline-danger" id="btn-delete">삭제</a>
+            </div>
+        </div>
+    </form>
+
+    <hr class="border border-secondary mb-4">
+
+    <div th:if="${review.commImage != null and review.commImage != ''}" class="d-flex flex-column align-items-start">
+        <div class="mb-6 mx-auto">
+            <label for="contents" class="fs-5 mb-2"></label>
+            <textarea name="contents" id="contents" placeholder="내용" th:text="${review.contents}" readonly></textarea>
+            <img th:src="@{'/reviewImg/' + ${review.commImage}}" alt="Review Image" class="mt-3 rounded "/>
         </div>
     </div>
 
-    <header th:replace="~{layout/footer.html :: footer}"></header>
+    <div th:unless="${review.commImage != null and review.commImage != ''}">
+        <div class="mb-6 mx-auto">
+            <label for="content" class="fs-5 mb-2"></label>
+            <textarea name="contents" id="content" placeholder="내용" th:text="${review.contents}" readonly></textarea>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout/footer.html :: footer}"></footer>
 </body>
 </html>

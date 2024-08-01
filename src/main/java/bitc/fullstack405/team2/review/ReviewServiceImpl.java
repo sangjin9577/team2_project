@@ -23,9 +23,6 @@ public class ReviewServiceImpl implements ReviewService {
     private UserMapper userMapper;
 
     @Autowired
-    private ThemeMapper themeMapper;
-
-    @Autowired
     private ReviewFileUtils fileUtils;
 
     @Autowired
@@ -48,12 +45,7 @@ public class ReviewServiceImpl implements ReviewService {
     public void updateHitCount(int boardIdx) throws Exception {
         reviewMapper.updateHitCount(boardIdx);
     }
-//
-//    @Override
-//    public int getCafeIdByName(String name) throws Exception {
-//        return noticeMapper.getCafeIdByName(name);
-//    }
-//
+
     @Override
     public void insertReview(ReviewDTO review, MultipartFile uploadFile) throws Exception {
 
