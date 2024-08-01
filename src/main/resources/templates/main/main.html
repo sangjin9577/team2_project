@@ -57,24 +57,24 @@
                                         html += "<div class='col-5'><img src='" + themedata[i].imgUrl + "' alt='사진' style='height:303px; width: 303px' alt='1'></div>";
                                         html += "<div class='col-7'>";
                                         html += "<div class='row mt-2'>";
-                                        html += "<div class='col'>지점명<p class='m-0'>" + themedata[i].name + "</p></div>";
-                                        html += "<div class='col'>플레이타임<p class='m-0'>" + themedata[i].playTime + "분</p></div>";
-                                        html += "</div> <hr class='p-0 m-0'>";
+                                        html += "<div class='col'><p class='m-0 gothic-a1-regular'>지점명</p><p class='m-0'>" + themedata[i].name + "</p></div>";
+                                        html += "<div class='col'><p class='m-0 gothic-a1-regular'>플레이타임</p><p class='m-0'>" + themedata[i].playTime + "분</p></div>";
+                                        html += "</div><hr class='p-0 m-0'>";
                                         html += "<div class='row mt-2'>";
-                                        html += "<div class='col'>난이도<p class='m-0'>" + themedata[i].themeRank + "</p></div>";
-                                        html += "<div class='col'>장르 " + themedata[i].genre + "</div>";
-                                        html += "</div> <hr class='p-0 m-0'>";
+                                        html += "<div class='col'><p class='m-0 gothic-a1-regular'>난이도</p><p class='m-0'>" + themedata[i].themeRank + "</p></div>";
+                                        html += "<div class='col'><p class='m-0 gothic-a1-regular'>장르</p><p class='m-0'>" + themedata[i].genre + "</p></div>";
+                                        html += "</div><hr class='p-0 m-0'>";
                                         html += "<div class='row mt-2'>";
-                                        html += "<pdiv class='col'>테마명<p class='m-0'>" + themedata[i].title + "</p><div>";
-                                        html += "</div> <hr class='p-0 m-0'>";
+                                        html += "<div class='col'><p class='m-0 gothic-a1-regular'>테마명</p><p class='m-0'>" + themedata[i].title + "</p></div>";
+                                        html += "</div><hr class='p-0 m-0'>";
                                         html += "<div class='d-grid'>";
-                                        html += "<label for='synopsys'>시놉시스</label>";
+                                        html += "<label for='synopsys' class='gothic-a1-regular'>시놉시스</label>";
                                         html += "<textarea class='border-0' name='synopsys' id='synopsys' rows='3'>" + themedata[i].synopsis + "</textarea>";
-                                        html += "</div> <hr class='p-0 m-0'>";
+                                        html += "</div><hr class='p-0 m-0'>";
                                         html += "<div class='d-grid mb-3'>";
-                                        html += "<label for='review'>후기</label><table id='review'>";
+                                        html += "<label for='review' class='gothic-a1-regular'>후기</label><table id='review'>";
                                         for(let j = 0 ; j < reviewdata.length; j++) {
-                                            html += "<tr><td><a href='#'>"+ reviewdata[j].commTitle + "</a></td></tr></div>";
+                                            html += "<tr><td><a class='review' href='/review/" + reviewdata[j].boardIdx + "'>"+ reviewdata[j].commTitle + "</a></td></tr></div>";
                                         }
                                         html += "</table></div></div></div>";
                                         html += "<div class='row mt-3 mx-auto'><a href='/reservation/hongdae/1' class='btn' style='background-color: orange'>예약하기</a>";
@@ -136,24 +136,24 @@
                                     html += "<div class='col-5'><img src='" + themedata[i].imgUrl + "' alt='사진' style='height:303px; width: 303px' alt='1'></div>";
                                     html += "<div class='col-7'>";
                                     html += "<div class='row mt-2'>";
-                                    html += "<div class='col'>지점명<p class='m-0'>" + themedata[i].name + "</p></div>";
-                                    html += "<div class='col'>플레이타임<p class='m-0'>" + themedata[i].playTime + "분</p></div>";
-                                    html += "</div> <hr class='p-0 m-0'>";
+                                    html += "<div class='col'><p class='m-0 gothic-a1-regular'>지점명</p><p class='m-0'>" + themedata[i].name + "</p></div>";
+                                    html += "<div class='col'><p class='m-0 gothic-a1-regular'>플레이타임</p><p class='m-0'>" + themedata[i].playTime + "분</p></div>";
+                                    html += "</div><hr class='p-0 m-0'>";
                                     html += "<div class='row mt-2'>";
-                                    html += "<div class='col'>난이도<p class='m-0'>" + themedata[i].themeRank + "</p></div>";
-                                    html += "<div class='col'>장르<p class='m-0'>" + themedata[i].genre + "</p></div>";
-                                    html += "</div> <hr class='p-0 m-0'>";
+                                    html += "<div class='col'><p class='m-0 gothic-a1-regular'>난이도</p><p class='m-0'>" + themedata[i].themeRank + "</p></div>";
+                                    html += "<div class='col'><p class='m-0 gothic-a1-regular'>장르</p><p class='m-0'>" + themedata[i].genre + "</p></div>";
+                                    html += "</div><hr class='p-0 m-0'>";
                                     html += "<div class='row mt-2'>";
-                                    html += "<div class='col'>테마명<p class='m-0'>" + themedata[i].title + "</p></div>";
-                                    html += "</div> <hr class='p-0 m-0'>";
+                                    html += "<div class='col'><p class='m-0 gothic-a1-regular'>테마명</p><p class='m-0'>" + themedata[i].title + "</p></div>";
+                                    html += "</div><hr class='p-0 m-0'>";
                                     html += "<div class='d-grid'>";
-                                    html += "<label for='synopsys'>시놉시스</label>";
+                                    html += "<label for='synopsys' class='gothic-a1-regular'>시놉시스</label>";
                                     html += "<textarea class='border-0' name='synopsys' id='synopsys' rows='3'>" + themedata[i].synopsis + "</textarea>";
-                                    html += "</div> <hr class='p-0 m-0'>";
+                                    html += "</div><hr class='p-0 m-0'>";
                                     html += "<div class='d-grid mb-3'>";
-                                    html += "<label for='review'>후기</label><table id='review'>";
+                                    html += "<label for='review' class='gothic-a1-regular'>후기</label><table id='review'>";
                                     for(let j = 0 ; j < reviewdata.length; j++) {
-                                        html += "<tr><td><a href='#'>"+ reviewdata[j].commTitle + "</a></td></tr></div>";
+                                        html += "<tr><td><a class='review' href='/review/" + reviewdata[j].boardIdx + "'>"+ reviewdata[j].commTitle + "</a></td></tr></div>";
                                     }
                                     html += "</table></div></div></div>";
                                     html += "<div class='row mt-3 mx-auto'><a href='/reservation/hongdae/1' class='btn' style='background-color: orange'>예약하기</a>";
@@ -217,24 +217,24 @@
                                     html += "<div class='col-5'><img src='" + themedata[i].imgUrl + "' alt='사진' style='height:303px; width: 303px' alt='1'></div>";
                                     html += "<div class='col-7'>";
                                     html += "<div class='row mt-2'>";
-                                    html += "<div class='col'>지점명<p class='m-0'>" + themedata[i].name + "</p></div>";
-                                    html += "<div class='col'>플레이타임<p class='m-0'>" + themedata[i].playTime + "분</p></div>";
+                                    html += "<div class='col'><p class='m-0 gothic-a1-regular'>지점명</p><p class='m-0'>" + themedata[i].name + "</p></div>";
+                                    html += "<div class='col'><p class='m-0 gothic-a1-regular'>플레이타임</p><p class='m-0'>" + themedata[i].playTime + "분</p></div>";
                                     html += "</div><hr class='p-0 m-0'>";
                                     html += "<div class='row mt-2'>";
-                                    html += "<div class='col'>난이도<p class='m-0'>" + themedata[i].themeRank + "</p></div>";
-                                    html += "<div class='col'>장르<p class='m-0'>" + themedata[i].genre + "</p></div>";
+                                    html += "<div class='col'><p class='m-0 gothic-a1-regular'>난이도</p><p class='m-0'>" + themedata[i].themeRank + "</p></div>";
+                                    html += "<div class='col'><p class='m-0 gothic-a1-regular'>장르</p><p class='m-0'>" + themedata[i].genre + "</p></div>";
                                     html += "</div><hr class='p-0 m-0'>";
                                     html += "<div class='row mt-2'>";
-                                    html += "<div class='col'>테마명<p class='m-0'>" + themedata[i].title + "</p></div>";
+                                    html += "<div class='col'><p class='m-0 gothic-a1-regular'>테마명</p><p class='m-0'>" + themedata[i].title + "</p></div>";
                                     html += "</div><hr class='p-0 m-0'>";
                                     html += "<div class='d-grid'>";
-                                    html += "<label for='synopsys'>시놉시스</label>";
+                                    html += "<label for='synopsys' class='gothic-a1-regular'>시놉시스</label>";
                                     html += "<textarea class='border-0' name='synopsys' id='synopsys' rows='3'>" + themedata[i].synopsis + "</textarea>";
                                     html += "</div><hr class='p-0 m-0'>";
                                     html += "<div class='d-grid mb-3'>";
-                                    html += "<label for='review'>후기</label><table id='review'>";
+                                    html += "<label for='review' class='gothic-a1-regular'>후기</label><table id='review'>";
                                     for(let j = 0 ; j < reviewdata.length; j++) {
-                                        html += "<tr><td><a href='#'>"+ reviewdata[j].commTitle + "</a></td></tr></div>";
+                                        html += "<tr><td><a class='review' href='/review/" + reviewdata[j].boardIdx + "'>"+ reviewdata[j].commTitle + "</a></td></tr></div>";
                                     }
                                     html += "</table></div></div></div>";
                                     html += "<div class='row mt-3 mx-auto'><a href='/reservation/hongdae/1' class='btn' style='background-color: orange'>예약하기</a>";
@@ -328,6 +328,14 @@
 
         .menu-active {
             background-color: blue;
+        }
+
+        .review{
+            text-decoration: none;
+            color: black;
+        }
+        .review:hover{
+            text-decoration: underline;
         }
 
     </style>
@@ -429,45 +437,45 @@
                                                 </div>
                                                 <div class="col-7 ">
                                                     <div class="row mt-2">
-                                                        <div class="col">지점명 <p class="m-0" th:text="${item.name}"></p></div>
-                                                        <div class="col">플레이타임<p class="m-0" th:text="${item.playTime}"></p></div>
+                                                        <div class="col"><p class="m-0 gothic-a1-regular">지점명</p><p class="m-0" th:text="${item.name}"></p></div>
+                                                        <div class="col"><p class="m-0 gothic-a1-regular">플레이타임</p><p class="m-0" th:text="${item.playTime}"></p></div>
                                                     </div>
 
                                                     <hr class="p-0 m-0">
 
                                                     <div class="row mt-2">
-                                                        <div class="col">난이도 <p class="m-0" th:text="${item.themeRank}"></p></div>
-                                                        <div class="col">장르 <p class="m-0" th:text="${item.genre}"></p></div>
+                                                        <div class="col"><p class="m-0 gothic-a1-regular">난이도</p><p class="m-0" th:text="${item.themeRank}"></p></div>
+                                                        <div class="col"><p class="m-0 gothic-a1-regular">장르</p><p class="m-0" th:text="${item.genre}"></p></div>
                                                     </div>
 
                                                     <hr class="p-0 m-0">
 
                                                     <div class="row mt-2">
-                                                        <div class="col">테마명 <p class="m-0" th:text="${item.title}"></p></div>
+                                                        <div class="col"><p class="m-0 gothic-a1-regular">테마명</p> <p class="m-0" th:text="${item.title}"></p></div>
                                                     </div>
 
                                                     <hr class="p-0 m-0">
 
                                                     <div class="d-grid mt-2">
-                                                        <label for="synopsys">시놉시스</label>
+                                                        <label for="synopsys" class="gothic-a1-regular">시놉시스</label>
                                                         <textarea class="border-0" name="synopsys" id="synopsys" rows="3" th:text="${item.synopsis}">시놉시스</textarea>
                                                     </div>
 
                                                     <hr class="p-0 m-0">
 
                                                     <div class="d-grid mb-3">
-                                                        <label for="review">후기</label>
+                                                        <label for="review" class="gothic-a1-regular">후기</label>
 <!--                                                        <textarea class="border-0" name="review" id="review" rows="3">후기</textarea>-->
                                                         <table id="review">
-                                                            <tr th:each="review:${reviewList}"  th:if="${review.themeIdx} eq ${item.themeIdx} and ${review.cafeId} eq ${item.cafeId}">
-                                                                <td><a href="#" th:text="${review.commTitle}"></a></td>
+                                                            <tr th:each="review:${reviewList}"  th:if="${review.commThemeIdx} eq ${item.themeIdx} and ${review.cafeId} eq ${item.cafeId}">
+                                                                <td><a class ="review" th:href="|@{/review/}${review.boardIdx}|" th:text="${review.commTitle}"></a></td>
                                                             </tr>
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row mt-3 mx-auto">
-                                                <a href="/reservation/hongdae/1" class="btn">예약하기</a>
+                                                <a href="/reservation/hongdae/1" class="btn" style="background-color: orange">예약하기</a>
                                             </div>
                                         </div>
                                     </div>

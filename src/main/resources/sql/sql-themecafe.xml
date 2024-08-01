@@ -48,7 +48,7 @@
             theme.cafe_id = #{cafeId}
     </select>
 
-<!--    리뷰 목록 -->
+<!--    리뷰 목록 8/1 수정함 -->
     <select id="selectReviewList" resultType="bitc.fullstack405.team2.mainThemePop.ThemeCafeDTO">
         select
             board_idx, comm_title, cafe_id, comm_theme_idx
@@ -56,7 +56,7 @@
             communication
         order by
             board_idx
-        desc limit 3
+        desc
     </select>
 
     <!--   ajax 리뷰 목록 , 최신 3개만 가져옴-->

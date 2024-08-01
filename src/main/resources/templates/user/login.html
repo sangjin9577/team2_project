@@ -36,9 +36,21 @@
             });
         });
     </script>
+    <style>
+        .btn{
+            background-color: orange;
+            color: white;
+        }
+
+        .btn:hover{
+            background-color: darkorange;
+            color: white;
+        }
+    </style>
 
 </head>
-<body>
+<body class="pt-5">
+<header th:replace="~{layout/header.html :: header}"></header>
 <div class="container mt-5">
         <h1 class="text-center">로그인</h1>
         <div class="row">
@@ -54,14 +66,15 @@
                             placeholder="비밀번호를 입력하세요">
                     </div>
                     <div class="my-3 d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">로그인</button>
+                        <button type="submit" class="btn">로그인</button>
                         <div class="d-flex justify-content-end">
-                            <a href="/user/register" class="btn btn-link">회원가입</a>
+                            <a href="/user/register" class="btn-link">회원가입</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 </div>
+<footer th:replace="~{/layout/footer :: footer}"></footer>
 </body>
 </html>
