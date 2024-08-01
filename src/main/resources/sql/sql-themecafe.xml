@@ -75,5 +75,15 @@
             limit 3
     </select>
 
-
+    <!-- [추가] 특정 카페 이름에 대한 테마 목록 조회 -->
+    <select id="getThemesForCafe" parameterType="java.lang.String" resultType="bitc.fullstack405.team2.mainThemePop.ThemeDTO">
+        SELECT
+            t.theme_idx, t.title
+        FROM
+            theme t
+        JOIN
+            cafe c ON t.cafe_id = c.cafe_id
+        WHERE
+            c.name = #{cafeName}
+    </select>
 </mapper>

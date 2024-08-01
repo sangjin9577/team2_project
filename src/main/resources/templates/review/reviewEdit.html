@@ -8,6 +8,51 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>방탈출 카페 후기</title>
 
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            var cafeSelect = document.getElementById('cafe');
+            var themeSelect = document.getElementById('theme');
+
+            cafeSelect.addEventListener('change', function() {
+                var cafeValue = cafeSelect.value;
+
+                // 테마 목록을 비웁니다
+                themeSelect.innerHTML = '<option value="" selected>테마 선택</option>';
+
+                var themes = [];
+                if (cafeValue === '홍대던전') {
+                    themes = [
+                        { value: 1, text: '사라진 보물' },
+                        { value: 2, text: '날씨의 신' },
+                        { value: 3, text: '꿈의 공장' },
+                        { value: 4, text: '오늘 나는' }
+                    ];
+                } else if (cafeValue === '강남던전') {
+                    themes = [
+                        { value: 5, text: '강남목욕탕' },
+                        { value: 6, text: '대호시장 살인사건' },
+                        { value: 7, text: '마음을 그려드립니다' }
+                    ];
+                } else if (cafeValue === '서면던전 레드(부산)') {
+                    themes = [
+                        { value: 8, text: '고시원 살인사건' },
+                        { value: 9, text: 'AMEN' },
+                        { value: 10, text: '산장으로의 초대' },
+                        { value: 11, text: '부적' }
+                    ];
+                }
+
+                // 테마 목록을 추가합니다
+                themes.forEach(function(theme) {
+                    var option = document.createElement('option');
+                    option.value = theme.value;  // value를 설정
+                    option.textContent = theme.text;
+                    themeSelect.appendChild(option);
+                });
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function () {
             $("#btn-cancel").on("click", function () {
@@ -15,19 +60,19 @@
             });
 
             $('form').on('submit', function(event) {
-                var category = $('#category').val();
-                var name = $('#name').val();
+                var cafe = $('#cafe').val();
+                var theme = $('#theme').val();
                 var title = $('#title').val();
-                var uploadFile = $('#upload-file').val();
+                var contents = $('#contents').val();
 
-                if (category === '카테고리 선택') {
-                    event.preventDefault();
-                    alert('카테고리를 선택해 주세요.');
-                    return false;
-                }
-                if (name === '지점 선택') {
+                if (cafe === '지점 선택') {
                     event.preventDefault();
                     alert('지점을 선택해 주세요.');
+                    return false;
+                }
+                if (theme === '테마 선택') {
+                    event.preventDefault();
+                    alert('테마를 선택해 주세요.');
                     return false;
                 }
                 if (title === '') {
@@ -35,9 +80,9 @@
                     alert('제목을 입력해 주세요.');
                     return false;
                 }
-                if (uploadFile === '') {
+                if(contents === '' ) {
                     event.preventDefault();
-                    alert('첨부파일을 선택해 주세요.');
+                    alert('내용을 입력해 주세요.');
                     return false;
                 }
             });
@@ -46,7 +91,7 @@
                 $("#method").val("PUT");
 
                 const frm = $("#frm")[0];
-                frm.action = "/notice/edit" + $("#notice-id").val();
+                frm.action = "/review/edit" + $("#board-idx").val() + "/" + $("#theme").val();
                 frm.submit();
             });
         });
@@ -54,81 +99,69 @@
 </head>
 <body>
     <header th:replace="~{layout/header.html :: header}"></header>
+
     <main>
-        <div class="container">
-            <section style="margin-top: 75px;">
-                <div class="p-4 text-center border rounded-4 bg-secondary-subtle">
-                    <h1 class="display-4">비트포비아 던전</h1>
-                    <h2 class="mt-3"><small>[관리자] 공지사항 수정</small></h2>
-                </div>
-            </section>
-        </div>
-
         <div class="container mt-5">
-            <section>
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <form th:action="'/notice/edit/' + ${review.boardIdx}" method="post" enctype="multipart/form-data">
-                            <input type="hidden" id="method" name="_method">
-                            <input type="hidden" id="review-id" name="boardIdx" th:value="${review.boardIdx}"/>
-                            <div class="row mb-3">
-                                <!-- 카테고리 선택 -->
-                                <div class="col-12 col-md-6">
-                                    <label for="category" class="form-label">카테고리</label>
-                                    <select class="form-select" id="category" name="category">
-                                        <option>카테고리 선택</option>
-                                        <option value="공지" th:selected="${review.category == '공지'}">공지</option>
-                                        <option value="이벤트" th:selected="${review.category == '이벤트'}">이벤트</option>
-                                    </select>
-                                </div>
-
-                                <!-- 지점 선택 -->
-                                <div class="col-12 col-md-6">
-                                    <label for="name" class="form-label">지점</label>
-                                    <select class="form-select" id="name" name="name">
-                                        <option>지점 선택</option>
-                                        <option value="전체" th:selected="${notice.name == '전체'}">전체</option>
-                                        <option value="홍대던전" th:selected="${notice.name == '홍대던전'}">홍대던전</option>
-                                        <option value="강남던전" th:selected="${notice.name == '강남던전'}">강남던전</option>
-                                        <option value="서면던전 레드(부산)" th:selected="${notice.name == '서면던전 레드(부산)'}">서면던전 레드(부산)</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- 제목 입력 -->
-                            <div class="mb-3">
-                                <label for="title" class="form-label">제목</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요" th:value="${notice.title}">
-                            </div>
-
-                            <!-- 시작 날짜 입력 -->
-                            <div class="mb-3">
-                                <label for="start-date" class="form-label">시작 날짜</label>
-                                <input type="date" class="form-control" id="start-date" name="startDate"
-                                    th:value="${notice.startDate}">
-                            </div>
-
-                            <!-- 마감 날짜 입력 -->
-                            <div class="mb-3">
-                                <label for="end-date" class="form-label">마감 날짜</label>
-                                <input type="date" class="form-control" id="end-date" name="endDate"
-                                    th:value="${notice.endDate}">
-                            </div>
-
-                            <!-- 첨부파일 업로드 -->
-                            <div class="mb-3">
-                                <label for="upload-file" class="form-label">첨부파일</label>
-                                <input type="file" class="form-control" id="upload-file" name="uploadFile">
-                            </div>
-
-                            <div class="d-flex justify-content-end">
-                                <button type="reset" class="btn btn-secondary me-2" id="btn-cancel">취소</button>
-                                <button type="submit" class="btn btn-primary" id="btn-submit">확인</button>
-                            </div>
-                        </form>
+            <div class="row justify-content-center">
+                <div class="col-md-8 form-section">
+                    <div class="main-header do-hyeon-regular">
+                        <h1>방탈출 카페</h1>
+                        <h4><small>후기 등록</small></h4>
                     </div>
+
+                    <form th:action="'/review/edit/' + ${review.boardIdx} + '/' + ${commThemeIdx} " method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="method" name="_method" value="PUT">
+                        <input type="hidden" id="review-id" name="boardIdx" th:value="${review.boardIdx}"/>
+                        <div class="row mb-3">
+                            <!-- 카테고리 선택 -->
+                            <div class="col-12 col-md-6">
+                                <label for="cafe" class="form-label">이용한 지점</label>
+                                <select class="form-select" id="cafe" name="cafeName">
+                                    <option value="" selected>지점 선택</option>
+                                    <option value="홍대던전" th:selected="${review.cafeName == '홍대던전'}">홍대던전</option>
+                                    <option value="강남던전" th:selected="${review.cafeName == '강남던전'}">강남던전</option>
+                                    <option value="서면던전 레드(부산)" th:selected="${review.cafeName == '서면던전 레드(부산)'}">서면던전 레드(부산)</option>
+                                </select>
+                            </div>
+
+                            <!-- 테마 선택 -->
+                            <div class="col-12 col-md-6">
+                                <label for="theme" class="form-label">테마</label>
+                                <select class="form-select" id="theme" name="commThemeIdx">
+                                    <option value="" th:selected="${review.commThemeIdx == null}">테마 선택</option>
+                                    <option th:each="theme : ${themes}"
+                                            th:value="${theme.themeIdx}"
+                                            th:text="${theme.title}"
+                                            th:selected="${review.commThemeIdx == theme.themeIdx}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 제목 입력 -->
+                        <div class="mb-3">
+                            <label for="title" class="form-label">제목</label>
+                            <input type="text" class="form-control" id="title" name="commTitle" placeholder="제목을 입력하세요" th:value="${review.commTitle}">
+                        </div>
+
+                        <!-- 내용 입력 -->
+                        <div class="mb-3">
+                            <label for="contents">내용</label>
+                            <textarea class="form-control" id="contents" name="contents" placeholder="내용을 입력하세요" style="height: 100px;" th:text="${review.contents}"></textarea>
+                        </div>
+
+                        <!-- 첨부파일 업로드 -->
+                        <div class="mb-3">
+                            <label for="upload-file" class="form-label">첨부파일</label>
+                            <input type="file" class="form-control" id="upload-file" name="uploadFile">
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="reset" class="btn btn-secondary me-2" id="btn-cancel">취소</button>
+                            <button type="submit" class="btn btn-primary">확인</button>
+                        </div>
+                    </form>
                 </div>
-            </section>
+            </div>
         </div>
     </main>
 

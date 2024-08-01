@@ -3,6 +3,7 @@ package bitc.fullstack405.team2.mainThemePop;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.context.Theme;
 
 import java.util.List;
 @Service
@@ -43,5 +44,10 @@ public class ThemeServiceImpl implements
   @Override
   public List<ThemeCafeDTO> selectAjaxReviewList(int cafeIdx, int themeIdx) throws Exception {
     return themeMapper.selectAjaxReviewList(cafeIdx, themeIdx);
+  }
+
+  // [추가] 특정 카페 이름에 대한 테마 목록을 조회하는 메서드
+  public List<ThemeDTO> getThemesForCafe(String cafeName) {
+    return themeMapper.getThemesForCafe(cafeName);
   }
 }

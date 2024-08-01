@@ -13,4 +13,5 @@ public class ThemeDTO {
   private int playTime;
   private int payment;
   private String imgUrl;
+  private int themeIdx; // 추가
 }

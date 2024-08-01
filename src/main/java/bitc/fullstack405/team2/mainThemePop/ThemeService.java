@@ -18,4 +18,7 @@ public interface ThemeService {
   List<ThemeCafeDTO> selectReviewList() throws Exception;
 
   List<ThemeCafeDTO> selectAjaxReviewList(int cafeIdx, int themeIdx) throws Exception;
+
+  // [추가] 특정 카페 이름에 대한 테마 목록을 조회하는 메서드
+  List<ThemeDTO> getThemesForCafe(String cafeName) throws Exception;
 }

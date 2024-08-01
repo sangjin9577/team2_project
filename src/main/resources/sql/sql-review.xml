@@ -37,7 +37,7 @@
     <select id="selectReviewDetail" parameterType="int" resultType="bitc.fullstack405.team2.review.ReviewDTO">
         SELECT
             c.board_idx, c.comm_title, c.contents, c.createAt, u.nickname AS create_user,
-            c.hit_cnt, t.title AS theme_title, ca.name AS cafe_name, c.comm_image
+            c.hit_cnt, t.title AS theme_title, ca.name AS cafe_name, c.comm_image, c.comm_theme_idx
         FROM
             communication c
         LEFT JOIN
@@ -78,9 +78,9 @@
             communication
         SET
             comm_title = #{commTitle},
-            cafe_id = #{cafeId}
-            contents,  = #{contents},
-            updatedAt = now(),
+            cafe_id = #{cafeId},
+            contents = #{contents},
+            updateAt = now(),
             comm_image = #{commImage},
             comm_theme_idx = #{commThemeIdx}
         WHERE

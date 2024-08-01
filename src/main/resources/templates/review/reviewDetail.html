@@ -71,7 +71,8 @@
 
             $("#btn-edit").on("click", function () {
                 const boardIdx = $("#board-idx").val();
-                window.location.href = "/review/edit/" + boardIdx;
+                const commThemeIdx = $("#comm_theme-idx").val();
+                window.location.href = "/review/edit/" + boardIdx + "/" +commThemeIdx;
             });
         });
     </script>
@@ -99,6 +100,7 @@
                     </div>
 
                     <input type="hidden" id="board-idx" name="boardIdx" th:value="${review.boardIdx}"/>
+                    <input type="hidden" id="comm_theme-idx" name="commThemeIdx" th:value="${review.commThemeIdx}"/>
 
                     <p class="mb-0">
                         작성일: <span th:text="${review.createAt}">2023-09-01 14:45:12</span>

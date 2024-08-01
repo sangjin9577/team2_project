@@ -1,11 +1,13 @@
 package bitc.fullstack405.team2.review;
 
+import bitc.fullstack405.team2.mainThemePop.ThemeMapper;
 import bitc.fullstack405.team2.user.UserMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.context.Theme;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +21,9 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ThemeMapper themeMapper;
 
     @Autowired
     private ReviewFileUtils fileUtils;
