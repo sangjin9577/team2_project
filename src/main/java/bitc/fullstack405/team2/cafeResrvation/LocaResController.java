@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class LocaResController {
@@ -69,6 +70,11 @@ public class LocaResController {
     UserDTO user = userService.getUserInfo(userId);
     mv.addObject("user", user);
 
+    Random random = new Random();
+
+    String serialNum = date + themeInfo.getCafeId() + themeInfo.getThemeIdx() + random.nextInt(1000);
+
+    mv.addObject("serialNum", serialNum);
     return mv;
   }
 

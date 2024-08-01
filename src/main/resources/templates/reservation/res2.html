@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-3">
+                <div class="row mt-5">
                     <div class="col-6">
                         <img th:src="@{${themeInfo.imgUrl}}" style="height: 450px; width: 400px;">
                     </div>
@@ -63,7 +63,7 @@
 
                                     <div class="form-group">
                                         <label for="time">*예약 시간</label>
-                                        <input type="text" class="form-control" id="time" name="resTime" readonly th:value="${time}">
+                                        <input type="text" class="form-control" id="time" name="resTime" readonly th:value="${time}+(':00')">
                                     </div>
 
                                     <div class="form-group">
@@ -72,12 +72,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="pay">*결제 금액</label>
-                                        <input type="text" class="form-control" id="pay" name="resPayment" readonly th:value="${themeInfo.payment}">
+                                        <label for="pay">*결제 금액   (정가 : <span th:text="${themeInfo.payment}"></span>원 사용된 포인트 : <span th:text="${user.point}"></span>점)</label>
+                                        <input type="text" class="form-control" id="pay" name="resPayment" readonly th:value="${themeInfo.payment}-${user.point}+('원')">
                                     </div>
 
                                     <input type="hidden" name="cafeId" th:value="${themeInfo.cafeId}">
                                     <input type="hidden" name="themeId" th:value="${themeInfo.themeIdx}">
+                                    <input type="hidden" name="serialNum" th:value="${serialNum}">
 
                                     <div class="mt-3 d-flex justify-content-end">
                                         <button type="submit" class="btn" style="background-color: orange">예약하기</button>
