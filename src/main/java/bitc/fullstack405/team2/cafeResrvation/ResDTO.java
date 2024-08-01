@@ -9,6 +9,11 @@ public class ResDTO {
   private String reservationDate;
   private String state;
   private int cafeId;
-  private int userId;
+  private String userId;
   private int themeId;
+  private String cafeName;
+  private String themeTitle;
+
+  private int resPayment;
+  private int resPeople;
 }
