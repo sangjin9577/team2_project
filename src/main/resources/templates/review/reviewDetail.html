@@ -40,13 +40,6 @@
             color: white;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
-
         /* 제목 스타일 */
         h1 {
             font-size: 3rem;
@@ -78,7 +71,7 @@
         }
 
         /* 이미지 스타일 */
-        img {
+        boardImg {
             max-width: 100%;
             height: 40%;
             border-radius: 8px;
@@ -155,7 +148,7 @@
         <div class="mb-6 mx-auto">
             <label for="contents" class="fs-5 mb-2"></label>
             <textarea name="contents" id="contents" placeholder="내용" th:text="${review.contents}" readonly></textarea>
-            <img th:src="@{'/reviewImg/' + ${review.commImage}}" alt="Review Image" class="mt-3 rounded "/>
+            <img th:src="@{'/reviewImg/' + ${review.commImage}}" alt="Review Image" class="mt-3 rounded boardImg "/>
         </div>
     </div>
 
