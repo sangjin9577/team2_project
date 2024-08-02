@@ -6,4 +6,5 @@ public interface ResService {
   List<ResDTO> selectResTime(int cafeIdx) throws Exception;
 
   void insertResInfo(ResDTO res) throws Exception;
+
 }

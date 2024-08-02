@@ -19,4 +19,5 @@ public class ResServiceImpl implements ResService {
   public void insertResInfo(ResDTO res) throws Exception {
     resMapper.insertResInfo(res);
   }
+
 }

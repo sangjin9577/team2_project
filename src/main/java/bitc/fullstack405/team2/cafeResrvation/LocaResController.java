@@ -90,19 +90,17 @@ public class LocaResController {
 
   // 예약 정보 저장
   @PostMapping("/reservation/write")
-  public String writeReservation(ResDTO res) throws Exception {
+  public String writeReservation(ResDTO res, HttpServletRequest req) throws Exception {
     resService.insertResInfo(res);
-    return "redirect:/reservation/complete";
+    req.setAttribute("res", res);
+    return "forward:/reservation/complete";
   }
 
   @RequestMapping("/reservation/complete")
-  public String completeReservation() throws Exception {
+  public String complete() throws Exception {
+
     return "reservation/complete";
   }
-
-
-
-  
 
 
 }

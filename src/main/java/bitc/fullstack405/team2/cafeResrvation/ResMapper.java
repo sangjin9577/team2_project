@@ -11,4 +11,5 @@ public interface ResMapper {
   List<ResDTO> selectResTime(@Param("cafeId") int cafeIdx) throws Exception;
 
   void insertResInfo(ResDTO res) throws Exception;
+
 }
