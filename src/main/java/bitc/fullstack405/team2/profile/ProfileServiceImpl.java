@@ -12,12 +12,33 @@ public class ProfileServiceImpl implements ProfileService {
     private ProfileMapper profileMapper;
 
     @Override
-    public List<ProfileDTO> selectProfileList() throws Exception {
-        return profileMapper.selectProfileList();
+    public List<ProfileReservationDTO> selectProfileList(String userId) throws Exception {
+        return profileMapper.selectProfileList(userId);
+    }
+
+    @Override
+    public List<ProfileReservationDTO> selectProfileRv(String userId) throws Exception {
+        return profileMapper.selectProfileRv(userId);
+    }
+
+    @Override
+    public List<ProfileReservationDTO> selectProfileOverRv(String userId) throws Exception {
+        return profileMapper.selectProfileOverRv(userId);
+    }
+
+    @Override
+    public ProfileDTO selectProfile(String userId) throws Exception {
+        return profileMapper.selectProfile(userId);
     }
 
     @Override
     public ProfileDTO selectProfileDetail(String userId) throws Exception {
         return profileMapper.selectProfileDetail(userId);
     }
+
+    @Override
+    public ProfileDTO selectProfileUpdate(String userId) throws Exception {
+        return profileMapper.selectProfileUpdate(userId);
+    }
+
 }
