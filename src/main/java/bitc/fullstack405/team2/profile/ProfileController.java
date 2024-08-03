@@ -42,11 +42,11 @@ public class ProfileController {
     mv.addObject("profileList", profileList);
 
     // 유저 예약 현황(현재)
-    List<ProfileReservationDTO> profileRv = profileService.selectProfileRv(userId);
+    List<ProfileDTO> profileRv = profileService.selectProfileRv(userId);
     mv.addObject("profileRv", profileRv);
 
     // 유저 예약 현황(과거)
-    List<ProfileReservationDTO> profileOverRv = profileService.selectProfileOverRv(userId);
+    List<ProfileDTO> profileOverRv = profileService.selectProfileOverRv(userId);
     mv.addObject("profileOverRv", profileOverRv);
 
     return mv;

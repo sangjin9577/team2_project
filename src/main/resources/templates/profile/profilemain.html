@@ -18,12 +18,12 @@
 <header th:replace="~{layout/header.html :: header}"></header>
 
 <section id="profile" class="container mt-5">
-    <h1 class="text-center">PROFILE</h1>
+    <h1 class="text-center">MY PAGE</h1>
     <div>
         <h3 class="text-center">계정 정보</h3>
         <div class="text-center">
         </div>
-    <div class="row mt-5 d-flex justify-content-center">
+    <div class="row mt-3 d-flex justify-content-center">
         <div class="col-sm-4">
             <form action="profilemain.html">
                 <div class="form-floating">
@@ -35,19 +35,15 @@
                     <label for="usernickname" th:text="${profile.nickName}">닉네임</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="useremail" name="userEmail" placeholder="이메일" readonly>
-                    <label for="useremail" th:text="${profile.email}">이메일</label>
-                </div>
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="userphone" name="userPhone" placeholder="전화번호" readonly>
-                    <label for="userphone" th:text="${profile.mobileNumber}">전화번호</label>
+                    <input type="text" class="form-control" id="userpoint" name="point" placeholder="포인트" readonly>
+                    <label for="userpoint" class="form-label" th:text="${profile.point}">포인트</label>
                 </div>
             </form>
         </div>
     </div>
     </div>
     <div>
-        <a href="profiledetail" class="d-grid gap-2 col-3 mx-auto mt-5">
+        <a href="profiledetail" class="d-grid gap-2 col-3 mx-auto mt-3">
             <button type="button" class="btn btn-primary">상세보기</button>
         </a>
     </div>
@@ -61,21 +57,27 @@
                 <table class="table table-hover table-striped">
                     <colgroup>
                         <col style="width: 20%">
-                        <col style="width: 60%">
+                        <col style="width: 25%">
+                        <col style="width: 25%">
+                        <col style="width: 10%">
                         <col style="width: 20%">
                     </colgroup>
                     <thead>
                     <tr>
                         <th>예약번호</th>
                         <th>지점명</th>
+                        <th>테마명</th>
+                        <th>예약시간</th>
                         <th>예약날짜</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>기본 예약번호</td>
-                        <td>기본 지점명</td>
-                        <td>기본 예약날짜</td>
+                    <tr th:if="${#lists.size(profileRv)}>0" th:each="itemRv:${profileRv}">
+                        <td th:text="${itemRv.serialNum}">기본 예약번호</td>
+                        <td th:text="${itemRv.cafeName}">기본 지점명</td>
+                        <td th:text="${itemRv.themeTitle}">기본 테마명</td>
+                        <td th:text="${itemRv.resTime}">예약시간</td>
+                        <td th:text="${itemRv.reservationDate}">기본 예약날짜</td>
                     </tr>
                     </tbody>
                 </table>
@@ -102,19 +104,19 @@
     <div class="accordion accordion-flush mt-5" id="accordion_over_reservation">
         <h3 class="text-center">예약현황(과거)</h3>
         <div class="accordion-item">
-            <h2 class="accordion-header">
+            <h4 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#over-flush-collapseOne" aria-expanded="false" aria-controls="over-flush-collapseOne">
-                    지점명, 예약날짜
+                    펼쳐보기
                 </button>
-            </h2>
+            </h4>
             <div id="over-flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    <div class="row">
-                        <div class="col">지점명</div>
-                        <div class="col">테마명</div>
-                        <div class="col">예약날짜</div>
-                        <div class="col">예약시간</div>
+                    <div class="row" th:if="${#lists.size(profileOverRv)} > 0" th:each="itemOver:${profileOverRv}" >
+                        <div class="col" th:text="${itemOver.cafeName}">지점명</div>
+                        <div class="col" th:text="${itemOver.themeTitle}">테마명</div>
+                        <div class="col" th:text="${itemOver.reservationDate}">예약날짜</div>
+                        <div class="col" th:text="${itemOver.resTime}">예약시간</div>
                     </div>
                 </div>
             </div>

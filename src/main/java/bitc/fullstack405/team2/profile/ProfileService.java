@@ -13,7 +13,7 @@ public interface ProfileService {
 
   List<ProfileReservationDTO> selectProfileList(String userId) throws Exception;
 
-  List<ProfileReservationDTO> selectProfileRv(String userId) throws Exception;
+  List<ProfileDTO> selectProfileRv(String userId) throws Exception;
 
-  List<ProfileReservationDTO> selectProfileOverRv(String userId) throws Exception;
+  List<ProfileDTO> selectProfileOverRv(String userId) throws Exception;
 }

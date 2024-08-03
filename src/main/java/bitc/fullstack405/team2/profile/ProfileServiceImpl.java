@@ -17,12 +17,12 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public List<ProfileReservationDTO> selectProfileRv(String userId) throws Exception {
+    public List<ProfileDTO> selectProfileRv(String userId) throws Exception {
         return profileMapper.selectProfileRv(userId);
     }
 
     @Override
-    public List<ProfileReservationDTO> selectProfileOverRv(String userId) throws Exception {
+    public List<ProfileDTO> selectProfileOverRv(String userId) throws Exception {
         return profileMapper.selectProfileOverRv(userId);
     }
 

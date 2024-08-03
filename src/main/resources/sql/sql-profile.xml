@@ -47,7 +47,7 @@
 <!--    유저 예약 현황(현재)    -->
     <select id="selectProfileRv" parameterType="String" resultType="bitc.fullstack405.team2.profile.ProfileDTO">
         SELECT
-            res_id, res_time, reservation_date, state, createdAt, cafe_id, user_id, theme_id, cafe_name, theme_title
+            res_id, res_time, reservation_date, state, createdAt, cafe_id, user_id, theme_id, cafe_name, theme_title, serial_num
         FROM
             reservation
         WHERE
@@ -61,7 +61,7 @@
 <!--    유저 예약 현황(과거)    -->
     <select id="selectProfileOverRv" parameterType="String" resultType="bitc.fullstack405.team2.profile.ProfileDTO">
         SELECT
-            res_id, res_time, reservation_date, state, createdAt, cafe_id, user_id, theme_id, cafe_name, theme_title
+            res_id, res_time, reservation_date, state, createdAt, cafe_id, user_id, theme_id, cafe_name, theme_title, serial_num
         FROM
             reservation
         WHERE

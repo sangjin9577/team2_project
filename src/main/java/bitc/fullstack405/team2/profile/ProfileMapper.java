@@ -20,8 +20,8 @@ public interface ProfileMapper {
   List<ProfileReservationDTO> selectProfileList(String userId) throws Exception;
 
 //  유저 예약 현황보기(현재)
-  List<ProfileReservationDTO> selectProfileRv(String userId) throws Exception;
+  List<ProfileDTO> selectProfileRv(String userId) throws Exception;
 
 //  유저 예약 현황보기(과거)
-  List<ProfileReservationDTO> selectProfileOverRv(String userId) throws Exception;
+  List<ProfileDTO> selectProfileOverRv(String userId) throws Exception;
 }
