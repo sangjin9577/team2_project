@@ -55,7 +55,8 @@
         ANd
             state = 'T'
         AND
-            reservation_date >= now()
+            reservation_date >= CURDATE()
+        ORDER BY res_id desc
     </select>
 
 <!--    유저 예약 현황(과거)    -->
@@ -69,7 +70,7 @@
         ANd
             state = 'T'
         AND
-            reservation_date &lt; now()
+            reservation_date &lt; CURDATE()
     </select>
 
 </mapper>
